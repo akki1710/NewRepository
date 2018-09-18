@@ -1,0 +1,144 @@
+ h2{
+ color:#fff;
+ }
+ h3{
+ color:#fff;
+  font-size:25px;
+ }
+ .Car-top {
+	overflow: hidden;
+	padding: 0 25px 15px 25px;
+	background: rgba(4, 1, 1, 1);
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
+	text-align: left;
+} 
+
+.Car-text{
+	color:#fff;
+	
+}
+select.age{
+	color:black;
+}
+.Car{
+	background:transparent; 
+	width:226px;
+	 height:40px;"
+} 
+input[type="name"] {
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    outline: none;
+    border: 1px solid #fff;
+    background: transparent;
+    color:#fff;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+.title{
+	background:transparent ;
+	border: 1px solid #fff;
+	color-text:#fff;
+	
+}
+input[type="email"] {
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+	letter-spacing: 1px;
+    width: 100%;
+    padding: 10px;
+	margin: 10px 0;
+    outline: none;
+	border: 1px solid #fff;
+	background: transparent;
+    color: #fff;
+    box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+}
+input[type="pno"] {
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+	letter-spacing: 1px;
+    width: 100%;
+    padding: 10px;
+	margin: 10px 0;
+    outline: none;
+	border: 1px solid #fff;
+	background: transparent;
+    color: #fff;
+    box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+}
+input[type="address"] {
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+	letter-spacing: 1px;
+    width: 100%;
+    padding: 10px;
+	margin: 10px 0;
+    outline: none;
+	border: 1px solid #fff;
+	background: transparent;
+    color: #fff;
+    box-sizing: border-box;
+	font-family: 'Lato', sans-serif;
+}
+select.day,select.month,select.year {
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 95%;
+    outline: none;
+    border: 1px solid #fff;
+    background: black;
+    color: #fff;
+    box-sizing: border-box;
+   font-family: 'Lato', sans-serif;
+}
+  select.day{
+	background:black;
+	width:95%;
+}
+select.Car{
+	color:#fff;
+}
+  body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #888;
+    line-height: 30px;
+    text-align: center;
+}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: rgb(250, 255, 189) !important;
+    background-image: none !important;
+    color: rgb(0, 0, 0) !important;
+}
+.radio-w3ls{
+	color:blue;
+}  
+textarea.form-control:focus {
+	outline: 0;
+	background: #fff;
+    border: 3px solid #ccc;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+input[type="Mobile number"]{
+	background: transparent;
+	width:95px;
+	height:40px;
+}
