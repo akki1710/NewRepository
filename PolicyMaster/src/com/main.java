@@ -25,7 +25,7 @@ public class main {
 	
 	public static void main(String[] args) throws IOException {
 		/*List<ProdMasters> pm=Poiji.fromExcel(new File("E://API//Shriram//MASTER KITS/Prod Masters.xls"), ProdMasters.class);
-		Integer aaaaaaaaaaaaaaa=pm.size();
+		Integer=pm.size();
 		//System.out.println(a);
 		ProdMasters pm1=pm.get(0);
 		//System.out.println(pm1.getProdcode());

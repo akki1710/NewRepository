@@ -110,21 +110,23 @@ public class Servlet2 extends HttpServlet {
 				
 				if(Car_RegNo!=null)
 				{
+					User userpoj=new User();
 					try {
 					session.removeAttribute("bike_reg");
 					System.out.println("Entered into car page");
 					
 					String a=Car_RegNo.substring(0,4);
 					String strRTOCode=a.substring(0,2)+"-"+a.substring(2, a.length());
-					session.setAttribute("strRTOCode", strRTOCode);
+					userpoj.setStrRTOCode(strRTOCode);
 					
 					
 					String strInsuredState=Car_RegNo.substring(0,2);
-					session.setAttribute("strInsuredState", strInsuredState);
+					userpoj.setStrInsuredState(strInsuredState);
 					 main m=new main();
 					 
 					 //String strVehicleCode=m.car(Model, FuelType);
 					 String strVehicleCode=m.ifModel(Varient, FuelType,strInsuredState);
+					 userpoj.setStrVehicleCode(strVehicleCode);
 					 String IDV_of_Vehicle=m.IDV(RegYear, Varient, strInsuredState);
 					 
 					 String g[]=m.ifRegyr(RegYear,AnyClaim);
@@ -135,13 +137,13 @@ public class Servlet2 extends HttpServlet {
 				 	   	String strPrevPolClaimYN=g[4];
 				 	   	String strPrevPolNCB=g[5];
 				 	   	
-				 	    session.setAttribute("strVehicleCode", strVehicleCode);
-				 	  	session.setAttribute("strProductCode", strProductCode);
-						session.setAttribute("strPolicyType", strPolicyType);
-						session.setAttribute("strADDONCover", strADDONCover);
-						session.setAttribute("strPrevPolClaimYN", strPrevPolClaimYN);
-						session.setAttribute("strPrevPolNCB", strPrevPolNCB);
-						System.out.println("In Sevlert2 : NCB : "+strPrevPolNCB);
+				 	
+				 	  userpoj.setStrProductCode(strProductCode);
+				 	  userpoj.setStrPolicyType(strPolicyType);
+				 	  userpoj.setStrADDONCover(strADDONCover);
+				 	  userpoj.setStrPrevPolClaimYN(strPrevPolClaimYN);
+				 	  userpoj.setStrPrevPolNCB(strPrevPolNCB);
+						//System.out.println("In Sevlert2 : NCB : "+strPrevPolNCB);
 						
 						//String strPrevPolExpDt=date;
 						
@@ -180,8 +182,8 @@ public class Servlet2 extends HttpServlet {
 							session.setAttribute("PreviousPolicyFromDt", PreviousPolicyFromDt);
 							session.setAttribute("PreviousPolicyUWYear", PreviousPolicyUWYear);
 							session.setAttribute("VehicleManufactureYear", VehicleManufactureYear);
-							session.setAttribute("strPrevPolExpDt", strPrevPolExpDt);
-							session.setAttribute("strFirstRegDt", strFirstRegDt);
+							userpoj.setStrPrevPolExpDt(strPrevPolExpDt);
+							userpoj.setStrFirstRegDt(strFirstRegDt);
 						
 							/* Royal code Start */
 							/* Current Date Code */
@@ -267,8 +269,8 @@ public class Servlet2 extends HttpServlet {
 									session.setAttribute("PreviousPolicyFromDt", PreviousPolicyFromDt);
 									session.setAttribute("PreviousPolicyUWYear", PreviousPolicyUWYear);
 									session.setAttribute("VehicleManufactureYear", VehicleManufactureYear);
-									session.setAttribute("strPrevPolExpDt", strPrevPolExpDt);
-									session.setAttribute("strFirstRegDt", strFirstRegDt);
+									userpoj.setStrPrevPolExpDt(strPrevPolExpDt);
+									userpoj.setStrFirstRegDt(strFirstRegDt);
 					
 									/* Current Date Code */
 									DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -465,7 +467,7 @@ public class Servlet2 extends HttpServlet {
 
 				        
 				        
-				        
+				        session.setAttribute("userpoj", userpoj);
 					
 		       
 					Connection con = Db.myGetConnection();

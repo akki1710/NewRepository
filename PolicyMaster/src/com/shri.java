@@ -69,31 +69,34 @@ public class shri extends HttpServlet {
         PrintWriter pw = response.getWriter();  
 		
 		 HttpSession session=request.getSession();		
-		 String strRTOCode = (String) session.getAttribute("strRTOCode");
-		 String strVehicleCode = (String) session.getAttribute("strVehicleCode");
-		 String strProductCode = (String) session.getAttribute("strProductCode");
-		 String strPolicyType = (String) session.getAttribute("strPolicyType");
-		 String strADDONCover = (String) session.getAttribute("strADDONCover");
-		 String strPrevPolClaimYN = (String) session.getAttribute("strPrevPolClaimYN");
-		 String strPrevPolNCB = (String) session.getAttribute("strPrevPolNCB");
-		 String strPrevPolExpDt = (String) session.getAttribute("strPrevPolExpDt");
-		 String strFirstRegDt = (String) session.getAttribute("strFirstRegDt");
-		 String strInsuredState= (String) session.getAttribute("strInsuredState");
+		 try {
+			 User userpoj=(User) session.getAttribute("userpoj");
+			 String strRTOCode = userpoj.getStrRTOCode();
+			 String strVehicleCode = userpoj.getStrVehicleCode();
+			 String strProductCode = userpoj.getStrProductCode();
+			 //String strPolicyType = (String) session.getAttribute("strPolicyType");
+			 String strADDONCover =userpoj.getStrADDONCover();
+			 String strPrevPolClaimYN = userpoj.getStrPrevPolClaimYN();
+			 String strPrevPolNCB = userpoj.getStrPrevPolNCB();
+			 String strPrevPolExpDt = userpoj.getStrPrevPolExpDt();
+			 System.out.println("strPrevPolExpDt: "+strPrevPolExpDt);
+			 String strFirstRegDt = userpoj.getStrFirstRegDt();
+			 String strInsuredState= userpoj.getStrInsuredState();
 		 
 		 User user=new User();
 			user.setStrProductCode(strProductCode);
-			user.setStrPolicyType(strPolicyType);
+			user.setStrPolicyType("MOT-PLT-001");
 			user.setStrRTOCode(strRTOCode);
 			user.setStrVehicleCode(strVehicleCode);
 			user.setStrADDONCover(strADDONCover);
-			if(strPrevPolExpDt.equals("")) {
+			/*if(strPrevPolExpDt.equals("")) {
 				user.setStrFirstRegDt("");
 				user.setStrPrevPolExpDt("");
 			}
-			else {
+			else {*/
 				user.setStrFirstRegDt(strFirstRegDt);
 				user.setStrPrevPolExpDt(strPrevPolExpDt);
-			}
+			//}
 			
 			user.setStrInsuredState(strInsuredState);
 			user.setStrPrevPolClaimYN(strPrevPolClaimYN);
@@ -111,7 +114,7 @@ public class shri extends HttpServlet {
 			pw.println(user.getStrPrevPolNCB());*/
 			
 			Document document;
-			try {
+			
 				document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 				Marshaller marshaller = JAXBContext.newInstance(User.class).createMarshaller();
 				marshaller.marshal(user, document);
