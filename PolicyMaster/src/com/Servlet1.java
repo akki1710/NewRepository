@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,6 +35,8 @@ public class Servlet1 extends HttpServlet {
 				response.setContentType("text/html");
 				PrintWriter pw=response.getWriter();
 				
+				beans.main_data md=new beans.main_data();
+				
 				String RegNo=request.getParameter("RegNo");
 				String Manufacturer=request.getParameter("Manufacturer");
 				String Model=request.getParameter("b1");
@@ -51,38 +55,37 @@ public class Servlet1 extends HttpServlet {
 				String bk4=request.getParameter("bk4");
 				String Bike_Claim=request.getParameter("Bike_Claim");
 				String BikeExpiryDate=request.getParameter("BikeExpiryDate");
-
+				
+				
 				
 					HttpSession session=request.getSession();
-					
 		// Car servlet starts here			
 					if(RegNo!=null)
 					{
 		            session.setAttribute("RegNo", RegNo);
-		            
 		            response.sendRedirect("car_page1.jsp");
 					}
 					if(Manufacturer!=null)
 					{
 		            session.setAttribute("Manufacturer", Manufacturer);
 		            response.sendRedirect("car_page2.jsp");
+		            System.out.println(Manufacturer);
 					}
 					if (Model!=null)
-					{
-						session.setAttribute("Model", Model);
-			            
-			            response.sendRedirect("car_page3.jsp");
+					{	
+					session.setAttribute("Model", Model);
+					response.sendRedirect("car_page3.jsp");
+						
 					}
 					if (FuelType!=null)
-					{
+					{	
 						session.setAttribute("FuelType", FuelType);
-			            
-			            response.sendRedirect("car_page4.jsp");
+						response.sendRedirect("car_page4.jsp");
+						
 					}
 					if (Variant!=null)
 					{
 						session.setAttribute("Variant", Variant);
-			            
 			            response.sendRedirect("car_page5.jsp");
 					}
 					if (Regyr!=null)
@@ -91,14 +94,12 @@ public class Servlet1 extends HttpServlet {
 						{
 							session.setAttribute("Regyr", Regyr);
 							session.setAttribute("reg_year", Regyr);
-				            
 				            response.sendRedirect("car_page9.jsp");
 						}
 						else
 						{
 							session.setAttribute("Regyr", Regyr);
 							session.setAttribute("reg_year", Regyr);
-				            
 				            response.sendRedirect("car_page6.jsp");
 						}
 						
@@ -106,7 +107,6 @@ public class Servlet1 extends HttpServlet {
 					if (PreIns!=null)
 					{
 						session.setAttribute("PreIns", PreIns);
-			            
 			            response.sendRedirect("car_page7.jsp");
 					}
 					if (Claim!=null)
@@ -127,7 +127,6 @@ public class Servlet1 extends HttpServlet {
 					{
 						
 						session.setAttribute("ExpiryDate", ExpiryDate);
-			            
 			            response.sendRedirect("car_page9.jsp");
 					}
 					
@@ -138,7 +137,6 @@ public class Servlet1 extends HttpServlet {
 					if(bike_reg!=null)
 					{
 		            session.setAttribute("bike_reg", bike_reg);
-		            
 		            response.sendRedirect("bike_page1.jsp");
 					}
 					if(manufacturer2!=null)
@@ -150,13 +148,11 @@ public class Servlet1 extends HttpServlet {
 					if (bk1!=null)
 					{
 						session.setAttribute("bk1", bk1);
-			            
 			            response.sendRedirect("bike_page3.jsp");
 					}
 					if (bk2!=null)
 					{
 						session.setAttribute("bk2", bk2);
-			            
 			            response.sendRedirect("bike_page4.jsp");
 					}
 					if (bk3!=null)
@@ -165,14 +161,12 @@ public class Servlet1 extends HttpServlet {
 						{
 							session.setAttribute("bk3", bk3);
 							session.setAttribute("reg_year", bk3);
-				            
 							 response.sendRedirect("bike_page7.jsp");
 						}
 						else
 						{
 							session.setAttribute("bk3", bk3);
 							session.setAttribute("reg_year", bk3);
-				            
 				            response.sendRedirect("bike_page5.jsp");
 						}
 						
@@ -180,13 +174,11 @@ public class Servlet1 extends HttpServlet {
 					if (bk4!=null)
 					{
 						session.setAttribute("bk4", bk4);
-			            
 			            response.sendRedirect("bike_page8.jsp");
 					}
 					if (Bike_Claim!=null) {
 						
 						session.setAttribute("Bike_Claim", Bike_Claim);
-						
 						if(Bike_Claim.equals("Y"))
 			            {
 			            	String ncb="";
@@ -202,10 +194,10 @@ public class Servlet1 extends HttpServlet {
 					if (BikeExpiryDate!=null) {
 						System.out.println(BikeExpiryDate);
 						session.setAttribute("BikeExpiryDate", BikeExpiryDate);
-						
 						response.sendRedirect("bike_page7.jsp");
 					}
-			
+					
+					
 	}
 
 }

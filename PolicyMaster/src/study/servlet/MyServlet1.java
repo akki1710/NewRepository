@@ -64,9 +64,7 @@ public class MyServlet1 extends HttpServlet {
 			
           
         if(session!=null) {
-			session.removeAttribute("ec1");
-			session.removeAttribute("ec2");
-			session.removeAttribute("Premium1");
+			session.removeAttribute("shrires");
 			}
         }
         

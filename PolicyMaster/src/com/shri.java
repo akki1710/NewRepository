@@ -89,15 +89,8 @@ public class shri extends HttpServlet {
 			user.setStrRTOCode(strRTOCode);
 			user.setStrVehicleCode(strVehicleCode);
 			user.setStrADDONCover(strADDONCover);
-			/*if(strPrevPolExpDt.equals("")) {
-				user.setStrFirstRegDt("");
-				user.setStrPrevPolExpDt("");
-			}
-			else {*/
-				user.setStrFirstRegDt(strFirstRegDt);
-				user.setStrPrevPolExpDt(strPrevPolExpDt);
-			//}
-			
+			user.setStrFirstRegDt(strFirstRegDt);
+			user.setStrPrevPolExpDt("");
 			user.setStrInsuredState(strInsuredState);
 			user.setStrPrevPolClaimYN(strPrevPolClaimYN);
 			user.setStrPrevPolNCB(strPrevPolNCB);
@@ -155,6 +148,7 @@ public class shri extends HttpServlet {
 				 pw.println(output);
 				 pw.println("\n");*/
 				 pw.println(res_xml);
+				 Shri_Res shrires=new Shri_Res();
 				 Document document1 = parseXmlFile(res_xml);
 				 NodeList nodeLst = document1.getElementsByTagName("POL_SYS_ID");
 				 NodeList nodeLst1=document1.getElementsByTagName("PROPOSAL_NO");
@@ -167,16 +161,13 @@ public class shri extends HttpServlet {
 				 String ec2= nodeLst2.item(0).getTextContent();
 				 String ec3= nodeLst3.item(0).getTextContent();
 				 String ec4= nodeLst4.item(0).getTextContent();
-				/* pw.println(ec);
-				 pw.println(ec1);
-				 pw.println(ec2);
-				 pw.println(ec3);
-				 pw.println(ec4);*/
-				 session.setAttribute("ec", ec);
-				 session.setAttribute("ec1", ec1);
-				 session.setAttribute("ec2", ec2);
-				 session.setAttribute("ec3", ec3);
-				 session.setAttribute("ec4", ec4);
+				 
+				 shrires.setPOL_SYS_ID(ec);
+				 shrires.setPROPOSAL_NO(ec1);
+				 shrires.setVehicleIDV(ec2);
+				 shrires.setERROR_CODE(ec3);
+				 shrires.setERROR_DESC(ec4);
+				 
 				 if(nodeLst5 != null) {
 					 int length = nodeLst5.getLength();
 				        for (int i = 0; i < length; i++) {
@@ -185,18 +176,16 @@ public class shri extends HttpServlet {
 				        		 if ( el.getNodeName().contains("CoverDtl")) {
 				        			 String CoverDesc = el.getElementsByTagName("CoverDesc").item(1).getTextContent();
 				                     String Premium = el.getElementsByTagName("Premium").item(1).getTextContent();
-				                     session.setAttribute("CoverDesc", CoverDesc);
-				                     session.setAttribute("Premium", Premium);
+				                     shrires.setPremium(Premium);
 				                     String CoverDesc1 = el.getElementsByTagName("CoverDesc").item(5).getTextContent();
 				                     String Premium1 = el.getElementsByTagName("Premium").item(5).getTextContent();
-				                     session.setAttribute("CoverDesc1", CoverDesc1);
-				                     session.setAttribute("Premium1", Premium1);
+				                     shrires.setTotalPremium(Premium1);
 				        		 }
 				        	 }
 				        }
 				 }
 				
-			
+				 session.setAttribute("shrires", shrires);
 				
 				
 

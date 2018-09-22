@@ -15,9 +15,10 @@
         </style>
 <%@include file="menu.jsp" %>
 <%
+String Model=(String) session.getAttribute("Model");
+String FuelType=(String) session.getAttribute("FuelType");
 List<String> al=new ArrayList<String>();
-String Model=(String)session.getAttribute("Model");
-String FuelType=(String)session.getAttribute("FuelType");
+
 try {
 	Connection con = Db.myGetConnection();
 	 PreparedStatement ps = con.prepareStatement("select distinct model_desc from shriram_vehicle_master where model=? && fuel_desc=?");

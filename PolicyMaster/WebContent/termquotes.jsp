@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="com.*" %>
 <!DOCTYPE html>
 <jsp:useBean id="obj" class="Royal.DATA"/>
 <jsp:useBean id="obj1" class="Royal.PremiumForOneYear"/>
@@ -156,12 +157,13 @@
 		<form action="MyServlet1" method="post">
 		<h2 class="title"><input type="submit" name="policy" value="Motor Package"></h2>
 			<%try { %>
-              <div class="text-center"><h4><strong>Rs.<%= (String) session.getAttribute("Premium1")%></strong></h4></div></form>
+			<% Shri_Res shrires=(Shri_Res) session.getAttribute("shrires");%>
+              <div class="text-center"><h4><strong>Rs.<%= shrires.getTotalPremium()%></strong></h4></div></form>
               <form action="shri" method="get">
 		<ul>
-		 <li><h6>ProposalNo = <%= (String) session.getAttribute("ec1")%></h6></li>
-		<li><h6>VehicleIDV = <%= (String) session.getAttribute("ec2")%></h6></li>
-		<li><h6>Premium = <%= (String) session.getAttribute("Premium1")%></h6></li>
+		 <li><h6>ProposalNo = <%= shrires.getPROPOSAL_NO()%></h6></li>
+		<li><h6>VehicleIDV = <%= shrires.getVehicleIDV()%></h6></li>
+		<li><h6>Premium = <%= shrires.getTotalPremium()%></h6></li>
 		</ul>
 		</form>
             </div>

@@ -17,6 +17,8 @@ public class User {
 	private String strPrevPolExpDt;
 	private String strPrevPolClaimYN;
 	private String strPrevPolNCB;
+	private String Regyr;
+	private String VehicleType;
 	
 	public User(String strProductCode, String strPolicyType, String strRTOCode, String strVehicleCode,
 			String strADDONCover, String strFirstRegDt, String strInsuredState, String strPrevPolExpDt,
@@ -125,6 +127,23 @@ public class User {
 	@XmlElement
 	public void setStrPrevPolNCB(String strPrevPolNCB) {
 		this.strPrevPolNCB = strPrevPolNCB;
+	}
+	
+
+	public String getRegyr() {
+		return Regyr;
+	}
+
+	public void setRegyr(String regyr) {
+		Regyr = regyr;
+	}
+	
+	public String getVehicleType() {
+		return VehicleType;
+	}
+
+	public void setVehicleType(String vehicleType) {
+		VehicleType = vehicleType;
 	}
 
 	@Override

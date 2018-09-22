@@ -17,7 +17,7 @@
 <form action="Servlet1" method="post">
 <p>BIKE INSURANCE</p>
 	<h2><span class="label success">Any Claim Last Year</span></h2><br>
-    <button id="btn2" class="btn btn-success" type="submit" name="Bike_Claim" value="Y">YES</button>
+    <button id="btn2" class="btn btn-success" type="submit" name="Bike_Claim" value="YES">YES</button>
     				<div class="dropdown">
                     <button id="btn2" class="btn btn-success" class="btn btn-primary dropdown-toggle" name="Bike_Claim" data-toggle="dropdown">NO</button>
                     <div class="dropdown-menu">

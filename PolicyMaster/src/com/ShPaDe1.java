@@ -115,6 +115,10 @@ public class ShPaDe1 extends HttpServlet {
 			 
 			 response.sendRedirect("ReturnUrl1.jsp");
 			 pw.close(); 
+			 if(session!=null) {
+				 session.removeAttribute("ApprovePolSysId");
+				 session.removeAttribute("ApprovePolNo");
+			 }
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

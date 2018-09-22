@@ -1,5 +1,4 @@
      <%@ page import="study.db.*" %>
-    <%@ page import="java.util.List" %>
     <%@ page import="java.util.ArrayList" %>
     <%@ page import="java.sql.SQLException" %>
     <%@ page import="java.sql.PreparedStatement" %>
@@ -25,7 +24,7 @@ try {
 	 ResultSet rs = ps.executeQuery();
 	 while(rs.next()) {
 		 String main_variant=rs.getString("main_variant");
-		 //System.out.println("main_variant: "+main_variant);
+		 System.out.println("main_variant: "+main_variant);
 		 al.add(main_variant);
 	 }
 	 rs.close();

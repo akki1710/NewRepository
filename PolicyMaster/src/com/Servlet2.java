@@ -47,7 +47,6 @@ public class Servlet2 extends HttpServlet {
 		// TODO Auto-generated method stub
 				PrintWriter pw = response.getWriter();
 				HttpSession session=request.getSession();
-			       
 				String Car_RegNo=(String)session.getAttribute("RegNo");
 		        String Manufacturer=(String) session.getAttribute("Manufacturer");
 		        String Model=(String)session.getAttribute("Model");
@@ -57,6 +56,7 @@ public class Servlet2 extends HttpServlet {
 		        String Insurer=(String)session.getAttribute("PreIns");
 		        String AnyClaim=(String)session.getAttribute("Claim");
 		        String date=(String)session.getAttribute("ExpiryDate");
+				
 		        
 		        String Bike_RegNo=(String)session.getAttribute("bike_reg");
 		        String Bike_Manufacturer=(String) session.getAttribute("manufacturer2");
@@ -111,6 +111,9 @@ public class Servlet2 extends HttpServlet {
 				if(Car_RegNo!=null)
 				{
 					User userpoj=new User();
+					userpoj.setVehicleType("Car");
+					Proposal1 propprevpojo=new Proposal1();
+					propprevpojo.setPinCode(PinCode);
 					try {
 					session.removeAttribute("bike_reg");
 					System.out.println("Entered into car page");
@@ -118,36 +121,32 @@ public class Servlet2 extends HttpServlet {
 					String a=Car_RegNo.substring(0,4);
 					String strRTOCode=a.substring(0,2)+"-"+a.substring(2, a.length());
 					userpoj.setStrRTOCode(strRTOCode);
-					
+					userpoj.setRegyr(RegYear);
 					
 					String strInsuredState=Car_RegNo.substring(0,2);
 					userpoj.setStrInsuredState(strInsuredState);
 					 main m=new main();
 					 
-					 //String strVehicleCode=m.car(Model, FuelType);
 					 String strVehicleCode=m.ifModel(Varient, FuelType,strInsuredState);
 					 userpoj.setStrVehicleCode(strVehicleCode);
 					 String IDV_of_Vehicle=m.IDV(RegYear, Varient, strInsuredState);
 					 
 					 String g[]=m.ifRegyr(RegYear,AnyClaim);
 					 	String strProductCode=g[0];
-				 	   	String strPolicyType=g[1];
+				 	   	String ProposalType=g[1];
 				 	   	String strADDONCover=g[2];
 				 	   	String strFirstRegDt=g[3];
 				 	   	String strPrevPolClaimYN=g[4];
 				 	   	String strPrevPolNCB=g[5];
+				 	   	String VehicleType=g[6];
 				 	   	
 				 	
 				 	  userpoj.setStrProductCode(strProductCode);
-				 	  userpoj.setStrPolicyType(strPolicyType);
 				 	  userpoj.setStrADDONCover(strADDONCover);
 				 	  userpoj.setStrPrevPolClaimYN(strPrevPolClaimYN);
 				 	  userpoj.setStrPrevPolNCB(strPrevPolNCB);
-						//System.out.println("In Sevlert2 : NCB : "+strPrevPolNCB);
-						
-						//String strPrevPolExpDt=date;
-						
-						//session.setAttribute("strFirstRegDt", strFirstRegDt);
+				 	  propprevpojo.setProposalType(ProposalType);
+				 	  propprevpojo.setVehicleType(VehicleType);
 						
 
 						//Royal code
@@ -177,11 +176,11 @@ public class Servlet2 extends HttpServlet {
 							String PreviousPolicyUWYear="";
 							String VehicleManufactureYear=RegYear;
 							String PreviousInsurer="";
-							session.setAttribute("PreviousInsurer", PreviousInsurer);
-							session.setAttribute("PreviousPolicyToDt", PreviousPolicyToDt);
-							session.setAttribute("PreviousPolicyFromDt", PreviousPolicyFromDt);
-							session.setAttribute("PreviousPolicyUWYear", PreviousPolicyUWYear);
-							session.setAttribute("VehicleManufactureYear", VehicleManufactureYear);
+							propprevpojo.setPreviousInsurer(PreviousInsurer);
+							propprevpojo.setPreviousPolicyFromDt(PreviousPolicyFromDt);
+							propprevpojo.setPreviousPolicyToDt(PreviousPolicyToDt);
+							propprevpojo.setPreviousPolicyUWYear(PreviousPolicyUWYear);
+							propprevpojo.setVehicleManufactureYear(VehicleManufactureYear);
 							userpoj.setStrPrevPolExpDt(strPrevPolExpDt);
 							userpoj.setStrFirstRegDt(strFirstRegDt);
 						
@@ -265,10 +264,11 @@ public class Servlet2 extends HttpServlet {
 								 String PreviousPolicyUWYear=RegYear;
 								 String VehicleManufactureYear=RegYear;
 								 
-								 	session.setAttribute("PreviousPolicyToDt", PreviousPolicyToDt);
-									session.setAttribute("PreviousPolicyFromDt", PreviousPolicyFromDt);
-									session.setAttribute("PreviousPolicyUWYear", PreviousPolicyUWYear);
-									session.setAttribute("VehicleManufactureYear", VehicleManufactureYear);
+								 	propprevpojo.setPreviousInsurer(PreviousInsurer);
+									propprevpojo.setPreviousPolicyFromDt(PreviousPolicyFromDt);
+									propprevpojo.setPreviousPolicyToDt(PreviousPolicyToDt);
+									propprevpojo.setPreviousPolicyUWYear(PreviousPolicyUWYear);
+									propprevpojo.setVehicleManufactureYear(VehicleManufactureYear);
 									userpoj.setStrPrevPolExpDt(strPrevPolExpDt);
 									userpoj.setStrFirstRegDt(strFirstRegDt);
 					
@@ -468,6 +468,7 @@ public class Servlet2 extends HttpServlet {
 				        
 				        
 				        session.setAttribute("userpoj", userpoj);
+				        session.setAttribute("propprevpojo", propprevpojo);
 					
 		       
 					Connection con = Db.myGetConnection();
@@ -525,33 +526,46 @@ public class Servlet2 extends HttpServlet {
 				
 				if(Bike_RegNo!=null)
 				{
+					User userpoj=new User();
+					userpoj.setVehicleType("Bike");
+					Proposal1 propprevpojo=new Proposal1();
+					propprevpojo.setPinCode(PinCode);
 					try {
 					String a=Bike_RegNo.substring(0,4);
 					String strRTOCode=a.substring(0,2)+"-"+a.substring(2, a.length());
-					session.setAttribute("strRTOCode", strRTOCode);
+					//session.setAttribute("strRTOCode", strRTOCode);
+					userpoj.setStrRTOCode(strRTOCode);
+					userpoj.setRegyr(Bike_RegYear);
 					String strInsuredState=Bike_RegNo.substring(0,2);
-					session.setAttribute("strInsuredState", strInsuredState);
+					//session.setAttribute("strInsuredState", strInsuredState);
+					userpoj.setStrInsuredState(strInsuredState);
 					
 					 main m=new main();
 					 String strVehicleCode=m.ifByke(Variant);
+					 userpoj.setStrVehicleCode(strVehicleCode);
 					 String IDV_of_Vehicle=m.BikeIDV(Bike_RegNo, Variant);
 					 //String strVehicleCode=m.byke(Bike_Model);
 					 String g[]=m.ifBykeRegyr(Bike_RegYear,Bike_Claim);
-					 String strProductCode=g[0];
-				 	   	String strPolicyType=g[1];
+					 	String strProductCode=g[0];
+				 	   	String ProposalType=g[1];
 				 	   	String strADDONCover=g[2];
 				 	   	String strFirstRegDt=g[3];
 				 	   	String strPrevPolClaimYN=g[4];
 				 	   	String strPrevPolNCB=g[5];
+				 	   	String VehicleType=g[6];
 				 	   	
-				 	    session.setAttribute("strVehicleCode", strVehicleCode);
+				 	    /*session.setAttribute("strVehicleCode", strVehicleCode);
 				 	  	session.setAttribute("strProductCode", strProductCode);
 						session.setAttribute("strPolicyType", strPolicyType);
 						session.setAttribute("strADDONCover", strADDONCover);
 						session.setAttribute("strPrevPolClaimYN", strPrevPolClaimYN);
-						session.setAttribute("strPrevPolNCB", strPrevPolNCB);
-						System.out.println("In Sevlert2 : NCB : "+strPrevPolNCB);
-					
+						session.setAttribute("strPrevPolNCB", strPrevPolNCB);*/
+				 	   	  userpoj.setStrProductCode(strProductCode);
+					 	  userpoj.setStrADDONCover(strADDONCover);
+					 	  userpoj.setStrPrevPolClaimYN(strPrevPolClaimYN);
+					 	  userpoj.setStrPrevPolNCB(strPrevPolNCB);
+					 	  propprevpojo.setProposalType(ProposalType);
+					 	  propprevpojo.setVehicleType(VehicleType);
 
 						/* Royal Bike Code here */
 						String previousPolicyno = "";
@@ -587,13 +601,20 @@ public class Servlet2 extends HttpServlet {
 						String PreviousPolicyUWYear="";
 						String VehicleManufactureYear=Bike_RegYear;
 						String PreviousInsurer="";
-						session.setAttribute("PreviousInsurer", PreviousInsurer);
+						propprevpojo.setPreviousInsurer(PreviousInsurer);
+						propprevpojo.setPreviousPolicyFromDt(PreviousPolicyFromDt);
+						propprevpojo.setPreviousPolicyToDt(PreviousPolicyToDt);
+						propprevpojo.setPreviousPolicyUWYear(PreviousPolicyUWYear);
+						propprevpojo.setVehicleManufactureYear(VehicleManufactureYear);
+						userpoj.setStrPrevPolExpDt(strPrevPolExpDt);
+						userpoj.setStrFirstRegDt(strFirstRegDt);
+						/*session.setAttribute("PreviousInsurer", PreviousInsurer);
 						session.setAttribute("PreviousPolicyToDt", PreviousPolicyToDt);
 						session.setAttribute("PreviousPolicyFromDt", PreviousPolicyFromDt);
 						session.setAttribute("PreviousPolicyUWYear", PreviousPolicyUWYear);
 						session.setAttribute("VehicleManufactureYear", VehicleManufactureYear);
 						session.setAttribute("strPrevPolExpDt", strPrevPolExpDt);
-						session.setAttribute("strFirstRegDt", strFirstRegDt);
+						session.setAttribute("strFirstRegDt", strFirstRegDt);*/
 			       
 						/* Royal bike code Here */
 
@@ -643,7 +664,7 @@ public class Servlet2 extends HttpServlet {
 						String PreviousInsurer=m.insurer(Bike_Insurer);
 						/*String PreviousInsurer="";*/
 						
-						session.setAttribute("PreviousInsurer", PreviousInsurer);
+						//session.setAttribute("PreviousInsurer", PreviousInsurer);
 						
 						SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");	
 						 SimpleDateFormat format1 = new SimpleDateFormat("dd-MM-yyyy");
@@ -652,7 +673,7 @@ public class Servlet2 extends HttpServlet {
 							java.util.Date date1= format.parse(BikeExpiryDate);
 							OrDate=format1.format(date1);
 						} catch (ParseException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						}
 						 
@@ -675,12 +696,13 @@ public class Servlet2 extends HttpServlet {
 								 String PreviousPolicyUWYear=Bike_RegYear;
 								 String VehicleManufactureYear=Bike_RegYear;
 								 
-								 	session.setAttribute("PreviousPolicyToDt", PreviousPolicyToDt);
-									session.setAttribute("PreviousPolicyFromDt", PreviousPolicyFromDt);
-									session.setAttribute("PreviousPolicyUWYear", PreviousPolicyUWYear);
-									session.setAttribute("VehicleManufactureYear", VehicleManufactureYear);
-									session.setAttribute("strPrevPolExpDt", strPrevPolExpDt);
-									session.setAttribute("strFirstRegDt", strFirstRegDt);
+								 	propprevpojo.setPreviousInsurer(PreviousInsurer);
+									propprevpojo.setPreviousPolicyFromDt(PreviousPolicyFromDt);
+									propprevpojo.setPreviousPolicyToDt(PreviousPolicyToDt);
+									propprevpojo.setPreviousPolicyUWYear(PreviousPolicyUWYear);
+									propprevpojo.setVehicleManufactureYear(VehicleManufactureYear);
+									userpoj.setStrPrevPolExpDt(strPrevPolExpDt);
+									userpoj.setStrFirstRegDt(strFirstRegDt);
 					
 									/* Royal Code here */
 
@@ -837,7 +859,10 @@ public class Servlet2 extends HttpServlet {
 							e1.printStackTrace();
 						}
 				         ExpiryDate = new java.sql.Date(utilDate.getTime());
-					}
+					}	
+					
+						session.setAttribute("userpoj", userpoj);
+						session.setAttribute("propprevpojo", propprevpojo);
 					
 						Connection con = Db.myGetConnection();
 						String s2="insert into main_data(RegNo,Manufacturer,Model,Varient,RegYear,Insurer,AnyClaim,ExpiryDate,name,email,Phoneno) values(?,?,?,?,?,?,?,?,?,?,?)";
@@ -867,8 +892,24 @@ public class Servlet2 extends HttpServlet {
 			       
 				}
 				if(session!=null) {
-					session.removeAttribute("RegNo");
+
 					session.removeAttribute("bike_reg");
+					session.removeAttribute("manufacturer2");
+					session.removeAttribute("bk1");
+					session.removeAttribute("bk2");
+					session.removeAttribute("bk3");
+					session.removeAttribute("bk4");
+					session.removeAttribute("Bike_Claim");
+					session.removeAttribute("BikeExpiryDate");
+					
+					session.removeAttribute("RegNo");
+					session.removeAttribute("Manufacturer");
+					session.removeAttribute("Model");
+					session.removeAttribute("FuelType");
+					session.removeAttribute("Variant");
+					session.removeAttribute("Regyr");
+					session.removeAttribute("Claim");
+					session.removeAttribute("ExpiryDate");
 					}
 			}
 

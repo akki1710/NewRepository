@@ -61,10 +61,18 @@ public class ShPaDe extends HttpServlet {
 		 PrintWriter pw = response.getWriter();  
 		 HttpSession session=request.getSession();
 		 
-		 String ProposalNo=(String) session.getAttribute("ProposalNo");
+		 Shri_Res shrires1=(Shri_Res) session.getAttribute("shrires1");
+		 
+		 String ProposalNo=shrires1.getPROPOSAL_NO();
+
 		 String FullName=(String) session.getAttribute("Fullname");
 		 String Email=(String) session.getAttribute("Email");
 		 String Mobile=(String) session.getAttribute("Mobile");
+		 
+		 System.out.println("FullName: "+FullName);
+		 System.out.println("Email: "+Email);
+		 System.out.println("Mobile: "+Mobile);
+		 
 		 PaymentPojo pp=new PaymentPojo();
 		 pp.setProposalNo(ProposalNo);
 		 pp.setTransactionNumber("");
@@ -123,6 +131,8 @@ public class ShPaDe extends HttpServlet {
 				 /* pw.println(output);
 				 pw.println("\n");
 				 pw.println(res_xml);*/
+				 System.out.println(output);
+				 System.out.println(res_xml);
 				 
 				 
 				 
@@ -137,11 +147,12 @@ public class ShPaDe extends HttpServlet {
 				 session.setAttribute("ApprovePolNo", ApprovePolNo);
 				 session.setAttribute("ApprovePolSysId", ApprovePolSysId);
 				 
-				 /*pw.println(ApprovePolNo);
-				 pw.println(ApprovePolSysId);*/
+				 System.out.println(ApprovePolNo);
+				 System.out.println(ApprovePolSysId);
+				 
 				 Integer uid=(Integer) session.getAttribute("uid");
 				 String uname=(String) session.getAttribute("uname");
-				 String TotalPremium=(String) session.getAttribute("TotalPremium");
+				 String TotalPremium=shrires1.getTotalPremium();
 				 String policy=(String) session.getAttribute("policy");
 				 Connection con = Db.myGetConnection();
 				 if(uid!=null) {
@@ -174,6 +185,7 @@ public class ShPaDe extends HttpServlet {
 						 stmt.executeUpdate();
 						 stmt.close();
 				 }
+				 con.close();
 				 response.sendRedirect("ReturnUrl");
 				
 				 pw.close(); 
@@ -193,12 +205,7 @@ public class ShPaDe extends HttpServlet {
 			e.printStackTrace();
 		} 
 			if(session!=null) {
-				session.removeAttribute("ec2");
-				session.removeAttribute("ec3");
-				session.removeAttribute("ec4");
-				session.removeAttribute("ProposalNo");
-				session.removeAttribute("POL_SYS_ID");
-				session.removeAttribute("TotalPremium");
+				session.removeAttribute("shrires1");
 				session.removeAttribute("Fullname");
 				session.removeAttribute("Email");
 				session.removeAttribute("Mobile");
@@ -221,9 +228,9 @@ public class ShPaDe extends HttpServlet {
 				throw new RuntimeException(e);
 				}
 				}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+			protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				// TODO Auto-generated method stub
+				doGet(request, response);
+			}
 
 }

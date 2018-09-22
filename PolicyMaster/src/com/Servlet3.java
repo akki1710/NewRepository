@@ -54,10 +54,13 @@ public class Servlet3 extends HttpServlet {
 		String Car_RegNo= request.getParameter("Car_RegNo");
 		String appointee_name= request.getParameter("appointee_name");
 		String appointee_relation= request.getParameter("appointee_relation");
+		String PanNo=request.getParameter("pan");
 		/*if(appointee_name==null && appointee_relation==null) {
 			appointee_name="";
 			appointee_relation="";
 		}*/
+		Proposal1 proppojo=new Proposal1();
+		
 		String Owner_Name = request.getParameter("Owner_Name");
 		String Car_Registration_Address=request.getParameter("Registration_Address");
 		String day=request.getParameter("day");
@@ -132,7 +135,35 @@ public class Servlet3 extends HttpServlet {
 			    String NomineeRelationforPAOwnerDriver=nomines_relation;
 			    String VehicleManufactureYear1="2018";
 			    
-			 session.setAttribute("PolicyFromDt", PolicyFromDt);
+			    proppojo.setPolicyFromDt(PolicyFromDt);
+			    proppojo.setPolicyToDt(PolicyToDt);
+			    proppojo.setPolicyIssueDt(PolicyIssueDt);
+			    proppojo.setInsuredPrefix(InsuredPrefix);
+			    proppojo.setGender(Gender);
+			    proppojo.setAddress1(Address1);
+			    proppojo.setState(State);
+			    proppojo.setCity(City);
+			    proppojo.setPanNo(PanNo);
+			    proppojo.setDateOfBirth(DateOfBirth);
+			    proppojo.setEngineNo(EngineNo);
+			    proppojo.setFirstRegDt(FirstRegDt);
+			    proppojo.setChassisNo(ChassisNo);
+			    proppojo.setRegNo1(RegNo1);
+			    proppojo.setRegNo2(RegNo2);
+			    proppojo.setRegNo3(RegNo3);
+			    proppojo.setRegNo4(RegNo4);
+			    proppojo.setNomineeNameforPAOwnerDriver(NomineeNameforPAOwnerDriver);
+			    proppojo.setNomineeRelationforPAOwnerDriver(NomineeRelationforPAOwnerDriver);
+			    proppojo.setNomineeAgeforPAOwnerDriver(NomineeAgeforPAOwnerDriver);
+			    if(appointee_name==null) {
+			    	appointee_name="";
+			    	appointee_relation="";
+			    }
+			    proppojo.setAppointeeNameforPAOwnerDriver(appointee_name);
+			    proppojo.setAppointeeRelationforPAOwnerDriver(appointee_relation);
+			    session.setAttribute("proppojo", proppojo);
+			    
+/*			 session.setAttribute("PolicyFromDt", PolicyFromDt);
 			 session.setAttribute("PolicyToDt", PolicyToDt);
 			 session.setAttribute("PolicyIssueDt", PolicyIssueDt);
 			 session.setAttribute("InsuredPrefix", InsuredPrefix);
@@ -159,7 +190,7 @@ public class Servlet3 extends HttpServlet {
 			 session.setAttribute("AppointeeRelationforPAOwnerDriver", appointee_relation);
 			 System.out.println(appointee_name);
 			 System.out.println(appointee_relation);
-			 session.setAttribute("VehicleManufactureYear1", VehicleManufactureYear1);
+			 session.setAttribute("VehicleManufactureYear1", VehicleManufactureYear1);*/
 			 
 			 //Lib added
 			 String[] g1=m.Salutation(Prefix);
@@ -263,7 +294,7 @@ public class Servlet3 extends HttpServlet {
 			 
 	        try {
 				Connection con = Db.myGetConnection();
-				String s="insert into details(title, Owner_Name, pno, email, Car_Registration_Address, sqlDate, nomines_name, nomines_relation, selectage, Car_RegNo, engine_number, chassis_number, month1, year1, selectime, driving, evening, financed) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String s="insert into details(title, Owner_Name, pno, email, Car_Registration_Address, BirthDate, nomines_name, nomines_relation, selectage, Car_RegNo, engine_number, chassis_number, month1, year1, selectime, driving, evening, financed) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement stmt = con.prepareStatement(s);
 			
 				stmt.setString(1, title);

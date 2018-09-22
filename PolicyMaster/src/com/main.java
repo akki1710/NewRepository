@@ -6,9 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -23,7 +27,20 @@ import study.db.Db;
 public class main {
 	private String strVehicleCode;
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParseException {
+		String datestr="17-10-1994";
+		 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		Date date = new Date();  
+		 Date utilDate1 = formatter.parse(datestr);
+		 String PolicyFromDt=formatter.format(utilDate1);
+		 Calendar c = Calendar.getInstance();
+		
+		    c.setTime(utilDate1);
+		    c.add(Calendar.DAY_OF_MONTH, 1825);//1095 1825
+		    Date end=c.getTime();
+		    String PolicyToDt=formatter.format(end);
+		    System.out.println(PolicyFromDt);
+		    System.out.println(PolicyToDt);
 		/*List<ProdMasters> pm=Poiji.fromExcel(new File("E://API//Shriram//MASTER KITS/Prod Masters.xls"), ProdMasters.class);
 		Integer=pm.size();
 		//System.out.println(a);
@@ -274,7 +291,7 @@ public class main {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return vehicle_code;
@@ -295,7 +312,7 @@ public class main {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		if(holdgetValue.isEmpty())
@@ -309,59 +326,62 @@ public class main {
 		
 	}
 	public String[] ifRegyr(String Regyr,String Claim) {
+		String g[]=new String[7];
 		if(Regyr.equals("Brandnew")) {
-			String g[]=new String[6];
+			
 	    	    g[0]="MOT-PRD-001";
 	    	    g[1]="FRESH";
 	    	    g[2]="ADDON_01";
 	    	    g[3]="Brandnew";
 	    	    g[4]="0";
 	    	    g[5]="0";
-	    	    
+	    	    g[6]="W";
 	    	return g;    
 		}
 		else {
-			String g[]=new String[6];
     	    g[0]="MOT-PRD-001";
     	    g[1]="RENEWAL OF OTHERS";
     	    g[2]="ADDON_01";
     	    g[3]=Regyr;
-    	    g[4]="1";
+    	    //should be changed
     	    if(Claim.equals("YES")) {
+    	    	g[4]="1";
     	    	g[5]="0";
     	    }else {
+    	    	g[4]="0";
     	    	g[5]=Claim;
     	    }
-    	    
+    	    g[6]="U";
     	   return g; 
 		}
 		
 	}
 	public String[] ifBykeRegyr(String Regyr,String Claim) {
+		String g[]=new String[7];
 		if(Regyr.equals("Brandnew")) {
-			String g[]=new String[6];
 	    	    g[0]="MOT-PRD-002";
 	    	    g[1]="FRESH";
 	    	    g[2]="ADDON_01";
 	    	    g[3]="Brandnew";
 	    	    g[4]="0";
 	    	    g[5]="0";
-	    	    
+	    	    g[6]="W";
 	    	return g;    
 		}
 		else {
-			String g[]=new String[6];
     	    g[0]="MOT-PRD-002";
     	    g[1]="RENEWAL OF OTHERS";
     	    g[2]="ADDON_01";
     	    g[3]=Regyr;
     	    g[4]="1";
     	    if(Claim.equals("YES")) {
+    	    	g[4]="1";
     	    	g[5]="0";
     	    }else {
+    	    	g[4]="1";
     	    	g[5]=Claim;
     	    }
-    	    
+    	    g[6]="U";
     	   return g; 
 		}
 		
@@ -407,7 +427,7 @@ public class main {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		if(holdgetValue.isEmpty())
@@ -437,7 +457,7 @@ public class main {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		if(holdgetValue.isEmpty())
@@ -467,7 +487,7 @@ public class main {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		if(holdgetValue.isEmpty())
@@ -684,7 +704,7 @@ public class main {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return ModelCode;
@@ -710,7 +730,7 @@ public class main {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return ModelCode;
@@ -733,7 +753,7 @@ public class main {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		if(holdgetValue.isEmpty())

@@ -16,7 +16,9 @@
             .list-group button{padding: .75rem 1.25rem; cursor: pointer; }
         </style>
 <%@include file="menu.jsp" %>
-<%String manufacturer=(String) session.getAttribute("Manufacturer");
+<%
+String manufacturer=(String) session.getAttribute("Manufacturer");
+
 List<String> al=new ArrayList<String>();
 try {
 	Connection con = Db.myGetConnection();
