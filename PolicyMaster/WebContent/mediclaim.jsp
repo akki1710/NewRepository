@@ -108,7 +108,7 @@ font-family: 'Lato', sans-serif;
           </li>
         <!--  <li><a href="#team.html">CONTACT</a></li> -->
           <li><a href="login">LOGIN</a></li>
-		<li><a href="#contact.html">ADMIN</a></li>
+		<li><a href="user.jsp">MYACCOUNT</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>

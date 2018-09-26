@@ -34,7 +34,7 @@
 <input type="hidden" name="crossSellProduct" id="crossSellProduct" value="">
 <input type="hidden" name="crossSellQuoteid" id="crossSellQuoteid" value="">
 <!-- <input type="hidden" name="returnUrl" id="returnUrl" value='http://localhost:9090/PolicyMaster/Pdfroyal'> -->
-<input type="hidden" name="returnUrl" id="returnUrl" value='http://192.168.10.61:8080/PolicyMaster/Pdfroyal'>
+<input type="hidden" name="returnUrl" id="returnUrl" value='http://203.122.13.228/PolicyMaster/Pdfroyal'>
 	<input type="hidden" value="privatePassengerCar" name="vehicleSubLine" id="vehicleSubLine">
 	<input type="hidden" value="" name="elc_value" id="elc_value">
 	<input type="hidden" value="" name="nonelc_value" id="nonelc_value">						

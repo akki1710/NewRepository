@@ -1,6 +1,7 @@
 package Royal;
 
 public class Serv2ToRolSunDTO {
+	private String DetailsRegNumber;
 	private String yearOfManufacturebike;
 	private  String bikeregistrationNumber;
 	private String registrationNumber;
@@ -48,6 +49,12 @@ public class Serv2ToRolSunDTO {
 	private String previousPolicyno;
 	private String noClaimBonusPercent;
 	private String RoyalBirthdate;
+	public String getDetailsRegNumber() {
+		return DetailsRegNumber;
+	}
+	public void setDetailsRegNumber(String detailsRegNumber) {
+		DetailsRegNumber = detailsRegNumber;
+	}
 	public String getYearOfManufacturebike() {
 		return yearOfManufacturebike;
 	}
@@ -330,25 +337,24 @@ public class Serv2ToRolSunDTO {
 	public void setRoyalBirthdate(String royalBirthdate) {
 		RoyalBirthdate = royalBirthdate;
 	}
-	
-	
 	public Serv2ToRolSunDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Serv2ToRolSunDTO(String yearOfManufacturebike, String bikeregistrationNumber, String registrationNumber,
-			String yearOfManufacture, String vehicleManufacturerName, String vehicleModelCode, String fuelType1,
-			String bikeManufacturerName, String bikeModelCode, String bikeModelName, String bikefuelType, String rname,
-			String remail, String rmobile, String rnomines_name, String rnomines_relation, String rselectage,
-			String rengine_number, String rchassis_number, String rtitle, String rfinanced, String raddress,
-			String rpinCode, String rcity, String quoteId, String qUOTE_ID, String rstrPrevPolExpDt,
-			String rPreviousPolicyToDt, String rPreviousPolicyFromDt, String rPreviousPolicyUWYear,
-			String rstrFirstRegDt, String rPreviousInsurer, String isCarOwnershipChanged, String claimAmountReceived,
-			String claimsMadeInPreviousPolicy, String claimsReported, String bikeclaimsMadeInPreviousPolicy,
-			String bikeVehicleOwnershipChanged, String bikePreviousInsurerName, String bikeNoClaimBonusPercent,
-			String bikePreviousPolicyExpiryDate, String bikeRegistrationChargesRoadTax, String rproductName,
-			String regDate, String previousPolicyno, String noClaimBonusPercent, String royalBirthdate) {
+	public Serv2ToRolSunDTO(String detailsRegNumber, String yearOfManufacturebike, String bikeregistrationNumber,
+			String registrationNumber, String yearOfManufacture, String vehicleManufacturerName,
+			String vehicleModelCode, String fuelType1, String bikeManufacturerName, String bikeModelCode,
+			String bikeModelName, String bikefuelType, String rname, String remail, String rmobile,
+			String rnomines_name, String rnomines_relation, String rselectage, String rengine_number,
+			String rchassis_number, String rtitle, String rfinanced, String raddress, String rpinCode, String rcity,
+			String quoteId, String qUOTE_ID, String rstrPrevPolExpDt, String rPreviousPolicyToDt,
+			String rPreviousPolicyFromDt, String rPreviousPolicyUWYear, String rstrFirstRegDt, String rPreviousInsurer,
+			String isCarOwnershipChanged, String claimAmountReceived, String claimsMadeInPreviousPolicy,
+			String claimsReported, String bikeclaimsMadeInPreviousPolicy, String bikeVehicleOwnershipChanged,
+			String bikePreviousInsurerName, String bikeNoClaimBonusPercent, String bikePreviousPolicyExpiryDate,
+			String bikeRegistrationChargesRoadTax, String rproductName, String regDate, String previousPolicyno,
+			String noClaimBonusPercent, String royalBirthdate) {
 		super();
+		DetailsRegNumber = detailsRegNumber;
 		this.yearOfManufacturebike = yearOfManufacturebike;
 		this.bikeregistrationNumber = bikeregistrationNumber;
 		this.registrationNumber = registrationNumber;
@@ -399,16 +405,17 @@ public class Serv2ToRolSunDTO {
 	}
 	@Override
 	public String toString() {
-		return "Serv2ToRolSunDTO [yearOfManufacturebike=" + yearOfManufacturebike + ", bikeregistrationNumber="
-				+ bikeregistrationNumber + ", registrationNumber=" + registrationNumber + ", yearOfManufacture="
-				+ yearOfManufacture + ", vehicleManufacturerName=" + vehicleManufacturerName + ", vehicleModelCode="
-				+ vehicleModelCode + ", fuelType1=" + fuelType1 + ", BikeManufacturerName=" + BikeManufacturerName
-				+ ", BikeModelCode=" + BikeModelCode + ", BikeModelName=" + BikeModelName + ", BikefuelType="
-				+ BikefuelType + ", rname=" + rname + ", remail=" + remail + ", rmobile=" + rmobile + ", rnomines_name="
-				+ rnomines_name + ", rnomines_relation=" + rnomines_relation + ", rselectage=" + rselectage
-				+ ", rengine_number=" + rengine_number + ", rchassis_number=" + rchassis_number + ", rtitle=" + rtitle
-				+ ", rfinanced=" + rfinanced + ", raddress=" + raddress + ", rpinCode=" + rpinCode + ", rcity=" + rcity
-				+ ", quoteId=" + quoteId + ", QUOTE_ID=" + QUOTE_ID + ", rstrPrevPolExpDt=" + rstrPrevPolExpDt
+		return "Serv2ToRolSunDTO [DetailsRegNumber=" + DetailsRegNumber + ", yearOfManufacturebike="
+				+ yearOfManufacturebike + ", bikeregistrationNumber=" + bikeregistrationNumber + ", registrationNumber="
+				+ registrationNumber + ", yearOfManufacture=" + yearOfManufacture + ", vehicleManufacturerName="
+				+ vehicleManufacturerName + ", vehicleModelCode=" + vehicleModelCode + ", fuelType1=" + fuelType1
+				+ ", BikeManufacturerName=" + BikeManufacturerName + ", BikeModelCode=" + BikeModelCode
+				+ ", BikeModelName=" + BikeModelName + ", BikefuelType=" + BikefuelType + ", rname=" + rname
+				+ ", remail=" + remail + ", rmobile=" + rmobile + ", rnomines_name=" + rnomines_name
+				+ ", rnomines_relation=" + rnomines_relation + ", rselectage=" + rselectage + ", rengine_number="
+				+ rengine_number + ", rchassis_number=" + rchassis_number + ", rtitle=" + rtitle + ", rfinanced="
+				+ rfinanced + ", raddress=" + raddress + ", rpinCode=" + rpinCode + ", rcity=" + rcity + ", quoteId="
+				+ quoteId + ", QUOTE_ID=" + QUOTE_ID + ", rstrPrevPolExpDt=" + rstrPrevPolExpDt
 				+ ", rPreviousPolicyToDt=" + rPreviousPolicyToDt + ", rPreviousPolicyFromDt=" + rPreviousPolicyFromDt
 				+ ", rPreviousPolicyUWYear=" + rPreviousPolicyUWYear + ", rstrFirstRegDt=" + rstrFirstRegDt
 				+ ", rPreviousInsurer=" + rPreviousInsurer + ", isCarOwnershipChanged=" + isCarOwnershipChanged
@@ -422,8 +429,5 @@ public class Serv2ToRolSunDTO {
 				+ ", previousPolicyno=" + previousPolicyno + ", noClaimBonusPercent=" + noClaimBonusPercent
 				+ ", RoyalBirthdate=" + RoyalBirthdate + "]";
 	}
-	
-	
-	
 	
 }

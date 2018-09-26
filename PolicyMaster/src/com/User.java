@@ -18,6 +18,7 @@ public class User {
 	private String strPrevPolClaimYN;
 	private String strPrevPolNCB;
 	private String Regyr;
+	private String RegNo;
 	private String VehicleType;
 	
 	public User(String strProductCode, String strPolicyType, String strRTOCode, String strVehicleCode,
@@ -144,6 +145,14 @@ public class User {
 
 	public void setVehicleType(String vehicleType) {
 		VehicleType = vehicleType;
+	}
+	
+	public String getRegNo() {
+		return RegNo;
+	}
+
+	public void setRegNo(String regNo) {
+		RegNo = regNo;
 	}
 
 	@Override

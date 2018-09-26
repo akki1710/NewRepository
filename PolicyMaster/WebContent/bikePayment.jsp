@@ -30,7 +30,7 @@
 <input type="hidden" name="isQuickRenew" id="isQuickRenew" value="">
 <input type="hidden" name="crossSellProduct" id="crossSellProduct" value="">
 <input type="hidden" name="crossSellQuoteid" id="crossSellQuoteid" value="">
-<input type="hidden" name="Pdfroyal" id="returnUrl" value='http://192.168.10.61:8080/PolicyMaster/Pdfroyal'>
+<input type="hidden" name="Pdfroyal" id="returnUrl" value='http://203.122.13.228/PolicyMaster/Pdfroyal'>
 
 	<input type="hidden" value="privatePassengerCar" name="vehicleSubLine" id="vehicleSubLine">
 	<input type="hidden" value="" name="elc_value" id="elc_value">

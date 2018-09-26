@@ -69,10 +69,6 @@ public class ShPaDe extends HttpServlet {
 		 String Email=(String) session.getAttribute("Email");
 		 String Mobile=(String) session.getAttribute("Mobile");
 		 
-		 System.out.println("FullName: "+FullName);
-		 System.out.println("Email: "+Email);
-		 System.out.println("Mobile: "+Mobile);
-		 
 		 PaymentPojo pp=new PaymentPojo();
 		 pp.setProposalNo(ProposalNo);
 		 pp.setTransactionNumber("");

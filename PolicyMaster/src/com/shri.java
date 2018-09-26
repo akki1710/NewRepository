@@ -168,6 +168,8 @@ public class shri extends HttpServlet {
 				 shrires.setERROR_CODE(ec3);
 				 shrires.setERROR_DESC(ec4);
 				 
+				 System.out.println("Error Desc: "+shrires.getERROR_DESC());
+				 
 				 if(nodeLst5 != null) {
 					 int length = nodeLst5.getLength();
 				        for (int i = 0; i < length; i++) {
@@ -212,7 +214,8 @@ public class shri extends HttpServlet {
 			 String NewPolStartDate = (String) session.getAttribute("newPolStartDate");
 			 String NewPolEndDate = (String) session.getAttribute("newPolEndDate");
 			 String PreviousPolicyStartDate = (String) session.getAttribute("prevPolStartDate");
-			 String RtoCode = (String) session.getAttribute("strRTOCode");
+			 User userpoj=(User) session.getAttribute("userpoj");
+			 String RtoCode = userpoj.getStrRTOCode();
 			 String RegNo1 = (String) session.getAttribute("reg1");
 			 String RegNo2 = (String) session.getAttribute("reg2");
 			 String RegNo3 = (String) session.getAttribute("reg3");
@@ -347,9 +350,9 @@ public class shri extends HttpServlet {
 						
 						String registrationNumber = serv2ToRolSunDTObike1.getRegistrationNumber();
 					Serv2ToRolSunDTO serv2ToRolSunDTOCarProductName = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunRolloverCarSet");
-							System.out.println("ttryty1");
+							
 							String rproductName = serv2ToRolSunDTOCarProductName.getRproductName();
-							System.out.println("ttryty2");
+						
 							
 							
 							if (bikeregistrationNumber.equals("")) {

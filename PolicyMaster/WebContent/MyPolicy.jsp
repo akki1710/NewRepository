@@ -1,30 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.util.List" %>
+<%@ page import="ServeletBean.RegPJ" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>PolicyMaster</title>
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="css/brain-theme.css" rel="stylesheet" type="text/css">
-<link href="css/styles.css" rel="stylesheet" type="text/css">
-<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+ <link href="img/p.jpg" rel="icon">
+<link href="userpanel/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="userpanel/css/brain-theme.css" rel="stylesheet" type="text/css">
+<link href="userpanel/css/styles.css" rel="stylesheet" type="text/css">
+<link href="userpanel/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Cuprum' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/plugins/forms/select2.min.js"></script>
-<script type="text/javascript" src="js/plugins/forms/autosize.js"></script>
-<script type="text/javascript" src="js/plugins/forms/inputlimit.min.js"></script>
-<script type="text/javascript" src="js/plugins/forms/listbox.js"></script>
-<script type="text/javascript" src="js/plugins/forms/multiselect.js"></script>
-<script type="text/javascript" src="js/plugins/forms/validate.min.js"></script>
-<script type="text/javascript" src="js/plugins/forms/tags.min.js"></script>
-<script type="text/javascript" src="js/plugins/interface/datatables.min.js"></script>
-<script type="text/javascript" src="js/plugins/interface/prettify.js"></script>
-<script type="text/javascript" src="js/plugins/interface/collapsible.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/application.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/forms/select2.min.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/forms/autosize.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/forms/inputlimit.min.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/forms/listbox.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/forms/multiselect.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/forms/validate.min.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/forms/tags.min.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/interface/datatables.min.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/interface/prettify.js"></script>
+<script type="text/javascript" src="userpanel/js/plugins/interface/collapsible.min.js"></script>
+<script type="text/javascript" src="userpanel/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="userpanel/js/application.js"></script>
 <style>
 .myCont {
 	padding: 0 30px 0 0;
@@ -90,7 +93,7 @@ hr {
                             <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                             <li><a href="#"><i class="fa fa-tasks"></i> Tasks</a></li>
                             <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                            <li><a href="#"><i class="fa fa-mail-forward"></i> Logout</a></li>
+                            <li><a href="LogoutSer"><i class="fa fa-mail-forward"></i> Logout</a></li>
                         </ul>
                     </li>
                     <li><a class="nav-icon sidebar-toggle"><i class="fa fa-bars"></i></a></li>
@@ -124,7 +127,7 @@ hr {
 		<div class="page-header">
 			<div class="logo">
 				<a href="index.jsp" title="PolicyMaster"><img
-					src="images/logo.png" alt=""></a>
+					src="userpanel/images/logo.png" alt=""></a>
 			</div>
 
 		</div>
@@ -142,7 +145,7 @@ hr {
 						class="fa fa-laptop"></i> Dashboard</a></li>
 				<li><a href="MyPolicy.jsp"><i
 						class="fa fa-file-text-o fa-fw"></i>My Policies</a></li>
-				<li><a href="MyProfile.jsp"><i class="fa fa-user"></i> My
+				<li><a href="<%=request.getContextPath()%>/UserManag?param=myprofile"><i class="fa fa-user"></i> My
 						Profile</a></li>
 				<li><a href="#" class="expand"><i class="fa fa-car">My
 							Vehicles</i></a></li>
@@ -164,17 +167,22 @@ hr {
 				
 			</div>
 			<!-- /page title -->
+			<form action="UserManag" method=get>
+			 <%try{ %>
+			<%List<RegPJ> rp2=(List<RegPJ>) session.getAttribute("rp2"); %>
 			 <div class="container-fluid myCont">
 				<div class="">
 
-					<div class="col-md-8" >
+					<div class="col-md-7" >
 
 						<div class="table-responsive">
 							<table class="table table-striped table-hover table-bordered"
 								width="100%">
+								
 								<thead>
 									<tr class="td">
 										<th class="th" width=4%>#</th>
+										<th>User ID</th>
 										<th>User Name</th>
 										<th>Full Name</th>
 										<th>Email</th>
@@ -182,32 +190,50 @@ hr {
 										<th>Proposal no</th>
 										<th>Policy no</th>
 										<th>Total Premium</th>
-										<th>Policy number</th>
-										<th>Approval Policy</th>
+										<th>Policy Name</th>
 										
 										
-										
-										
-										<th data-order="asc" data-orderby="policy_master.policyName"
-											 class="xcrud-column xcrud-action">Policy Detalis</th>
 										</tr>
 										
 								</thead>
-
+								<%for(int i=0;i<rp2.size();i++) {%>
+								<thead>
+									<tr class="td">
+										<th class="th" width=4%>#</th>
+										<th><%=rp2.get(i).getUID() %></th>
+										<th><%=rp2.get(i).getUname() %></th>
+										<th><%=rp2.get(i).getName() %></th>
+										<th><%=rp2.get(i).getEmail() %></th>
+										<th><%=rp2.get(i).getPhoneno() %></th>
+										<th><%=rp2.get(i).getProposalNo() %></th>
+										<th><%=rp2.get(i).getApprovePolNo() %></th>
+										<th><%=rp2.get(i).getTotalPremium() %></th>
+										<th><%=rp2.get(i).getPolicyName()%></th>
+										
+										
+										</tr>
+										
+								</thead>
+								<%}%>
+								 <% }catch (Exception e){
+    									e.printStackTrace();
+  								    }%>
+    
 							</table>
 							
 						</div>
 					</div> 
-     
-   
+     			</div>
+     		</div>	
+   			</form>
   
- <div class="col-md-4" >
+ <div class="col-md-5" >
  
   <div class="column">
   <div class="row">
-    <img src="images/insurance.png" alt="Snow" style="float:right ;padding:5px;margin:5px;" >
+    <img src="userpanel/images/insurance.png" alt="Snow" style="float:right ;padding:2px;margin:5px;" >
     <div class="row">
-    <img src="images/family3.jpg" alt="Forest" style="float:right ;padding:5px;margin:5px">
+    <img src="userpanel/images/family3.jpg" alt="Forest" style="float:right ;padding:2px;margin:5px">
   </div>
   
   </div>

@@ -11,8 +11,8 @@
 <input type='hidden' name='txnid' value='<%= (String) session.getAttribute("tnx")%>' /> 
 <input type='hidden' name='amount' value='<%= (Double) session.getAttribute("TotalPremium")%>' /> 
 <input type='hidden' name='productinfo' value='Payment for Liberty GI' /> 
-<input type='hidden' name='SURL' value='http://203.122.13.228:8080/PolicyMaster/LibIssuePolicyServlet' /> 
-<input type='hidden' name='FURL' value='http://203.122.13.228:8080/PolicyMaster/fail.jsp' />
+<input type='hidden' name='SURL' value='http://203.122.13.228/PolicyMaster/LibIssuePolicyServlet' /> 
+<input type='hidden' name='FURL' value='http://203.122.13.228/PolicyMaster/fail.jsp' />
 <!-- <input type='hidden' name='SURL' value='http://192.168.10.61:8080/PolicyMaster/LibIssuePolicyServlet' /> 
 <input type='hidden' name='FURL' value='http://192.168.10.61:8080/PolicyMaster/fail.jsp' /> -->
 <!-- <input type='hidden' name='SURL' value='http://localhost:8082/PolicyMaster/LibIssuePolicyServlet' /> 

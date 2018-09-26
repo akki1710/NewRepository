@@ -100,7 +100,7 @@
           </li>
         <!--  <li><a href="#team.html">CONTACT</a></li> -->
           <li><a href="login">LOGIN</a></li>
-		<li><a href="#contact.html">ADMIN</a></li>
+		<li><a href="user.jsp">MyAccount</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -156,8 +156,9 @@
               
 		<form action="MyServlet1" method="post">
 		<h2 class="title"><input type="submit" name="policy" value="Motor Package"></h2>
-			<%try { %>
-			<% Shri_Res shrires=(Shri_Res) session.getAttribute("shrires");%>
+		<%try{ %>
+			<% Shri_Res shrires=(Shri_Res) session.getAttribute("shrires");
+			if(shrires!=null){%>
               <div class="text-center"><h4><strong>Rs.<%= shrires.getTotalPremium()%></strong></h4></div></form>
               <form action="shri" method="get">
 		<ul>
@@ -165,7 +166,17 @@
 		<li><h6>VehicleIDV = <%= shrires.getVehicleIDV()%></h6></li>
 		<li><h6>Premium = <%= shrires.getTotalPremium()%></h6></li>
 		</ul>
+		<%} else {%>
+		<div class="text-center"><h4><strong>Rs. 0</strong></h4></div>
+		<ul>
+		 <li><h6>Premium = 0</h6></li>
+		<li><h6>VehicleIDV = 0</h6></li>
+		<li><h6>An error occurred while calculating Premium</h6></li>
+		</ul>
+		<% }%>
 		</form>
+		<%} catch(Exception e){
+		}%>
             </div>
           </div>
 
@@ -195,6 +206,7 @@
               <form action="MyServlet1" method="post">
               <h2 class="title"><input type="submit" name="policy" value="Royal Motor"></h2></form>
               <div class="text-center"><h4><strong>
+              <%try { %>
               <% obj=(Royal.DATA)session.getAttribute( "data" ); %>
                				<% obj1=(Royal.PremiumForOneYear)session.getAttribute( "PremiumForOneYear" ); %>
                	 <%if(obj!=null){%>

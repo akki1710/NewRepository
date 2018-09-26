@@ -128,7 +128,7 @@ public class shri1 extends HttpServlet {
 			 System.out.println(year1);
 			 // Liberty added
 	        
-			 String RtoCode = (String) session.getAttribute("strRTOCode");
+			 String RtoCode = userpoj.getStrRTOCode();
 			 String RegNum1 = (String) session.getAttribute("reg1");
 			 String RegNum2 = (String) session.getAttribute("reg2");
 			 String RegNum3 = (String) session.getAttribute("reg3");
@@ -502,7 +502,7 @@ public class shri1 extends HttpServlet {
 
 						 if(session!=null)
 							{
-								session.removeAttribute("CurrentIDV1");
+									session.removeAttribute("CurrentIDV1");
 									session.removeAttribute("userpoj");
 									session.removeAttribute("proppojo");
 									session.removeAttribute("propprevpojo");

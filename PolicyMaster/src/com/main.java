@@ -15,20 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-
-import com.poiji.bind.Poiji;
-
 import study.db.Db;
 
 public class main {
 	private String strVehicleCode;
 	
 	public static void main(String[] args) throws IOException, ParseException {
-		String datestr="17-10-1994";
+		/*String datestr="17-10-1994";
 		 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = new Date();  
 		 Date utilDate1 = formatter.parse(datestr);
@@ -40,7 +33,7 @@ public class main {
 		    Date end=c.getTime();
 		    String PolicyToDt=formatter.format(end);
 		    System.out.println(PolicyFromDt);
-		    System.out.println(PolicyToDt);
+		    System.out.println(PolicyToDt);*/
 		/*List<ProdMasters> pm=Poiji.fromExcel(new File("E://API//Shriram//MASTER KITS/Prod Masters.xls"), ProdMasters.class);
 		Integer=pm.size();
 		//System.out.println(a);
@@ -62,75 +55,6 @@ public class main {
         HSSFSheet sheet = wb.getSheetAt(0);
         String a=abc(sheet, cellContent);
         System.out.println(a);*/
-	}
-
-	
-	public static String byke(String Model) throws IOException {
-		String fileName = "E://API//Shriram//MASTER KITS/TWO_WHEELER_TEST_MASTER_19_05_2018.xls";
-        //String cellContent = "DREAM YUGA ELECTRIC START ALLOY";
-        
-        InputStream input = new FileInputStream(fileName);
-        
-        HSSFWorkbook wb = new HSSFWorkbook(input);
-        HSSFSheet sheet = wb.getSheetAt(0); 	
-		
-	        for(Row row : sheet) {
-	        	for (Cell cell : row) {
-	        		if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-	        			if (cell.getRichStringCellValue().getString().trim().equals(Model)) {
-	                        String strVehicleCode=row.getCell(0).getStringCellValue();
-	                        return strVehicleCode;
-	                    }
-	        		}
-	        	}
-	        	
-	        }
-			return null;
-			
-
-	}
-	public static String car(String Model,String FuelType) throws IOException {
-		String fileName = "E://API//Shriram//MASTER KITS/test_private_car_vehicle1 (1) (1).xls";
-        //String cellContent = "DREAM YUGA ELECTRIC START ALLOY";
-        
-        InputStream input = new FileInputStream(fileName);
-        
-        HSSFWorkbook wb = new HSSFWorkbook(input);
-        HSSFSheet sheet = wb.getSheetAt(0); 	
-		
-	        for(Row row : sheet) {
-	        	for (Cell cell : row) {
-	        		if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-	        			if (cell.getRichStringCellValue().getString().trim().equals(Model) || cell.getRichStringCellValue().getString().trim().equals(FuelType)) {
-	                        String strVehicleCode=row.getCell(0).getStringCellValue();
-	                        return strVehicleCode;
-	                    }
-	        		}
-	        	}
-	        	
-	        }
-			return null;
-			
-
-	}
-	public String ifCreta(String Model,String FuelType) {
-		if(Model.equals("CRETA")) {
-			strVehicleCode="UL7951";
-		return strVehicleCode;
-		}
-		 else if(Model.equals("ACCENT") && FuelType.equals("Petrol")) {
-			 strVehicleCode="UL11281";
-	        	return strVehicleCode;
-	        }
-		 else if(Model.equals("ACCENT") && FuelType.equals("CNG")) {
-				strVehicleCode="UL11352";
-        	return strVehicleCode;
-        }
-		 else if(Model.equals("7 SERIES 730 LD SIGNATURE") && FuelType.equals("DIESEL")) {
-			 strVehicleCode="UL9432";
-			 return strVehicleCode;
-		 }
-		return null;
 	}
 	public String BikeIDV(String Bike_RegNo,String Varient) {
 		String idv=null;

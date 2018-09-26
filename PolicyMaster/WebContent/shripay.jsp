@@ -12,8 +12,8 @@
 <form action="http://119.226.131.2/PC10Web/PC10Web.AgentPortal/frmWSPayment.aspx" method="post" name="frmTransaction" id="frmTransaction">                              
 <input name="PolicySysID" type="hidden" value="<%= shrires1.getPOL_SYS_ID()%>" /><br>
 Total Premium: <%=shrires1.getTotalPremium() %>
-<!-- <input name="ReturnURL" type="hidden" value="http://203.122.13.228:8080/PolicyMaster/ShPaDe" /><br> -->
-<input name="ReturnURL" type="hidden" value="http://localhost:8080/PolicyMaster/ShPaDe" /><br>
+<!-- <input name="ReturnURL" type="hidden" value="http://localhost:8080/PolicyMaster/ShPaDe" /><br> -->
+<input name="ReturnURL" type="hidden" value="http://203.122.13.228/PolicyMaster/ShPaDe" /><br>
 <input type="submit" value="submit">
 </form>
 </body>

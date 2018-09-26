@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="com.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -420,9 +421,9 @@ body {
 																	})
 												</script>
 
-
+												<%User userpoj=(User) session.getAttribute("userpoj"); %>
 												<label class="Car-text">Registration Number : </label> <input
-													type="text" name="Car_RegNo" id="cartextbox"
+													type="text" name="Car_RegNo" id="cartextbox" value="<%=userpoj.getRegNo() %>"
 													placeholder=" E.G.: DL01AB1234"
 													pattern="^[a-z|A-Z]{2}[0-9]{1,2}[a-z|A-Z]{1,2}[0-9]{1,4}$"
 													required="" />

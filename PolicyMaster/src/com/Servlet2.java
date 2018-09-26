@@ -112,6 +112,7 @@ public class Servlet2 extends HttpServlet {
 				{
 					User userpoj=new User();
 					userpoj.setVehicleType("Car");
+					userpoj.setRegNo(Car_RegNo);
 					Proposal1 propprevpojo=new Proposal1();
 					propprevpojo.setPinCode(PinCode);
 					try {
@@ -528,6 +529,7 @@ public class Servlet2 extends HttpServlet {
 				{
 					User userpoj=new User();
 					userpoj.setVehicleType("Bike");
+					userpoj.setRegNo(Bike_RegNo);
 					Proposal1 propprevpojo=new Proposal1();
 					propprevpojo.setPinCode(PinCode);
 					try {
