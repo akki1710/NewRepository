@@ -59,38 +59,29 @@ public class RoyalCarPremium extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			
-			Serv2ToRolSunDTO serv2ToRolSunDTCommanget = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
-			String rname= serv2ToRolSunDTCommanget.getRname();
-			String remail=serv2ToRolSunDTCommanget.getRemail();
-			String rmobile=serv2ToRolSunDTCommanget.getRmobile();
-			String fuelType1=serv2ToRolSunDTCommanget.getFuelType1();
-			
-			String rpinCode=serv2ToRolSunDTCommanget.getRpinCode();
-			
-			
-			Serv2ToRolSunDTO serv2ToRolSunDTOCommanGetCity = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOCommanSetCity");
-	    	String rcity =serv2ToRolSunDTOCommanGetCity.getRcity();
-	    	
-			Serv2ToRolSunDTO serv2ToRolSunCarVehicleDetailGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunCarVehicleDetail");
-			String registrationNumber=serv2ToRolSunCarVehicleDetailGet.getRegistrationNumber();
-			String vehicleManufacturerName=serv2ToRolSunCarVehicleDetailGet.getVehicleManufacturerName();
-			String vehicleModelCode=serv2ToRolSunCarVehicleDetailGet.getVehicleModelCode();
-			String yearOfManufacture= serv2ToRolSunCarVehicleDetailGet.getYearOfManufacture();
-		
-			
-			Serv2ToRolSunDTO serv2ToRolSunRolloverCarGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunRolloverCarSet");
-			String rPreviousPolicyFromDt = serv2ToRolSunRolloverCarGet.getrPreviousPolicyFromDt();
-			String rPreviousPolicyToDt = serv2ToRolSunRolloverCarGet.getrPreviousPolicyToDt();
-			String rPreviousInsurer = serv2ToRolSunRolloverCarGet.getrPreviousInsurer();
-			String rstrPrevPolExpDt = serv2ToRolSunRolloverCarGet.getRstrPrevPolExpDt();
-            String claimAmountReceived = serv2ToRolSunRolloverCarGet.getClaimAmountReceived();
-			String claimsMadeInPreviousPolicy = serv2ToRolSunRolloverCarGet.getClaimsMadeInPreviousPolicy();
-			String claimsReported = serv2ToRolSunRolloverCarGet.getClaimsReported();
-			String isCarOwnershipChanged = serv2ToRolSunRolloverCarGet.getIsCarOwnershipChanged();
-			String rproductName =serv2ToRolSunRolloverCarGet.getRproductName();
-			String previousPolicyno=serv2ToRolSunRolloverCarGet.getPreviousPolicyno();
-			String regDate=serv2ToRolSunRolloverCarGet.getRegDate();
-			String noClaimBonusPercent=serv2ToRolSunRolloverCarGet.getNoClaimBonusPercent();
+			Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
+			String rname= serv2ToRolSunDTOComman.getRname();
+			String remail=serv2ToRolSunDTOComman.getRemail();
+			String rmobile=serv2ToRolSunDTOComman.getRmobile();
+			String fuelType1=serv2ToRolSunDTOComman.getFuelType1();
+			String rpinCode=serv2ToRolSunDTOComman.getRpinCode();
+			String rcity =serv2ToRolSunDTOComman.getRcity();
+	    	String registrationNumber=serv2ToRolSunDTOComman.getRegistrationNumber();
+			String vehicleManufacturerName=serv2ToRolSunDTOComman.getVehicleManufacturerName();
+			String vehicleModelCode=serv2ToRolSunDTOComman.getVehicleModelCode();
+			String yearOfManufacture= serv2ToRolSunDTOComman.getYearOfManufacture();
+			String rPreviousPolicyFromDt = serv2ToRolSunDTOComman.getrPreviousPolicyFromDt();
+			String rPreviousPolicyToDt = serv2ToRolSunDTOComman.getrPreviousPolicyToDt();
+			String rPreviousInsurer = serv2ToRolSunDTOComman.getrPreviousInsurer();
+			String rstrPrevPolExpDt = serv2ToRolSunDTOComman.getRstrPrevPolExpDt();
+            String claimAmountReceived = serv2ToRolSunDTOComman.getClaimAmountReceived();
+			String claimsMadeInPreviousPolicy = serv2ToRolSunDTOComman.getClaimsMadeInPreviousPolicy();
+			String claimsReported = serv2ToRolSunDTOComman.getClaimsReported();
+			String isCarOwnershipChanged = serv2ToRolSunDTOComman.getIsCarOwnershipChanged();
+			String rproductName =serv2ToRolSunDTOComman.getRproductName();
+			String previousPolicyno=serv2ToRolSunDTOComman.getPreviousPolicyno();
+			String regDate=serv2ToRolSunDTOComman.getRegDate();
+			String noClaimBonusPercent=serv2ToRolSunDTOComman.getNoClaimBonusPercent();
 			/* ss */
 			/* Current Date Code */
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -100,8 +91,6 @@ public class RoyalCarPremium extends HttpServlet {
 			authenticationDetails authenticationDetails = new authenticationDetails();
 			authenticationDetails.setAgentId(RoyalGlobalAccess.agentId);
 			authenticationDetails.setApikey(RoyalGlobalAccess.apikey);
-
-		
 			proposerDetails proposerDetails = new proposerDetails();
 			
 			proposerDetails.setStrEmail(remail);
@@ -182,7 +171,7 @@ public class RoyalCarPremium extends HttpServlet {
 			System.out.println(pREMIUMDETAILS.getDATA());
 			DATA data = pREMIUMDETAILS.getDATA();
 			
-		System.out.println(data.getGROSS_PREMIUM());
+			System.out.println(data.getGROSS_PREMIUM());
 			System.out.println(data.getQUOTE_ID());
 
 			session.setAttribute("data", data);
@@ -195,7 +184,7 @@ public class RoyalCarPremium extends HttpServlet {
 			// String qote = session.setAttribute("A", A);
 			// System.out.println(data.getQUOTE_ID());
 			// String quote = session.setAttribute("quote", "data.getQUOTE_ID()");
-			String quoteid = serv2ToRolSunDTCommanget.getQUOTE_ID();
+			String quoteid = serv2ToRolSunDTOComman.getQUOTE_ID();
 
 			if (session != null) {
 				session.removeAttribute("registrationNumber");
@@ -220,56 +209,48 @@ public class RoyalCarPremium extends HttpServlet {
 	    		PrintWriter pw = response.getWriter();
 				HttpSession session = request.getSession();
 
-	    	
-	    	
-	    	
-	    	
-	    	Serv2ToRolSunDTO Serv2ToRolSunDTOUpdateVehiclesGet = (Serv2ToRolSunDTO) session.getAttribute("Serv2ToRolSunDTOUpdateVehiclesSet");
-	    	String rnomines_name = Serv2ToRolSunDTOUpdateVehiclesGet.getRnomines_name();
-	    	String rnomines_relation = Serv2ToRolSunDTOUpdateVehiclesGet.getRnomines_relation();
-	    	String rselectage = Serv2ToRolSunDTOUpdateVehiclesGet.getRselectage();
-	    	String rengine_number = Serv2ToRolSunDTOUpdateVehiclesGet.getRengine_number();
-	    	String rchassis_number = Serv2ToRolSunDTOUpdateVehiclesGet.getRchassis_number();
-	    	String rfinanced = Serv2ToRolSunDTOUpdateVehiclesGet.getRfinanced();
-	    	String raddress=Serv2ToRolSunDTOUpdateVehiclesGet.getRaddress();
-	    	String rtitle = Serv2ToRolSunDTOUpdateVehiclesGet.getRtitle();
-	    	String royalBirthdate=Serv2ToRolSunDTOUpdateVehiclesGet.getRoyalBirthdate();
-	    	
-	    	
-	    	DATA data1=(DATA)session.getAttribute("data");
-	    	String quoteId1 =data1.getQUOTE_ID();
-	    	System.out.println("Quote id in update :"+quoteId1);
-	    	
-	    	
-	    	Serv2ToRolSunDTO serv2ToRolSunCarVehicleDetailGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunCarVehicleDetail");
-	    	String registrationNumber = serv2ToRolSunCarVehicleDetailGet.getRegistrationNumber();
-	    	String yearOfManufacture = serv2ToRolSunCarVehicleDetailGet.getYearOfManufacture();
-	    	String vehicleManufacturerName = serv2ToRolSunCarVehicleDetailGet.getVehicleManufacturerName();
-			String fuelType1 = serv2ToRolSunCarVehicleDetailGet.getFuelType1();
-			String vehicleModelCode = serv2ToRolSunCarVehicleDetailGet.getVehicleModelCode();
+		    	DATA data=(DATA)session.getAttribute("data");
+		    	String quoteId1 =data.getQUOTE_ID();
+		    	System.out.println("Quote id in update :"+quoteId1);
+		    Serv2ToRolSunDTO serv2ToRolSunDTOComman1 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman1");
+	    	String rnomines_name = serv2ToRolSunDTOComman1.getRnomines_name();
+	    	String rnomines_relation = serv2ToRolSunDTOComman1.getRnomines_relation();
+	    	String rselectage = serv2ToRolSunDTOComman1.getRselectage();
+	    	String rengine_number = serv2ToRolSunDTOComman1.getRengine_number();
+	    	String rchassis_number = serv2ToRolSunDTOComman1.getRchassis_number();
+	    	String rfinanced = serv2ToRolSunDTOComman1.getRfinanced();
+	    	String raddress=serv2ToRolSunDTOComman1.getRaddress();
+	    	String rtitle = serv2ToRolSunDTOComman1.getRtitle();
+	    	String royalBirthdate=serv2ToRolSunDTOComman1.getRoyalBirthdate();
+	    	Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
+	    	String registrationNumber = serv2ToRolSunDTOComman.getRegistrationNumber();
+	    	String yearOfManufacture = serv2ToRolSunDTOComman.getYearOfManufacture();
+	    	String vehicleManufacturerName = serv2ToRolSunDTOComman.getVehicleManufacturerName();
+			String fuelType1 = serv2ToRolSunDTOComman.getFuelType1();
+			String vehicleModelCode = serv2ToRolSunDTOComman.getVehicleModelCode();
 			
 			
-	    	Serv2ToRolSunDTO serv2ToRolSunDTCommanget = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
-	    	String rname = serv2ToRolSunDTCommanget.getRname();
-			String rmobile = serv2ToRolSunDTCommanget.getRmobile();
-			String remail = serv2ToRolSunDTCommanget.getRemail();
-			String rpinCode=serv2ToRolSunDTCommanget.getRpinCode();
+	    	
+	    	String rname = serv2ToRolSunDTOComman.getRname();
+			String rmobile = serv2ToRolSunDTOComman.getRmobile();
+			String remail = serv2ToRolSunDTOComman.getRemail();
+			String rpinCode=serv2ToRolSunDTOComman.getRpinCode();
 			
 	    	
-	    	Serv2ToRolSunDTO serv2ToRolSunDTOCommanGetCity = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOCommanSetCity");
-	    	String rcity =serv2ToRolSunDTOCommanGetCity.getRcity();
+	    
+	    	String rcity =serv2ToRolSunDTOComman.getRcity();
 	    	//Rollover
-	    	Serv2ToRolSunDTO serv2ToRolSunRolloverCarGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunRolloverCarSet");
-			String rPreviousPolicyFromDt = serv2ToRolSunRolloverCarGet.getrPreviousPolicyFromDt();
-			String rPreviousPolicyToDt = serv2ToRolSunRolloverCarGet.getrPreviousPolicyToDt();
-			String rPreviousInsurer = serv2ToRolSunRolloverCarGet.getrPreviousInsurer();
-			String rstrPrevPolExpDt = serv2ToRolSunRolloverCarGet.getRstrPrevPolExpDt();
-			String claimAmountReceived = serv2ToRolSunRolloverCarGet.getClaimAmountReceived();
-			String claimsMadeInPreviousPolicy = serv2ToRolSunRolloverCarGet.getClaimsMadeInPreviousPolicy();
-			String claimsReported = serv2ToRolSunRolloverCarGet.getClaimsReported();
-			String isCarOwnershipChanged = serv2ToRolSunRolloverCarGet.getIsCarOwnershipChanged();
-			String noClaimBonusPercent = serv2ToRolSunRolloverCarGet.getNoClaimBonusPercent();
-			String rproductName =serv2ToRolSunRolloverCarGet.getRproductName();
+	    
+			String rPreviousPolicyFromDt = serv2ToRolSunDTOComman.getrPreviousPolicyFromDt();
+			String rPreviousPolicyToDt = serv2ToRolSunDTOComman.getrPreviousPolicyToDt();
+			String rPreviousInsurer = serv2ToRolSunDTOComman.getrPreviousInsurer();
+			String rstrPrevPolExpDt = serv2ToRolSunDTOComman.getRstrPrevPolExpDt();
+			String claimAmountReceived = serv2ToRolSunDTOComman.getClaimAmountReceived();
+			String claimsMadeInPreviousPolicy = serv2ToRolSunDTOComman.getClaimsMadeInPreviousPolicy();
+			String claimsReported = serv2ToRolSunDTOComman.getClaimsReported();
+			String isCarOwnershipChanged = serv2ToRolSunDTOComman.getIsCarOwnershipChanged();
+			String noClaimBonusPercent = serv2ToRolSunDTOComman.getNoClaimBonusPercent();
+			String rproductName =serv2ToRolSunDTOComman.getRproductName();
 	    	
 	    	
 			//Current Date Code
@@ -381,12 +362,8 @@ public class RoyalCarPremium extends HttpServlet {
 			calculatePremium.setResType("XML");
 			calculatePremium.setIsNewUser("Yes");
 
-		
-			
 			String xmlString = "";
-		
-				
-				JAXBContext context = JAXBContext.newInstance(CALCULATEPREMIUMREQUEST.class);
+			JAXBContext context = JAXBContext.newInstance(CALCULATEPREMIUMREQUEST.class);
 				Marshaller m = context.createMarshaller();
 
 				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To format XML
@@ -397,8 +374,6 @@ public class RoyalCarPremium extends HttpServlet {
 
 				System.out.println(xmlString);
 				//...... unmarshelling
-				
-				
 				HttpClient client = HttpClientBuilder.create().build();
 				HttpPost post = new HttpPost(RoyalGlobalAccess.CarRollOverUpdateVehiclesURL);
 				post.addHeader("content-type", "application/xml");
@@ -417,14 +392,12 @@ public class RoyalCarPremium extends HttpServlet {
 					StreamSource streamSource = new StreamSource(new StringReader(res_xml));
 					JAXBElement<PREMIUMDETAILS> je = unmarshallerObj.unmarshal(streamSource,  PREMIUMDETAILS.class);        
 					PREMIUMDETAILS pREMIUMDETAILS = (PREMIUMDETAILS)je.getValue();
-					
-					
 					System.out.println(pREMIUMDETAILS.getDATA());
-					DATA data=pREMIUMDETAILS.getDATA();
-					System.out.println(data.getGROSS_PREMIUM());
-					System.out.println(data.getIDV());
-					session.setAttribute("data",data);
-					System.out.println(data);
+					DATA data1=pREMIUMDETAILS.getDATA();
+					System.out.println(data1.getGROSS_PREMIUM());
+					System.out.println(data1.getIDV());
+					session.setAttribute("data1",data1);
+					System.out.println(data1);
 					System.out.println(pREMIUMDETAILS.getStatus());
 					//response.sendRedirect("termquotes.jsp");
 					
@@ -444,14 +417,14 @@ public class RoyalCarPremium extends HttpServlet {
 	    		PrintWriter pw = response.getWriter();
 	    		HttpSession session = request.getSession();
 	        	
-	    		Serv2ToRolSunDTO serv2ToRolSunDTcommanGet4Proposal	 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
-	        	String remail=	serv2ToRolSunDTcommanGet4Proposal.getRemail();
+	    		Serv2ToRolSunDTO serv2ToRolSunDTOComman	 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
+	        	String remail=	serv2ToRolSunDTOComman.getRemail();
 	    		
 	        	
 	        	
-	        	DATA data=(DATA)session.getAttribute("data");
-	        	String quoteId1 =data.getQUOTE_ID();
-	        	String premium = data.getPREMIUM();
+	        	DATA data1=(DATA)session.getAttribute("data1");
+	        	String quoteId1 =data1.getQUOTE_ID();
+	        	String premium = data1.getPREMIUM();
 	        	
 	        	GPROPOSALREQUEST pROPOSALREQUEST = new GPROPOSALREQUEST();
 	        	
@@ -504,7 +477,7 @@ public class RoyalCarPremium extends HttpServlet {
 	    			System.out.println(data2.getGROSS_PREMIUM());
 	    			System.out.println(data2.getQUOTE_ID());	
 	    			
-	    			session.setAttribute("data", data2);
+	    			session.setAttribute("data2", data2);
 	    			System.out.println(data2);
 	    			System.out.println(pREMIUMDETAILS.getStatus());
 	    			String A=data2.getQUOTE_ID();

@@ -201,18 +201,18 @@ public class Servlet3 extends HttpServlet {
 			 session.setAttribute("Salutation", Salutation); //Lib added
 			 
 			//RoyalSundaram//
-			 try {
-				 Serv2ToRolSunDTO serv2ToRolSunDTO4 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTO");
-					String yearOfManufacture = serv2ToRolSunDTO4.getYearOfManufacture();
-					String vehicleManufacturerName = serv2ToRolSunDTO4.getVehicleManufacturerName();
-					String fuelType1 = serv2ToRolSunDTO4.getFuelType1();
-					String vehicleModelCode = serv2ToRolSunDTO4.getVehicleModelCode();
+			/* try {
+				 Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
+					String yearOfManufacture = serv2ToRolSunDTOComman.getYearOfManufacture();
+					String vehicleManufacturerName = serv2ToRolSunDTOComman.getVehicleManufacturerName();
+					String fuelType1 = serv2ToRolSunDTOComman.getFuelType1();
+					String vehicleModelCode = serv2ToRolSunDTOComman.getVehicleModelCode();
 					
 			 }
 			 catch (NullPointerException e) {
 				// TODO: handle exception
 			}
-			  
+			  */
 				
 				/*Serv2ToRolSunDTO serv2ToRolSunDTOCommanUpdate = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
 				String rtitle = serv2ToRolSunDTOCommanUpdate.getRtitle();
@@ -220,7 +220,7 @@ public class Servlet3 extends HttpServlet {
 				String rmobile = serv2ToRolSunDTOCommanUpdate.getRmobile();
 				String remail = serv2ToRolSunDTOCommanUpdate.getRemail();
 				*/
-				Serv2ToRolSunDTO serv2ToRolSunDTOReg = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunbike");
+				/*Serv2ToRolSunDTO serv2ToRolSunDTOReg = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunbike");
 				String registrationNumber = serv2ToRolSunDTOReg.getRegistrationNumber();
 				String bikeregistrationNumber =	serv2ToRolSunDTOReg.getBikeregistrationNumber();
 				
@@ -237,7 +237,7 @@ public class Servlet3 extends HttpServlet {
 				
 				
 				System.out.println("rg"+registrationNumber);
-				System.out.println("breg"+bikeregistrationNumber);
+				System.out.println("breg"+bikeregistrationNumber);*/
 		
 			  String rnomines_name = nomines_name;
 			  String rnomines_relation = nomines_relation;
@@ -274,17 +274,17 @@ public class Servlet3 extends HttpServlet {
 			
 			Royal.DATA data1 =(Royal.DATA) session.getAttribute("data");
 			 //Serv2ToRolSunDTO serv2ToRolSunDTO4 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTO");
-			 Serv2ToRolSunDTO Serv2ToRolSunDTOUpdateVehiclesSet = new Serv2ToRolSunDTO();
-			 Serv2ToRolSunDTOUpdateVehiclesSet.setRnomines_name(rnomines_name);
-			 Serv2ToRolSunDTOUpdateVehiclesSet.setRnomines_relation(rnomines_relation);
-			 Serv2ToRolSunDTOUpdateVehiclesSet.setRselectage(rselectage);
-			 Serv2ToRolSunDTOUpdateVehiclesSet.setRengine_number(rengine_number);
-			 Serv2ToRolSunDTOUpdateVehiclesSet.setRchassis_number(rchassis_number);
-			 Serv2ToRolSunDTOUpdateVehiclesSet.setRtitle(rtitle);
-			 Serv2ToRolSunDTOUpdateVehiclesSet.setRfinanced(rfinanced);
-			 Serv2ToRolSunDTOUpdateVehiclesSet.setRaddress(raddress);
-			 Serv2ToRolSunDTOUpdateVehiclesSet.setRoyalBirthdate(royalBirthdate);
-			  session.setAttribute("Serv2ToRolSunDTOUpdateVehiclesSet", Serv2ToRolSunDTOUpdateVehiclesSet);
+			 Serv2ToRolSunDTO serv2ToRolSunDTOComman1 = new Serv2ToRolSunDTO();
+			 serv2ToRolSunDTOComman1.setRnomines_name(rnomines_name);
+			 serv2ToRolSunDTOComman1.setRnomines_relation(rnomines_relation);
+			 serv2ToRolSunDTOComman1.setRselectage(rselectage);
+			 serv2ToRolSunDTOComman1.setRengine_number(rengine_number);
+			 serv2ToRolSunDTOComman1.setRchassis_number(rchassis_number);
+			 serv2ToRolSunDTOComman1.setRtitle(rtitle);
+			 serv2ToRolSunDTOComman1.setRfinanced(rfinanced);
+			 serv2ToRolSunDTOComman1.setRaddress(raddress);
+			 serv2ToRolSunDTOComman1.setRoyalBirthdate(royalBirthdate);
+			  session.setAttribute("serv2ToRolSunDTOComman1", serv2ToRolSunDTOComman1);
 			  
 			
 			 
