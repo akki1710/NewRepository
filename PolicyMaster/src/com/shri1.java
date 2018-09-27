@@ -77,7 +77,6 @@ public class shri1 extends HttpServlet {
 		 HttpClient client = HttpClientBuilder.create().build();
 		 
 		 String policy=(String) session.getAttribute("policy"); // added
-		 
 		 User userpoj=(User) session.getAttribute("userpoj");
 		 
 		 	String Regyr=userpoj.getRegyr();
@@ -456,13 +455,20 @@ public class shri1 extends HttpServlet {
 			
 	        else if (policy.equals("Royal Motor")) {
 	        	try {
-	        	Serv2ToRolSunDTO serv2ToRolSunDTOReg1 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunbike");
-	    		String registrationNumber = serv2ToRolSunDTOReg1.getRegistrationNumber();
-	    		String bikeregistrationNumber =	serv2ToRolSunDTOReg1.getBikeregistrationNumber();
-	    		System.out.println("hello reg" +registrationNumber);
-	    		System.out.println(" hello bike"+bikeregistrationNumber);
-	    		Serv2ToRolSunDTO serv2ToRolSunDTOProductName = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunRolloverCarSet");
-				String rproductName = serv2ToRolSunDTOProductName.getRproductName();
+	        	Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
+	    		String registrationNumber = serv2ToRolSunDTOComman.getRegistrationNumber();
+	    		String bikeregistrationNumber =	serv2ToRolSunDTOComman.getBikeregistrationNumber();
+				String rproductName = serv2ToRolSunDTOComman.getRproductName();
+				if (registrationNumber == null) {
+					registrationNumber = "";
+					
+				}
+				System.out.println("registrationNumber: " + registrationNumber);
+				if (bikeregistrationNumber == null) {
+					bikeregistrationNumber = "";
+				}
+			
+				System.out.println("bikeregistrationNumber: "+bikeregistrationNumber);
 	        	
 	        	if(bikeregistrationNumber.equals(""))
 	        	{
@@ -506,6 +512,9 @@ public class shri1 extends HttpServlet {
 									session.removeAttribute("userpoj");
 									session.removeAttribute("proppojo");
 									session.removeAttribute("propprevpojo");
+									session.removeAttribute("serv2ToRolSunDTOComman");
+									session.removeAttribute("serv2ToRolSunDTOComman1");
+
 							}
 			
 	}
@@ -1303,6 +1312,13 @@ public class shri1 extends HttpServlet {
 				 }
 				 session.setAttribute("shrires1", shrires1);
 				 response.sendRedirect("shripay.jsp");
+				 
+				 
+				 
+				 
+				 
+				 
+				 
 					
 					pw.close(); 
 

@@ -19,9 +19,10 @@
 	<input type="hidden" name="apikey" id="apikey" value="310ZQmv/bYJMYrWQ1iYa7s43084=">
 	<input type="hidden" name="agentId" id="agentId" value="AG033023">
 	
-	<% obj=(Royal.DATA)session.getAttribute("data"); %> 
+	<% obj=(Royal.DATA)session.getAttribute("data2"); %> 
 	<% obj1=(Royal.proposerDetails)session.getAttribute( "proposerDetails" ); %>
-	<input type="hidden" name="premium" value=" <%=obj.getPREMIUM() %>">
+	<input type="hidden" name="premium" value="RS. <%=obj.getPREMIUM() %>">
+	<label>RS. <%=obj.getPREMIUM() %></label></br>
 	<input type="hidden" name="quoteId" id="quoteId" value=" <%=obj.getQUOTE_ID() %> ">
  <input type="hidden" name="version_no" id="version_no" value="">
 <input type="hidden" name="strFirstName" id="strFirstName" value=" <%=obj1.getFirstName() %>">

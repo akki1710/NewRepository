@@ -90,19 +90,14 @@ public class Servlet2 extends HttpServlet {
 				String remail = Email;
 				String rmobile = Mobile;
 				String rpinCode = PinCode;
-				Serv2ToRolSunDTO serv2ToRolSunDTOComman = new Serv2ToRolSunDTO();
-
-				serv2ToRolSunDTOComman.setRname(rname);
-				serv2ToRolSunDTOComman.setRmobile(rmobile);
-				serv2ToRolSunDTOComman.setRemail(remail);
-				serv2ToRolSunDTOComman.setRpinCode(rpinCode);
 				
-				session.setAttribute("serv2ToRolSunDTOComman", serv2ToRolSunDTOComman);
+				
+				//session.setAttribute("serv2ToRolSunDTOComman", serv2ToRolSunDTOComman);
 
-				if (registrationNumber == null) {
+				/*if (registrationNumber == null) {
 					registrationNumber = "";
 					System.out.println("registrationNumber: " + registrationNumber);
-				}
+				}*/
 				
 				
 				
@@ -115,6 +110,12 @@ public class Servlet2 extends HttpServlet {
 					userpoj.setRegNo(Car_RegNo);
 					Proposal1 propprevpojo=new Proposal1();
 					propprevpojo.setPinCode(PinCode);
+					Serv2ToRolSunDTO serv2ToRolSunDTOComman = new Serv2ToRolSunDTO();
+
+					serv2ToRolSunDTOComman.setRname(rname);
+					serv2ToRolSunDTOComman.setRmobile(rmobile);
+					serv2ToRolSunDTOComman.setRemail(remail);
+					serv2ToRolSunDTOComman.setRpinCode(rpinCode);
 					try {
 					session.removeAttribute("bike_reg");
 					System.out.println("Entered into car page");
@@ -157,10 +158,10 @@ public class Servlet2 extends HttpServlet {
 						//royal city code
 						String royalRegNum = registrationNumber.substring(0, 4);
 						String royalRtoCode =royalRegNum.substring(0, 2)+"-"+royalRegNum.substring(2, 4);
+						System.out.println(royalRtoCode);
 						String rcity= m.Royalcity(royalRtoCode);
-						Serv2ToRolSunDTO serv2ToRolSunDTOCommanSetCity = new Serv2ToRolSunDTO();
-						serv2ToRolSunDTOCommanSetCity.setRcity(rcity);
-						session.setAttribute("serv2ToRolSunDTOCommanSetCity", serv2ToRolSunDTOCommanSetCity);
+						serv2ToRolSunDTOComman.setRcity(rcity);
+						//session.setAttribute("serv2ToRolSunDTOCommanSetCity", serv2ToRolSunDTOCommanSetCity);
 
 						
 						
@@ -208,21 +209,20 @@ public class Servlet2 extends HttpServlet {
 							
 							previousPolicyno = "";
 							regDate = dtf.format(currentdate);
-							Serv2ToRolSunDTO serv2ToRolSunRolloverCarSet = new Serv2ToRolSunDTO();
-							serv2ToRolSunRolloverCarSet.setrPreviousPolicyToDt(rPreviousPolicyToDt);
-							serv2ToRolSunRolloverCarSet.setrPreviousPolicyFromDt(rPreviousPolicyFromDt);
+							serv2ToRolSunDTOComman.setrPreviousPolicyToDt(rPreviousPolicyToDt);
+							serv2ToRolSunDTOComman.setrPreviousPolicyFromDt(rPreviousPolicyFromDt);
 
-							serv2ToRolSunRolloverCarSet.setRstrPrevPolExpDt(rstrPrevPolExpDt);
-							serv2ToRolSunRolloverCarSet.setClaimsReported(claimsReported);
-							serv2ToRolSunRolloverCarSet.setClaimsMadeInPreviousPolicy(claimsMadeInPreviousPolicy);
-							serv2ToRolSunRolloverCarSet.setClaimAmountReceived(claimAmountReceived);
-							serv2ToRolSunRolloverCarSet.setIsCarOwnershipChanged(isCarOwnershipChanged);
-							serv2ToRolSunRolloverCarSet.setYearOfManufacture(yearOfManufacture);
-							serv2ToRolSunRolloverCarSet.setRproductName(rproductName);
-							serv2ToRolSunRolloverCarSet.setPreviousPolicyno(previousPolicyno);
-							serv2ToRolSunRolloverCarSet.setRegDate(regDate);
+							serv2ToRolSunDTOComman.setRstrPrevPolExpDt(rstrPrevPolExpDt);
+							serv2ToRolSunDTOComman.setClaimsReported(claimsReported);
+							serv2ToRolSunDTOComman.setClaimsMadeInPreviousPolicy(claimsMadeInPreviousPolicy);
+							serv2ToRolSunDTOComman.setClaimAmountReceived(claimAmountReceived);
+							serv2ToRolSunDTOComman.setIsCarOwnershipChanged(isCarOwnershipChanged);
+							serv2ToRolSunDTOComman.setYearOfManufacture(yearOfManufacture);
+							serv2ToRolSunDTOComman.setRproductName(rproductName);
+							serv2ToRolSunDTOComman.setPreviousPolicyno(previousPolicyno);
+							serv2ToRolSunDTOComman.setRegDate(regDate);
 							
-							session.setAttribute("serv2ToRolSunRolloverCarSet", serv2ToRolSunRolloverCarSet);
+							//session.setAttribute("serv2ToRolSunRolloverCarSet", serv2ToRolSunRolloverCarSet);
 
 							/* Royal code End */
 
@@ -330,21 +330,20 @@ public class Servlet2 extends HttpServlet {
 									
 									String isCarOwnershipChanged = "No";
 
-									Serv2ToRolSunDTO serv2ToRolSunRolloverCarSet = new Serv2ToRolSunDTO();
-									serv2ToRolSunRolloverCarSet.setrPreviousPolicyToDt(rPreviousPolicyToDt);
-									serv2ToRolSunRolloverCarSet.setrPreviousPolicyFromDt(rPreviousPolicyFromDt);
-									serv2ToRolSunRolloverCarSet.setrPreviousInsurer(rPreviousInsurer);
-									serv2ToRolSunRolloverCarSet.setRstrFirstRegDt(rstrFirstRegDt);
-									serv2ToRolSunRolloverCarSet.setRstrPrevPolExpDt(rstrPrevPolExpDt);
-									serv2ToRolSunRolloverCarSet.setClaimsReported(claimsReported);
-									serv2ToRolSunRolloverCarSet.setClaimsMadeInPreviousPolicy(claimsMadeInPreviousPolicy);
-									serv2ToRolSunRolloverCarSet.setClaimAmountReceived(claimAmountReceived);
-									serv2ToRolSunRolloverCarSet.setIsCarOwnershipChanged(isCarOwnershipChanged);
-									serv2ToRolSunRolloverCarSet.setRproductName(rproductName);
-									serv2ToRolSunRolloverCarSet.setPreviousPolicyno(previousPolicyno);
-									serv2ToRolSunRolloverCarSet.setNoClaimBonusPercent(noClaimBonusPercent);
-									serv2ToRolSunRolloverCarSet.setRegDate(regDate);
-									session.setAttribute("serv2ToRolSunRolloverCarSet", serv2ToRolSunRolloverCarSet);
+									
+									serv2ToRolSunDTOComman.setrPreviousPolicyToDt(rPreviousPolicyToDt);
+									serv2ToRolSunDTOComman.setrPreviousPolicyFromDt(rPreviousPolicyFromDt);
+									serv2ToRolSunDTOComman.setrPreviousInsurer(rPreviousInsurer);
+									serv2ToRolSunDTOComman.setRstrFirstRegDt(rstrFirstRegDt);
+									serv2ToRolSunDTOComman.setRstrPrevPolExpDt(rstrPrevPolExpDt);
+									serv2ToRolSunDTOComman.setClaimsReported(claimsReported);
+									serv2ToRolSunDTOComman.setClaimsMadeInPreviousPolicy(claimsMadeInPreviousPolicy);
+									serv2ToRolSunDTOComman.setClaimAmountReceived(claimAmountReceived);
+									serv2ToRolSunDTOComman.setIsCarOwnershipChanged(isCarOwnershipChanged);
+									serv2ToRolSunDTOComman.setRproductName(rproductName);
+									serv2ToRolSunDTOComman.setPreviousPolicyno(previousPolicyno);
+									serv2ToRolSunDTOComman.setNoClaimBonusPercent(noClaimBonusPercent);
+									serv2ToRolSunDTOComman.setRegDate(regDate);
 									// EndRoyalSundaram
 						
 						
@@ -457,19 +456,15 @@ public class Servlet2 extends HttpServlet {
 						/* modelCode */
 						String vehicleModelCode = m.ifModel1(Varient, FuelType);
 						System.out.println("vehicleModelCode" +vehicleModelCode);
-						Serv2ToRolSunDTO serv2ToRolSunCarVehicleDetail = new Serv2ToRolSunDTO();
-						serv2ToRolSunCarVehicleDetail.setVehicleManufacturerName(vehicleManufacturerName);
-						serv2ToRolSunCarVehicleDetail.setVehicleModelCode(vehicleModelCode);
-						serv2ToRolSunCarVehicleDetail.setYearOfManufacture(yearOfManufacture);
-						serv2ToRolSunCarVehicleDetail.setFuelType1(fuelType1);
-						serv2ToRolSunCarVehicleDetail.setRegistrationNumber(registrationNumber);
-						session.setAttribute("serv2ToRolSunCarVehicleDetail", serv2ToRolSunCarVehicleDetail);
-
-
-				        
+						serv2ToRolSunDTOComman.setVehicleManufacturerName(vehicleManufacturerName);
+						serv2ToRolSunDTOComman.setVehicleModelCode(vehicleModelCode);
+						serv2ToRolSunDTOComman.setYearOfManufacture(yearOfManufacture);
+						serv2ToRolSunDTOComman.setFuelType1(fuelType1);
+						serv2ToRolSunDTOComman.setRegistrationNumber(registrationNumber);
 				        
 				        session.setAttribute("userpoj", userpoj);
 				        session.setAttribute("propprevpojo", propprevpojo);
+				        session.setAttribute("serv2ToRolSunDTOComman", serv2ToRolSunDTOComman);
 					
 		       
 					Connection con = Db.myGetConnection();
@@ -512,17 +507,13 @@ public class Servlet2 extends HttpServlet {
 				
 				/* Royal Bike Code Here */
 
-				String bikeregistrationNumber = Bike_RegNo;
+				
+				//session.setAttribute("serv2ToRolSunbike", serv2ToRolSunbike);
+
+				/*String bikeregistrationNumber = Bike_RegNo;
 				if (bikeregistrationNumber == null) {
 					bikeregistrationNumber = "";
-				}
-			
-				Serv2ToRolSunDTO serv2ToRolSunbike = new Serv2ToRolSunDTO();
-				serv2ToRolSunbike.setBikeregistrationNumber(bikeregistrationNumber);
-				serv2ToRolSunbike.setRegistrationNumber(registrationNumber);System.out.println("registrationNumber" + serv2ToRolSunbike.getRegistrationNumber());
-				session.setAttribute("serv2ToRolSunbike", serv2ToRolSunbike);
-
-
+				}*/
 				
 				
 				if(Bike_RegNo!=null)
@@ -532,6 +523,19 @@ public class Servlet2 extends HttpServlet {
 					userpoj.setRegNo(Bike_RegNo);
 					Proposal1 propprevpojo=new Proposal1();
 					propprevpojo.setPinCode(PinCode);
+					
+					//royal
+					String bikeregistrationNumber = Bike_RegNo;
+					Serv2ToRolSunDTO serv2ToRolSunDTOComman = new Serv2ToRolSunDTO();
+
+					serv2ToRolSunDTOComman.setRname(rname);
+					serv2ToRolSunDTOComman.setRmobile(rmobile);
+					serv2ToRolSunDTOComman.setRemail(remail);
+					serv2ToRolSunDTOComman.setRpinCode(rpinCode);
+					serv2ToRolSunDTOComman.setBikeregistrationNumber(bikeregistrationNumber);
+					serv2ToRolSunDTOComman.setRegistrationNumber(registrationNumber);
+					System.out.println("registrationNumber" + serv2ToRolSunDTOComman.getBikeregistrationNumber());
+					//royalend
 					try {
 					String a=Bike_RegNo.substring(0,4);
 					String strRTOCode=a.substring(0,2)+"-"+a.substring(2, a.length());
@@ -580,12 +584,11 @@ public class Servlet2 extends HttpServlet {
 						String royalRegNum = bikeregistrationNumber.substring(0, 4);
 						String royalRtoCode =royalRegNum.substring(0, 2)+"-"+royalRegNum.substring(2, 4);
 						String rcity= m.Royalcity(royalRtoCode);
-						Serv2ToRolSunDTO serv2ToRolSunbikeModelInfo = new Serv2ToRolSunDTO();
-						serv2ToRolSunbikeModelInfo.setBikeManufacturerName(BikeManufacturerName);
-						serv2ToRolSunbikeModelInfo.setBikeModelCode(BikeModelCode);
-						serv2ToRolSunbikeModelInfo.setBikeModelName(BikeModelName);
-						serv2ToRolSunbikeModelInfo.setRcity(rcity);
-						session.setAttribute("serv2ToRolSunbikeModelInfo", serv2ToRolSunbikeModelInfo);
+						serv2ToRolSunDTOComman.setBikeManufacturerName(BikeManufacturerName);
+						serv2ToRolSunDTOComman.setBikeModelCode(BikeModelCode);
+						serv2ToRolSunDTOComman.setBikeModelName(BikeModelName);
+						serv2ToRolSunDTOComman.setRcity(rcity);
+						session.setAttribute("serv2ToRolSunbikeModelInfo", serv2ToRolSunDTOComman);
 
 						/*Royal Bike Code End */
 						
@@ -636,28 +639,23 @@ public class Servlet2 extends HttpServlet {
 						previousPolicyno = "";
 						rproductName = "BrandnewTwoWheeler";
 						regDate = dtf.format(currentdate);
-						Serv2ToRolSunDTO serv2ToRolSunRolloverBikeSet = new Serv2ToRolSunDTO();
-						serv2ToRolSunRolloverBikeSet.setBikePreviousInsurerName(bikePreviousInsurerName);
-						serv2ToRolSunRolloverBikeSet.setBikeclaimsMadeInPreviousPolicy(bikeclaimsMadeInPreviousPolicy);
-						serv2ToRolSunRolloverBikeSet.setBikePreviousPolicyExpiryDate(bikePreviousPolicyExpiryDate);
-						serv2ToRolSunRolloverBikeSet.setBikeNoClaimBonusPercent(bikeNoClaimBonusPercent);
-						serv2ToRolSunRolloverBikeSet.setBikeRegistrationChargesRoadTax(bikeRegistrationChargesRoadTax);
-						serv2ToRolSunRolloverBikeSet.setBikeVehicleOwnershipChanged(bikeVehicleOwnershipChanged);
-						serv2ToRolSunRolloverBikeSet.setYearOfManufacturebike(yearOfManufacturebike);
+						serv2ToRolSunDTOComman.setBikePreviousInsurerName(bikePreviousInsurerName);
+						serv2ToRolSunDTOComman.setBikeclaimsMadeInPreviousPolicy(bikeclaimsMadeInPreviousPolicy);
+						serv2ToRolSunDTOComman.setBikePreviousPolicyExpiryDate(bikePreviousPolicyExpiryDate);
+						serv2ToRolSunDTOComman.setBikeNoClaimBonusPercent(bikeNoClaimBonusPercent);
+						serv2ToRolSunDTOComman.setBikeRegistrationChargesRoadTax(bikeRegistrationChargesRoadTax);
+						serv2ToRolSunDTOComman.setBikeVehicleOwnershipChanged(bikeVehicleOwnershipChanged);
+						serv2ToRolSunDTOComman.setYearOfManufacturebike(yearOfManufacturebike);
 						//serv2ToRolSunRolloverBikeSet.setRproductName(rproductName);
-						serv2ToRolSunRolloverBikeSet.setRegDate(regDate);
-						serv2ToRolSunRolloverBikeSet.setPreviousPolicyno(previousPolicyno);
-						session.setAttribute("serv2ToRolSunRolloverBikeSet", serv2ToRolSunRolloverBikeSet);
+						serv2ToRolSunDTOComman.setRegDate(regDate);
+						serv2ToRolSunDTOComman.setPreviousPolicyno(previousPolicyno);
 						
+						serv2ToRolSunDTOComman.setRproductName(rproductName);
+
 						
-						Serv2ToRolSunDTO serv2ToRolSunRolloverCarSet = new Serv2ToRolSunDTO();
-						serv2ToRolSunRolloverCarSet.setRproductName(rproductName);
-						session.setAttribute("serv2ToRolSunRolloverCarSet", serv2ToRolSunRolloverCarSet);
+						serv2ToRolSunDTOComman.setBikeregistrationNumber(bikeregistrationNumber);
 
-						Serv2ToRolSunDTO Serv2ToRolSunDTOBikecalu = new Serv2ToRolSunDTO();
-						Serv2ToRolSunDTOBikecalu.setBikeregistrationNumber(bikeregistrationNumber);
-
-						session.setAttribute("Serv2ToRolSunDTOBikecalu", Serv2ToRolSunDTOBikecalu);
+						
 
 			        
 			        
@@ -748,23 +746,23 @@ public class Servlet2 extends HttpServlet {
 									previousPolicyno = "1234";
 									rproductName = "RolloverTwoWheeler";
 									
-									Serv2ToRolSunDTO serv2ToRolSunRolloverBikeSet = new Serv2ToRolSunDTO();
-									serv2ToRolSunRolloverBikeSet.setBikePreviousInsurerName(bikePreviousInsurerName);
-									serv2ToRolSunRolloverBikeSet.setBikeclaimsMadeInPreviousPolicy(bikeclaimsMadeInPreviousPolicy);
-									serv2ToRolSunRolloverBikeSet.setBikePreviousPolicyExpiryDate(bikePreviousPolicyExpiryDate);
-									serv2ToRolSunRolloverBikeSet.setBikeNoClaimBonusPercent(bikeNoClaimBonusPercent);
-									serv2ToRolSunRolloverBikeSet.setBikeRegistrationChargesRoadTax(bikeRegistrationChargesRoadTax);
-									serv2ToRolSunRolloverBikeSet.setBikeVehicleOwnershipChanged(bikeVehicleOwnershipChanged);
-									serv2ToRolSunRolloverBikeSet.setYearOfManufacturebike(yearOfManufacturebike);
+									
+									serv2ToRolSunDTOComman.setBikePreviousInsurerName(bikePreviousInsurerName);
+									serv2ToRolSunDTOComman.setBikeclaimsMadeInPreviousPolicy(bikeclaimsMadeInPreviousPolicy);
+									serv2ToRolSunDTOComman.setBikePreviousPolicyExpiryDate(bikePreviousPolicyExpiryDate);
+									serv2ToRolSunDTOComman.setBikeNoClaimBonusPercent(bikeNoClaimBonusPercent);
+									serv2ToRolSunDTOComman.setBikeRegistrationChargesRoadTax(bikeRegistrationChargesRoadTax);
+									serv2ToRolSunDTOComman.setBikeVehicleOwnershipChanged(bikeVehicleOwnershipChanged);
+									serv2ToRolSunDTOComman.setYearOfManufacturebike(yearOfManufacturebike);
 									//serv2ToRolSunRolloverBikeSet.setRproductName(rproductName);
-									serv2ToRolSunRolloverBikeSet.setRegDate(regDate);
-									serv2ToRolSunRolloverBikeSet.setPreviousPolicyno(previousPolicyno);
-									session.setAttribute("serv2ToRolSunRolloverBikeSet", serv2ToRolSunRolloverBikeSet);
+									serv2ToRolSunDTOComman.setRegDate(regDate);
+									serv2ToRolSunDTOComman.setPreviousPolicyno(previousPolicyno);
 									
 									
-									Serv2ToRolSunDTO serv2ToRolSunRolloverCarSet = new Serv2ToRolSunDTO();
-									serv2ToRolSunRolloverCarSet.setRproductName(rproductName);
-									session.setAttribute("serv2ToRolSunRolloverCarSet", serv2ToRolSunRolloverCarSet);
+									
+									
+									serv2ToRolSunDTOComman.setRproductName(rproductName);
+									//
 					
 					
 
@@ -865,6 +863,7 @@ public class Servlet2 extends HttpServlet {
 					
 						session.setAttribute("userpoj", userpoj);
 						session.setAttribute("propprevpojo", propprevpojo);
+						session.setAttribute("serv2ToRolSunDTOComman", serv2ToRolSunDTOComman);
 					
 						Connection con = Db.myGetConnection();
 						String s2="insert into main_data(RegNo,Manufacturer,Model,Varient,RegYear,Insurer,AnyClaim,ExpiryDate,name,email,Phoneno) values(?,?,?,?,?,?,?,?,?,?,?)";

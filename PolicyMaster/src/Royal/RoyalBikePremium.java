@@ -58,34 +58,34 @@ public class RoyalBikePremium extends HttpServlet {
 			PrintWriter pw = response.getWriter();
 			HttpSession session = request.getSession();
 
-			Serv2ToRolSunDTO serv2ToRolSunbikeGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunbike");
-			String bikeregistrationNumber = serv2ToRolSunbikeGet.getBikeregistrationNumber();
-			Serv2ToRolSunDTO serv2ToRolSunDTCommanget = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
-			String rname = serv2ToRolSunDTCommanget.getRname();
-			String rmobile = serv2ToRolSunDTCommanget.getRmobile();
-			String remail = serv2ToRolSunDTCommanget.getRemail();
-			String rpinCode=serv2ToRolSunDTCommanget.getRpinCode();
+			Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
+			String bikeregistrationNumber = serv2ToRolSunDTOComman.getBikeregistrationNumber();
+			
+			String rname = serv2ToRolSunDTOComman.getRname();
+			String rmobile = serv2ToRolSunDTOComman.getRmobile();
+			String remail = serv2ToRolSunDTOComman.getRemail();
+			String rpinCode=serv2ToRolSunDTOComman.getRpinCode();
 			
 			
 			
-			Serv2ToRolSunDTO serv2ToRolSunbikeModelInfoGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunbikeModelInfo");
-			String BikeManufacturerName = serv2ToRolSunbikeModelInfoGet.getBikeManufacturerName();
-			String BikeModelCode = serv2ToRolSunbikeModelInfoGet.getBikeModelCode();
-			String BikeModelName = serv2ToRolSunbikeModelInfoGet.getBikeModelName();
-			String rcity =serv2ToRolSunbikeModelInfoGet.getRcity();
+			
+			String BikeManufacturerName = serv2ToRolSunDTOComman.getBikeManufacturerName();
+			String BikeModelCode = serv2ToRolSunDTOComman.getBikeModelCode();
+			String BikeModelName = serv2ToRolSunDTOComman.getBikeModelName();
+			String rcity =serv2ToRolSunDTOComman.getRcity();
 
-			Serv2ToRolSunDTO serv2ToRolSunRolloverBikeGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunRolloverBikeSet");
-			String bikePreviousInsurerName = serv2ToRolSunRolloverBikeGet.getBikePreviousInsurerName();
-			String bikeclaimsMadeInPreviousPolicy = serv2ToRolSunRolloverBikeGet.getBikeclaimsMadeInPreviousPolicy();
-			String bikePreviousPolicyExpiryDate = serv2ToRolSunRolloverBikeGet.getBikePreviousPolicyExpiryDate();
-			String bikeNoClaimBonusPercent = serv2ToRolSunRolloverBikeGet.getBikeNoClaimBonusPercent();
-			String bikeRegistrationChargesRoadTax = serv2ToRolSunRolloverBikeGet.getBikeRegistrationChargesRoadTax();
-			String bikeVehicleOwnershipChanged = serv2ToRolSunRolloverBikeGet.getBikeVehicleOwnershipChanged();
-			String YearOfManufacturebike = serv2ToRolSunRolloverBikeGet.getYearOfManufacturebike();
-			String regDate = serv2ToRolSunRolloverBikeGet.getRegDate();
 			
-			Serv2ToRolSunDTO serv2ToRolSunRolloverCarGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunRolloverCarSet");
-			String rproductName =serv2ToRolSunRolloverCarGet.getRproductName();
+			String bikePreviousInsurerName = serv2ToRolSunDTOComman.getBikePreviousInsurerName();
+			String bikeclaimsMadeInPreviousPolicy = serv2ToRolSunDTOComman.getBikeclaimsMadeInPreviousPolicy();
+			String bikePreviousPolicyExpiryDate = serv2ToRolSunDTOComman.getBikePreviousPolicyExpiryDate();
+			String bikeNoClaimBonusPercent = serv2ToRolSunDTOComman.getBikeNoClaimBonusPercent();
+			String bikeRegistrationChargesRoadTax = serv2ToRolSunDTOComman.getBikeRegistrationChargesRoadTax();
+			String bikeVehicleOwnershipChanged = serv2ToRolSunDTOComman.getBikeVehicleOwnershipChanged();
+			String YearOfManufacturebike = serv2ToRolSunDTOComman.getYearOfManufacturebike();
+			String regDate = serv2ToRolSunDTOComman.getRegDate();
+			
+		
+			String rproductName =serv2ToRolSunDTOComman.getRproductName();
 
 			
 			// Current Date Code
@@ -222,43 +222,43 @@ public class RoyalBikePremium extends HttpServlet {
 			PremiumForOneYear PremiumForOneYear1 = (PremiumForOneYear) session.getAttribute("PremiumForOneYear");
 			String idv1 = PremiumForOneYear1.getIDV();
 
-			Serv2ToRolSunDTO serv2ToRolSunbikeGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunbike");
-			String bikeregistrationNumber = serv2ToRolSunbikeGet.getBikeregistrationNumber();
-			Serv2ToRolSunDTO serv2ToRolSunDTCommanget = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
-			String rname = serv2ToRolSunDTCommanget.getRname();
-			String rmobile = serv2ToRolSunDTCommanget.getRmobile();
-			String remail = serv2ToRolSunDTCommanget.getRemail();
-			String rpinCode=serv2ToRolSunDTCommanget.getRpinCode();
+			Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
+			String bikeregistrationNumber = serv2ToRolSunDTOComman.getBikeregistrationNumber();
+		
+			String rname = serv2ToRolSunDTOComman.getRname();
+			String rmobile = serv2ToRolSunDTOComman.getRmobile();
+			String remail = serv2ToRolSunDTOComman.getRemail();
+			String rpinCode=serv2ToRolSunDTOComman.getRpinCode();
 
-			Serv2ToRolSunDTO Serv2ToRolSunDTOBikeUpdateVehiclesGet = (Serv2ToRolSunDTO) session.getAttribute("Serv2ToRolSunDTOUpdateVehiclesSet");
-			String rnomines_name = Serv2ToRolSunDTOBikeUpdateVehiclesGet.getRnomines_name();
-			String rnomines_relation = Serv2ToRolSunDTOBikeUpdateVehiclesGet.getRnomines_relation();
-			String rselectage = Serv2ToRolSunDTOBikeUpdateVehiclesGet.getRselectage();
-			String rengine_number = Serv2ToRolSunDTOBikeUpdateVehiclesGet.getRengine_number();
-			String rchassis_number = Serv2ToRolSunDTOBikeUpdateVehiclesGet.getRchassis_number();
-			String rfinanced = Serv2ToRolSunDTOBikeUpdateVehiclesGet.getRfinanced();
-			String rtitle = Serv2ToRolSunDTOBikeUpdateVehiclesGet.getRtitle();
-			String raddress= Serv2ToRolSunDTOBikeUpdateVehiclesGet.getRaddress();
-			String royalBirthdate=Serv2ToRolSunDTOBikeUpdateVehiclesGet.getRoyalBirthdate();
+			Serv2ToRolSunDTO serv2ToRolSunDTOComman1 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman1");
+			String rnomines_name = serv2ToRolSunDTOComman1.getRnomines_name();
+			String rnomines_relation = serv2ToRolSunDTOComman1.getRnomines_relation();
+			String rselectage = serv2ToRolSunDTOComman1.getRselectage();
+			String rengine_number = serv2ToRolSunDTOComman1.getRengine_number();
+			String rchassis_number = serv2ToRolSunDTOComman1.getRchassis_number();
+			String rfinanced = serv2ToRolSunDTOComman1.getRfinanced();
+			String rtitle = serv2ToRolSunDTOComman1.getRtitle();
+			String raddress= serv2ToRolSunDTOComman1.getRaddress();
+			String royalBirthdate=serv2ToRolSunDTOComman1.getRoyalBirthdate();
 
-			Serv2ToRolSunDTO serv2ToRolSunbikeModelInfoGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunbikeModelInfo");
-			String BikeManufacturerName = serv2ToRolSunbikeModelInfoGet.getBikeManufacturerName();
-			String BikeModelCode = serv2ToRolSunbikeModelInfoGet.getBikeModelCode();
-			String BikeModelName = serv2ToRolSunbikeModelInfoGet.getBikeModelName();
-			String rcity =serv2ToRolSunbikeModelInfoGet.getRcity();
-			Serv2ToRolSunDTO serv2ToRolSunRolloverBikeGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunRolloverBikeSet");
-			String bikePreviousInsurerName = serv2ToRolSunRolloverBikeGet.getBikePreviousInsurerName();
-			String bikeclaimsMadeInPreviousPolicy = serv2ToRolSunRolloverBikeGet.getBikeclaimsMadeInPreviousPolicy();
-			String bikePreviousPolicyExpiryDate = serv2ToRolSunRolloverBikeGet.getBikePreviousPolicyExpiryDate();
-			String bikeNoClaimBonusPercent = serv2ToRolSunRolloverBikeGet.getBikeNoClaimBonusPercent();
-			String bikeRegistrationChargesRoadTax = serv2ToRolSunRolloverBikeGet.getBikeRegistrationChargesRoadTax();
-			String bikeVehicleOwnershipChanged = serv2ToRolSunRolloverBikeGet.getBikeVehicleOwnershipChanged();
-			String YearOfManufacturebike = serv2ToRolSunRolloverBikeGet.getYearOfManufacturebike();
-			String regDate = serv2ToRolSunRolloverBikeGet.getRegDate();
-			String previousPolicyno = serv2ToRolSunRolloverBikeGet.getPreviousPolicyno();
 			
-			Serv2ToRolSunDTO serv2ToRolSunRolloverCarGet = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunRolloverCarSet");
-			String rproductName =serv2ToRolSunRolloverCarGet.getRproductName();
+			String BikeManufacturerName = serv2ToRolSunDTOComman.getBikeManufacturerName();
+			String BikeModelCode = serv2ToRolSunDTOComman.getBikeModelCode();
+			String BikeModelName = serv2ToRolSunDTOComman.getBikeModelName();
+			String rcity =serv2ToRolSunDTOComman.getRcity();
+		
+			String bikePreviousInsurerName = serv2ToRolSunDTOComman.getBikePreviousInsurerName();
+			String bikeclaimsMadeInPreviousPolicy = serv2ToRolSunDTOComman.getBikeclaimsMadeInPreviousPolicy();
+			String bikePreviousPolicyExpiryDate = serv2ToRolSunDTOComman.getBikePreviousPolicyExpiryDate();
+			String bikeNoClaimBonusPercent = serv2ToRolSunDTOComman.getBikeNoClaimBonusPercent();
+			String bikeRegistrationChargesRoadTax = serv2ToRolSunDTOComman.getBikeRegistrationChargesRoadTax();
+			String bikeVehicleOwnershipChanged = serv2ToRolSunDTOComman.getBikeVehicleOwnershipChanged();
+			String YearOfManufacturebike = serv2ToRolSunDTOComman.getYearOfManufacturebike();
+			String regDate = serv2ToRolSunDTOComman.getRegDate();
+			String previousPolicyno = serv2ToRolSunDTOComman.getPreviousPolicyno();
+			
+			
+			String rproductName =serv2ToRolSunDTOComman.getRproductName();
 
 
 			/* Current Date Code */
@@ -363,10 +363,10 @@ public class RoyalBikePremium extends HttpServlet {
 
 			System.out.println(pREMIUMDETAILS);
 
-			DATA data = pREMIUMDETAILS.getDATA();
-			System.out.println(data.getPREMIUM());
-			System.out.println(data.getQUOTE_ID());
-			session.setAttribute("data", data);
+			DATA data1 = pREMIUMDETAILS.getDATA();
+			System.out.println(data1.getPREMIUM());
+			System.out.println(data1.getQUOTE_ID());
+			session.setAttribute("data1", data1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -380,13 +380,13 @@ public class RoyalBikePremium extends HttpServlet {
 			PrintWriter pw = response.getWriter();
 			HttpSession session = request.getSession();
 
-			Serv2ToRolSunDTO serv2ToRolSunDTObike3 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
+			Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
 
-			String remail = serv2ToRolSunDTObike3.getRemail();
+			String remail = serv2ToRolSunDTOComman.getRemail();
 
-			DATA data = (DATA) session.getAttribute("data");
-			String quoteId1 = data.getQUOTE_ID();
-			String premium = data.getPREMIUM();
+			DATA data1 = (DATA) session.getAttribute("data1");
+			String quoteId1 = data1.getQUOTE_ID();
+			String premium = data1.getPREMIUM();
 
 			authenticationDetails AuthenticationDetails = new authenticationDetails();
 			AuthenticationDetails.setApiKey(RoyalGlobalAccess.apikey);
