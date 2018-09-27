@@ -163,35 +163,6 @@ public class Servlet3 extends HttpServlet {
 			    proppojo.setAppointeeRelationforPAOwnerDriver(appointee_relation);
 			    session.setAttribute("proppojo", proppojo);
 			    
-/*			 session.setAttribute("PolicyFromDt", PolicyFromDt);
-			 session.setAttribute("PolicyToDt", PolicyToDt);
-			 session.setAttribute("PolicyIssueDt", PolicyIssueDt);
-			 session.setAttribute("InsuredPrefix", InsuredPrefix);
-			 session.setAttribute("Gender", Gender); 
-			 session.setAttribute("Address1", Address1);
-			 session.setAttribute("State", State);
-			 session.setAttribute("City", City);
-			 session.setAttribute("PinCode", PinCode);
-			 session.setAttribute("PolicyType", PolicyType);
-			 session.setAttribute("DateOfBirth", DateOfBirth);
-			 session.setAttribute("EngineNo", EngineNo);
-			 session.setAttribute("FirstRegDt", FirstRegDt);
-			 //remember VehicleType
-			 session.setAttribute("ChassisNo", ChassisNo);
-			 session.setAttribute("RTOCODE", RTOCODE);
-			 session.setAttribute("RegNo1", RegNo1);
-			 session.setAttribute("RegNo2", RegNo2);
-			 session.setAttribute("RegNo3", RegNo3);
-			 session.setAttribute("RegNo4", RegNo4);
-			 session.setAttribute("NomineeNameforPAOwnerDriver", NomineeNameforPAOwnerDriver);
-			 session.setAttribute("NomineeAgeforPAOwnerDriver", NomineeAgeforPAOwnerDriver);
-			 session.setAttribute("NomineeRelationforPAOwnerDriver", NomineeRelationforPAOwnerDriver);
-			 session.setAttribute("AppointeeNameforPAOwnerDriver", appointee_name);
-			 session.setAttribute("AppointeeRelationforPAOwnerDriver", appointee_relation);
-			 System.out.println(appointee_name);
-			 System.out.println(appointee_relation);
-			 session.setAttribute("VehicleManufactureYear1", VehicleManufactureYear1);*/
-			 
 			 //Lib added
 			 String[] g1=m.Salutation(Prefix);
 			 String Salutation=g1[0];

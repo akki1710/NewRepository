@@ -112,7 +112,7 @@ public class Servlet1 extends HttpServlet {
 					if (Claim!=null)
 					{
 						session.setAttribute("Claim", Claim);
-			            if(Claim.equals("Y"))
+			            if(Claim.equals("YES"))
 			            {
 			            	String ncb="";
 			            	session.setAttribute("ncb", ncb);
@@ -179,7 +179,7 @@ public class Servlet1 extends HttpServlet {
 					if (Bike_Claim!=null) {
 						
 						session.setAttribute("Bike_Claim", Bike_Claim);
-						if(Bike_Claim.equals("Y"))
+						if(Bike_Claim.equals("YES"))
 			            {
 			            	String ncb="";
 			            	session.setAttribute("ncb", ncb);

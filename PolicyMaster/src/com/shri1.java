@@ -149,11 +149,29 @@ public class shri1 extends HttpServlet {
 			 String NewPolStartDate = (String) session.getAttribute("newPolStartDate");
 			 String NewPolEndDate = (String) session.getAttribute("newPolEndDate");
 			 String PreviousPolicyStartDate = (String) session.getAttribute("prevPolStartDate");
-			// String appointee_name= request.getParameter("AppointeeNameforPAOwnerDriver");
-			// System.out.println(appointee_name);
-			// String appointee_relation= request.getParameter("AppointeeRelationforPAOwnerDriver");
-			// System.out.println(AppointeeRelationforPAOwnerDriver);
-			 //String[] minor_app=appointee_name.split("\\s");
+			 String nomineeAge=proppojo.getNomineeAgeforPAOwnerDriver();
+			 String appointee_name= proppojo.getAppointeeNameforPAOwnerDriver();
+			 String appointee_relation= proppojo.getAppointeeRelationforPAOwnerDriver();
+			 String[] minor_app=new String[3];
+			 if(Integer.parseInt(nomineeAge)<18) {
+				 minor_app=appointee_name.split(" "); //"Hay Mack"
+			 }else {
+				
+				 minor_app[0]="";
+				 minor_app[1]="";
+			}
+			 
+				 
+			 boolean Isminor=false;
+			 if(Integer.parseInt(nomineeAge)>17)
+			 {
+				 System.out.println("If Minor called : "+nomineeAge);
+				  Isminor=false;
+			 }else {
+				 System.out.println("else Minor called : "+nomineeAge);
+				  Isminor=true;
+			 }
+			
 			 
 			 LibFullPostPremiumDetail postd2=new LibFullPostPremiumDetail();
 				
@@ -229,11 +247,11 @@ public class shri1 extends HttpServlet {
 		        postd2.setNomineelastName(words[1]);
 		        postd2.setNomineeRelationship(NomineeRelationforPAOwnerDriver);
 		        postd2.setOtherRelation("");
-		        postd2.setIsMinor(false);
-		        postd2.setRepFirstName("");
-		        postd2.setRepLastName("");
+		        postd2.setIsMinor(Isminor);
+		        postd2.setRepFirstName(minor_app[0]);
+		        postd2.setRepLastName(minor_app[1]);
 		        postd2.setRepOtherRelation("");
-		        postd2.setRepRelationWithMinor("");
+		        postd2.setRepRelationWithMinor(appointee_relation);
 		        postd2.setReportDate(null);
 		        postd2.setNoPreviousPolicyHistory(true);
 		        postd2.setPreviousPolicyInsurerName("");
@@ -338,11 +356,11 @@ public class shri1 extends HttpServlet {
 			        postd2.setNomineelastName(words[1]);
 			        postd2.setNomineeRelationship(NomineeRelationforPAOwnerDriver);
 			        postd2.setOtherRelation("");
-			        postd2.setIsMinor(false);
-			        postd2.setRepFirstName("");
-			        postd2.setRepLastName("");
+			        postd2.setIsMinor(Isminor);
+			        postd2.setRepFirstName(minor_app[0]);
+			        postd2.setRepLastName(minor_app[1]);
 			        postd2.setRepOtherRelation("");
-			        postd2.setRepRelationWithMinor("");
+			        postd2.setRepRelationWithMinor(appointee_relation);
 			        postd2.setReportDate(null);
 			        postd2.setNoPreviousPolicyHistory(false);
 			        postd2.setPreviousPolicyInsurerName(insurer);
@@ -396,6 +414,7 @@ public class shri1 extends HttpServlet {
 						ObjectMapper objectMapper = new ObjectMapper();
 						String jsonRequest=objectMapper.writeValueAsString(postd2);
 						System.out.println("Request :  "+jsonRequest);
+						pw.println("Request :  "+jsonRequest);
 						    
 						    HttpPost post1 = new HttpPost("http://168.87.83.122:8180/api/IMDTPService/PostPremiumDetails");
 							StringEntity userEntity = new StringEntity(jsonRequest);
@@ -404,6 +423,7 @@ public class shri1 extends HttpServlet {
 							HttpResponse response1=client.execute(post1);
 							String res_json = EntityUtils.toString(response1.getEntity());
 							System.out.println("\nResponse : "+res_json);
+							pw.println("\nResponse : "+res_json);
 							
 							JSONObject obj = new JSONObject(res_json);
 							String ProposalNumber=(String) obj.get("ProposalNumber");

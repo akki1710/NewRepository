@@ -35,7 +35,7 @@ public class MyServlet1 extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 PrintWriter pw = response.getWriter();
+		 
 		
 	}
 	
@@ -72,14 +72,18 @@ public class MyServlet1 extends HttpServlet {
         {
         	
         	response.sendRedirect("Details2.jsp");
-         
         	
+        	 if(session!=null)
+     		{
+     			session.removeAttribute("ProposalNumber");
+     			session.removeAttribute("TotalPremium");
+     		}
         }
         
         
         else if(policy.equals("Royal Motor")) {
-
-        	try {
+        	response.sendRedirect("Details2.jsp");
+        	/*try {
         	            	
         	            	DATA data =(Royal.DATA)session.getAttribute( "data" );
         	            	if(data!=null)
@@ -111,16 +115,12 @@ public class MyServlet1 extends HttpServlet {
         	    		} catch (SQLException e) {
         	    			// TODO Auto-generated catch block
         	    			e.printStackTrace();
-        	    		}
+        	    		}*/
         	        	
         	    			
         	        	
         	        }
-        if(session!=null)
-		{
-			session.removeAttribute("ProposalNumber");
-			session.removeAttribute("TotalPremium");
-		}
+       
         
 	}
         

@@ -17,5 +17,7 @@
     <servlet-name>MyServlet1</servlet-name>
     <url-pattern>/termquotes</url-pattern>
   </servlet-mapping>
-  
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
 </web-app>

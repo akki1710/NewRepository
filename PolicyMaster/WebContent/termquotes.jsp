@@ -238,10 +238,11 @@
 				<li><h6>Vehicle IDV = <%=RVehicleIDV %> </h6></li>
 				<li><h6>Premium =   <%=RPremium %> </h6></li>
 	<% 	} else if((obj==null) && (obj1==null)) {%>
-<ul>	Rs.  Null
-		 <li><h6>ProposalNo = Null </h6></li>
-		<li><h6>VehicleIDV = Null </h6></li>
-		<li><h6>Premium = Null</h6></li>
+	<div class="text-center"><h4><strong>Rs. 0</strong></h4></div>
+<ul>
+		 <li><h6>ProposalNo = 0 </h6></li>
+		<li><h6>VehicleIDV = 0 </h6></li>
+		<li><h6>Premium = 0</h6></li>
 	</ul>
 	<% } %>
 	<%} catch(Exception e){

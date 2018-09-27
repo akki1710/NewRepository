@@ -346,6 +346,7 @@ public class RoyalBikeBrandnewPremium extends HttpServlet {
 			int statusCode = response1.getStatusLine().getStatusCode();
 			String res_xml = EntityUtils.toString(response1.getEntity());
 			System.out.println(res_xml);
+			pw.println(res_xml);
 			System.out.println("statusCode  " + statusCode);
 
 			// OUR code here
@@ -419,6 +420,7 @@ public class RoyalBikeBrandnewPremium extends HttpServlet {
 			int statusCode = response1.getStatusLine().getStatusCode();
 			String res_xml = EntityUtils.toString(response1.getEntity());
 			System.out.println(res_xml);
+			pw.println(res_xml);
 			System.out.println("statusCode  " + statusCode);
 
 			// OUR code here

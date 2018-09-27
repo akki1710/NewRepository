@@ -205,6 +205,7 @@ public class shri extends HttpServlet {
 			}
 			
 			/*Liberty*/
+		 try {
 			 String reg_year = (String) session.getAttribute("reg_year");
 			 System.out.println("Reg Year : "+reg_year);
 			 String insurer = (String) session.getAttribute("insurer");
@@ -306,10 +307,11 @@ public class shri extends HttpServlet {
 		        
 				 
 				 HttpClient client = HttpClientBuilder.create().build();
-				 try {
+				 
 						ObjectMapper objectMapper = new ObjectMapper();
 						String jsonRequest=objectMapper.writeValueAsString(postd);
 						System.out.println("Request :  "+jsonRequest);
+						pw.println("Request :  "+jsonRequest);
 						    
 						    HttpPost post1 = new HttpPost("http://168.87.83.122:8180/api/IMDTPService/PostPremiumDetails");
 							StringEntity userEntity = new StringEntity(jsonRequest);
@@ -318,6 +320,7 @@ public class shri extends HttpServlet {
 							HttpResponse response1=client.execute(post1);
 							String res_json = EntityUtils.toString(response1.getEntity());
 							System.out.println("\nResponse : "+res_json);
+							pw.println("\nResponse : "+res_json);
 							
 							JSONObject obj = new JSONObject(res_json);
 							String ProposalNumber=(String) obj.get("ProposalNumber");

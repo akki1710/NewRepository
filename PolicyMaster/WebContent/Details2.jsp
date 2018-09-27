@@ -422,12 +422,18 @@ body {
 												</script>
 
 												<%User userpoj=(User) session.getAttribute("userpoj"); %>
-												<label class="Car-text">Registration Number : </label> <input
-													type="text" name="Car_RegNo" id="cartextbox" value="<%=userpoj.getRegNo() %>"
+												<label class="Car-text">Registration Number : </label> 
+												<% if(userpoj!=null){ %>
+													<input type="text" name="Car_RegNo" id="cartextbox" value="<%=userpoj.getRegNo() %>"
 													placeholder=" E.G.: DL01AB1234"
 													pattern="^[a-z|A-Z]{2}[0-9]{1,2}[a-z|A-Z]{1,2}[0-9]{1,4}$"
 													required="" />
-
+												<%} else{ %>
+												<input type="text" name="Car_RegNo" id="cartextbox"
+													placeholder=" E.G.: DL01AB1234"
+													pattern="^[a-z|A-Z]{2}[0-9]{1,2}[a-z|A-Z]{1,2}[0-9]{1,4}$"
+													required="" />
+													<%} %>
 											</div>
 
 										</div>
