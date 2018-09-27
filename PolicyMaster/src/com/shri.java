@@ -307,7 +307,7 @@ public class shri extends HttpServlet {
 		        
 				 
 				 HttpClient client = HttpClientBuilder.create().build();
-				 
+
 						ObjectMapper objectMapper = new ObjectMapper();
 						String jsonRequest=objectMapper.writeValueAsString(postd);
 						System.out.println("Request :  "+jsonRequest);
@@ -347,16 +347,23 @@ public class shri extends HttpServlet {
 /* RoyalSundaram Code Here*/
 				 
 				 try {
-						Serv2ToRolSunDTO serv2ToRolSunDTObike1 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunbike");
-						String bikeregistrationNumber = serv2ToRolSunDTObike1.getBikeregistrationNumber();
+						Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
+						String bikeregistrationNumber = serv2ToRolSunDTOComman.getBikeregistrationNumber();
 						
 						
-						String registrationNumber = serv2ToRolSunDTObike1.getRegistrationNumber();
-					Serv2ToRolSunDTO serv2ToRolSunDTOCarProductName = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunRolloverCarSet");
+						String registrationNumber = serv2ToRolSunDTOComman.getRegistrationNumber();
 							
-							String rproductName = serv2ToRolSunDTOCarProductName.getRproductName();
+							String rproductName = serv2ToRolSunDTOComman.getRproductName();
+							if (registrationNumber == null) {
+								registrationNumber = "";
+								
+							}
+							System.out.println("registrationNumber: " + registrationNumber);
+							if (bikeregistrationNumber == null) {
+								bikeregistrationNumber = "";
+							}
 						
-							
+							System.out.println("bikeregistrationNumber: "+bikeregistrationNumber);
 							
 							if (bikeregistrationNumber.equals("")) {
 							if(rproductName.equals("BrandNewCar"))
@@ -384,13 +391,13 @@ public class shri extends HttpServlet {
 								}
 								
 							}
-							 response.sendRedirect("termquotes");
+							
 					} catch (Exception e) {
 						e.printStackTrace();
 					} 
 				 
 				 
-				 
+				 response.sendRedirect("termquotes");
 				 
 				 
 				 

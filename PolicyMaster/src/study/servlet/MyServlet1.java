@@ -86,14 +86,20 @@ public class MyServlet1 extends HttpServlet {
         	/*try {
         	            	
         	            	DATA data =(Royal.DATA)session.getAttribute( "data" );
+        	            	 String FullName=(String) session.getAttribute("Fullname");
+        	        		 String Email=(String) session.getAttribute("Email");
+        	        		 String Mobile=(String) session.getAttribute("Mobile");
+        	        		 Connection con = Db.myGetConnection();	
         	            	if(data!=null)
         	            	{
-        	            		Connection con = Db.myGetConnection();	
-        	        			String s="insert into quote(ProposalNo,VehicleIDV,Premium) values(?,?,?)";
+        	            		
+        	        			String s="insert into shri_final_details(ProposalNo,TotalPremium,FullName,Email,Mobile) values(?,?,?,?,?)";
         	        			PreparedStatement stmt = con.prepareStatement(s);
         	        			stmt.setString(1, data.getQUOTE_ID());
         	        			stmt.setString(2, data.getIDV());
-        	        			stmt.setString(3, data.getGROSS_PREMIUM());
+        	        			stmt.setString(3, FullName);
+        	        			stmt.setString(4, Email);
+        	        			stmt.setString(5, Mobile);
         	        			response.sendRedirect("Details2");
         	        			
         	                    stmt.executeUpdate();
@@ -102,17 +108,20 @@ public class MyServlet1 extends HttpServlet {
         	            	}
         	            	else {
         	            		PremiumForOneYear PremiumForOneYear = (Royal.PremiumForOneYear)session.getAttribute( "PremiumForOneYear" );
-        	            		Connection con = Db.myGetConnection();	
-        	            		String s="insert into quote(bikeIDV,bikepremium) values(?,?)";
+        	            		
+        	            		String s="insert into shri_final_details(TotalPremium,FullName,Email,Mobile) values(?,?,?,?)";
         	            		PreparedStatement stmt = con.prepareStatement(s);
-        	            		stmt.setString(1, PremiumForOneYear.getIDV());
-        	        			stmt.setString(2, PremiumForOneYear.getGROSS_PREMIUM());
+        	        			stmt.setString(1, PremiumForOneYear.getGROSS_PREMIUM());
+        	        			stmt.setString(2, FullName);
+        	        			stmt.setString(3, Email);
+        	        			stmt.setString(4, Mobile);
         	            		response.sendRedirect("Details2");
         	        			stmt.executeUpdate();
         	        			stmt.close();
         	            	}
+        	            	con.close();
         	            	pw.close();
-        	    		} catch (SQLException e) {
+        	    		} catch (Exception e) {
         	    			// TODO Auto-generated catch block
         	    			e.printStackTrace();
         	    		}*/

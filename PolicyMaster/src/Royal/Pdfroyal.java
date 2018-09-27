@@ -49,17 +49,6 @@ public class Pdfroyal extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-    
-   
-    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -110,8 +99,10 @@ public class Pdfroyal extends HttpServlet {
 			e.printStackTrace();
 		}
 		if(session!=null) {
-			session.removeAttribute("serv2ToRolSunRolloverCarSet");
-			session.removeAttribute("serv2ToRolSunDTO");
+			session.removeAttribute("data");
+			session.removeAttribute("data1");
+			session.removeAttribute("data2");
+			session.removeAttribute("PremiumForOneYear");
 		}
 	}
 }
