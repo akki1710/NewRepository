@@ -27,9 +27,9 @@
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Future Generali">Future Generali</button>
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="HDFC ERGO">HDFC ERGO</button>
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Iffco Tokio">Iffco Tokio</button>
-<button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Kotak">Kotak</button>
+<button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="OTHERS">Kotak</button>
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="L&T">L&T</button>
-<button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Liberty General Insurance">Liberty General Insurance</button>
+<button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Liberty">Liberty General Insurance</button>
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="MAGMA HDI">MAGMA HDI</button>
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="New India Assurance">New India Assurance</button>
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Oriental">Oriental</button>
@@ -37,9 +37,9 @@
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Royal Sundaram">Royal Sundaram</button>
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="SBI">SBI</button>
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Tata AIG">Tata AIG</button>
-<button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="United Insurance">United Insurance</button>
+<button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="United">United Insurance</button>
 <button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Universal Sompo">Universal Sompo</button>
-<button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="Axis">Axis</button>
+<button id="btn1_1"  class="col-md-4 list-group-item list-group-item-success" type="submit" name="PreIns" value="OTHERS">Axis</button>
 
      
                             </div>

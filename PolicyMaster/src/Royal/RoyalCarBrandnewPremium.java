@@ -472,7 +472,7 @@ public class RoyalCarBrandnewPremium extends HttpServlet {
 	    			System.out.println(data2.getGROSS_PREMIUM());
 	    			System.out.println(data2.getQUOTE_ID());	
 	    			
-	    			session.setAttribute("data", data2);
+	    			session.setAttribute("data2", data2);
 	    			System.out.println(data2);
 	    			System.out.println(pREMIUMDETAILS.getStatus());
 	    			String A=data2.getQUOTE_ID();

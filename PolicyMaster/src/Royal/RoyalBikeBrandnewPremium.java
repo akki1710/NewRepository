@@ -427,6 +427,7 @@ public class RoyalBikeBrandnewPremium extends HttpServlet {
 			System.out.println(data2.getGROSS_PREMIUM());
 			System.out.println(data2.getQUOTE_ID());
 			System.out.println(data2.getIDV());
+			System.out.println(data2.getPREMIUM());
 			session.setAttribute("data2",data2 );
 			response.sendRedirect("bikePayment.jsp");
 			

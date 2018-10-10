@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ page import="com.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,7 +161,6 @@ body {
 											type="text" name="Registration_Address"
 											value="<%=(String) session.getAttribute("FullAddress")%>"
 											placeholder="Registration Address" required="" />
-
 									</div>
 
 									<div class="form-group">
@@ -222,7 +220,7 @@ body {
 													<option value="12">December</option>
 											</select>
 
-											</span> <span class="agile_sub-label"> <select name="year"
+											</span> <span class="agile_sub-label"> <select name="year" id="user_year"
 												class="year" required="">
 													<option value="">Year</option>
 													<option value="2000">2000</option>
@@ -289,7 +287,7 @@ body {
 												<label class="Car-text">Nominee Relation : </label>
 
 												<!-- <input type="name" name="nomines_relation"  placeholder=" Nominee's Relation" required=""/> -->
-												<select class="age" name="nomines_relation" required="">
+												<select class="age" name="nomines_relation" required="" id="nomines_relation">
 													<option value="">Select</option>
 													<option value="Spouse">Spouse</option>
 													<option value="Father">Father</option>
@@ -305,7 +303,7 @@ body {
 
 											<div class="Carr">
 												<label class="Car-text">Nominee's Age : </label> <select
-													name="selectage" class="age" id="ddmenu" required="">
+													name="selectage" class="age" id="ddmenu" required="" onchange="callMe();">
 													<option value="">Age</option>
 													<option value="1">1</option>
 													<option value="2">2</option>
@@ -382,8 +380,8 @@ body {
 													<option value="73">73</option>
 												</select> </span>
 												<div class="minor_fields">
-													Appointee Name : <input type="name" name="appointee_name" placeholder="Name of the Appointee for this insurance"><br><br>
-													Appointee Relation : <input type="name" name="appointee_relation" placeholder="How is the Appointee related to the Nominee">
+													<input type="name" name="appointee_name" placeholder="Name of the Appointee for this insurance"><br><br>
+													<input type="name" name="appointee_relation" placeholder="How is the Appointee related to the Nominee">
 												</div>
 												<br>
 												<script
@@ -421,19 +419,13 @@ body {
 																	})
 												</script>
 
-												<%User userpoj=(User) session.getAttribute("userpoj"); %>
-												<label class="Car-text">Registration Number : </label> 
-												<% if(userpoj!=null){ %>
-													<input type="text" name="Car_RegNo" id="cartextbox" value="<%=userpoj.getRegNo() %>"
+
+												<label class="Car-text">Registration Number : </label> <input
+													type="text" name="Car_RegNo" id="cartextbox"
 													placeholder=" E.G.: DL01AB1234"
 													pattern="^[a-z|A-Z]{2}[0-9]{1,2}[a-z|A-Z]{1,2}[0-9]{1,4}$"
 													required="" />
-												<%} else{ %>
-												<input type="text" name="Car_RegNo" id="cartextbox"
-													placeholder=" E.G.: DL01AB1234"
-													pattern="^[a-z|A-Z]{2}[0-9]{1,2}[a-z|A-Z]{1,2}[0-9]{1,4}$"
-													required="" />
-													<%} %>
+
 											</div>
 
 										</div>
@@ -457,18 +449,12 @@ body {
 								<div class="Car-bottom">
 									<div class="form-bottom">
 										<div class="form-group">
-										
-										<label class="Car-text"> PAN Card No. : </label> 
+											<label class="Car-text"> PAN Card No. : </label> 
 											<input type="text" name="pan"  required="" placeholder="Enter PAN Card" pattern="^[a-z|A-Z]{5}[0-9]{4}[a-z|A-Z]{1}$" /> 
-										
-											<label class="Car-text"> Engine Number : </label> <input
-												type="text" name="engine_number"  required=""
-												placeholder=" Engine Number" /> <label
-												class="Car-text"> Chassis Number : </label> <input
-												type="text" name="chassis_number"  required=""
-												placeholder=" Chassis Number" 
-												pattern="[0-9|a-z|A-Z]{17,}"
-												title="Enter 17 digit chassis number" />
+											<label class="Car-text"> Engine Number : </label> 
+											<input type="text" name="engine_number"  required="" placeholder=" Engine Number" /> 
+												<label class="Car-text"> Chassis Number : </label> 
+												<input type="text" name="chassis_number"  required="" placeholder=" Chassis Number" pattern="[0-9|a-z|A-Z]{17,}" title="Enter 17 digit chassis number" />
 
 											<div class="w3ls-text w3ls-name">
 												<!-- <span class="agile_sub-label xxx"> <label
@@ -541,7 +527,7 @@ body {
 
 
 
-											<div class="form-group">
+											<!-- <div class="form-group">
 												<div class="wthree-text">
 													<label class="Car-text">if car/bike is financed? :</label>
 													<ul class="radio-w3ls">
@@ -554,7 +540,7 @@ body {
 															</div></li>
 													</ul>
 												</div>
-											</div>
+											</div> -->
 										</div>
 
 										<button type="button" class="btn btn-previous">Previous</button>
@@ -617,6 +603,37 @@ body {
 	<!-- <script src="assets1/js/validate.js"></script> -->
 
 
+	</script>
+	<script>
+	
+	
+	function callMe()
+	{
+		$( document ).ready(function() {
+			 var user_year=$('#user_year').val();
+			 var current_year = new Date().getFullYear();
+			 var finalYear=current_year-user_year;
+			 var nominee_relation=$('#nomines_relation').val();
+			 var nominee_age=$('#ddmenu').val();
+			 var temp=nominee_age+18;
+			 if(nominee_relation=='Son'||nominee_relation=='Daughter')
+				 {
+				 if((finalYear-nominee_age) >= 18){				 
+						 
+				 }
+				 else 
+					 {
+					 alert("Nominee Age Should  be less then PolicyHolder Age !");
+					 $('#ddmenu').val("").trigger("change");
+					  }
+				 
+				 }
+			
+			});
+	}
+	
+	
+	
 	</script>
 
 

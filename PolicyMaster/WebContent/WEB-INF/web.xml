@@ -9,7 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
- <servlet>
+  <servlet>
     <servlet-name>MyServlet1</servlet-name>
     <jsp-file>/termquotes.jsp</jsp-file>
   </servlet>
@@ -17,7 +17,12 @@
     <servlet-name>MyServlet1</servlet-name>
     <url-pattern>/termquotes</url-pattern>
   </servlet-mapping>
-    <session-config>
-        <session-timeout>10</session-timeout>
-    </session-config>
+  <error-page>
+   <error-code>404</error-code>
+   <location>/ExceptionHandler</location>
+</error-page>
+    <error-page>
+  <exception-type>java.lang.Throwable</exception-type>
+  <location>/ExceptionHandler</location>
+  </error-page>
 </web-app>

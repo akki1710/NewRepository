@@ -78,13 +78,13 @@ public class shri1 extends HttpServlet {
 		 
 		 String policy=(String) session.getAttribute("policy"); // added
 		 User userpoj=(User) session.getAttribute("userpoj");
-		 
-		 	String Regyr=userpoj.getRegyr();
-		 	String VehicleType=userpoj.getVehicleType();
-			
 			
 			if(policy.equals("Motor Package"))
 	        {
+				try {
+					String Regyr=userpoj.getRegyr();
+				 	String VehicleType=userpoj.getVehicleType();
+					
 				if(Regyr.equals("Brandnew") && VehicleType.equals("Car")) {
 					System.out.println("shri car fresh called");
 					shri_fresh_car(request,response);
@@ -96,6 +96,9 @@ public class shri1 extends HttpServlet {
 				else {
 					System.out.println("shri car/bike renewal called");
 					shri_carbike_renewal(request,response);
+				}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 //Liberty start			
 	        }else if(policy.equals("Liberty Motor"))
@@ -799,18 +802,14 @@ public class shri1 extends HttpServlet {
 
 	
 	} catch (ParserConfigurationException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (JAXBException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (SOAPException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	} catch (NullPointerException e) {
 		e.printStackTrace();
 	} catch (ParseException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	}

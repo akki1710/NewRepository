@@ -436,12 +436,11 @@ public class RoyalBikePremium extends HttpServlet {
 			DATA data2 = pREMIUMDETAILS.getDATA();
 			System.out.println(data2.getGROSS_PREMIUM());
 			System.out.println(data2.getQUOTE_ID());
-
-			session.setAttribute("data", data2);
+			System.out.println(data2.getPREMIUM());
+			session.setAttribute("data2", data2);
 			System.out.println(data2);
 			System.out.println(pREMIUMDETAILS.getStatus());
-			String A = data2.getQUOTE_ID();
-
+			
 			response.sendRedirect("bikePayment.jsp");
 		} catch (Exception e) {
 

@@ -89,9 +89,9 @@ public class Servlet3 extends HttpServlet {
 	        String driving = request.getParameter("driving");
 	        String evening = request.getParameter("evening");
 	        String financed="";
-	        String a[]=request.getParameterValues("financed");
+	        /*String a[]=request.getParameterValues("financed");
 	        for(int i=0;i<a.length;i++){
-	            financed+=a[i]+"";}
+	            financed+=a[i]+"";}*/
 	     
 	        
 	        String title = request.getParameter("title");
