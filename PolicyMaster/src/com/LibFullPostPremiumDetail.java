@@ -650,4 +650,14 @@ public class LibFullPostPremiumDetail {
 		AgentCode = agentCode;
 	}
 
+	
+	public static void main(String[] args) {
+		String str = "Javat point tt good side";  
+        System.out.println("Returning words:");  
+        String[] arr = str.split("Javat", 0);  
+        System.out.println(arr[1]);
+        for (String w : arr) {  
+            System.out.println(w);  
+        }  
+	}
 }

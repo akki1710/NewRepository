@@ -187,13 +187,34 @@
             <!--    <div class="icon"><i class="ion-ios-list-outline"></i></div>  -->
               </div>
 		<form action="MyServlet1" method="post">
-              <h2 class="title"><input type="submit" name="policy" value="Liberty Motor"></h2></form>
-              <div class="text-center"><h4><strong>Rs. <%= (Double) session.getAttribute("TotalPremium")%></strong></h4></div>
+              <h2 class="title"><input type="submit" name="policy" value="Liberty Motor"></h2>
+              <%try{ %>
+			<% PostPremiumDetails postd = (PostPremiumDetails) session.getAttribute("postd");
+			   String ProposalNo = (String) postd.getProposalNumber();
+			if(postd!=null){%>
+              
+              <div class="text-center"><h4><strong>Rs. <%= (Double) postd.getTotalPremium()%></strong></h4></div></form>
+              <form action="#" method="get">
 		<ul>
-		 <li><h6>ProposalNo = <%= (String) session.getAttribute("ProposalNumber")%></h6></li>
-		<li><h6>VehicleIDV = <%= (Double) session.getAttribute("CurrentIDV1")%></h6></li>
-		<li><h6>Premium = <%= (Double) session.getAttribute("TotalPremium")%></h6></li>
+		 <li><h6>ProposalNo = <%= (String) postd.getProposalNumber()%></h6></li>
+		<li><h6>VehicleIDV = <%= (Double) postd.getCurrentIDV()%></h6></li>
+		<li><h6>Premium = <%= (Double) postd.getTotalPremium()%></h6></li>
 		</ul>
+		<%} else if((postd==null)&&(ProposalNo==null)){%>
+		<div class="text-center"><h4><strong>Rs. 0</strong></h4></div>
+		<ul>
+		<li><h6>VehicleIDV = 0</h6></li>
+		<li><h6>Premium = 0</h6></li>
+		<li><h6>An error occurred while calculating Premium</h6></li>
+		</ul>
+		<% }%>
+		</form>
+		<%}catch(Exception e){
+			
+		}%>
+			
+	
+		
             </div>
           </div>
 

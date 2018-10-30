@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.apollo_proposal_pojo;
 import com.main;
 
 import java.sql.*;
@@ -19,24 +20,16 @@ import java.text.SimpleDateFormat;
 import study.db.Db;
 
 
-/**
- * Servlet implementation class MyServlet
- */
 @WebServlet("/MyServlet")
 public class MyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public MyServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
     
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -55,7 +48,7 @@ public class MyServlet extends HttpServlet {
 		try {
 			utilDate = format.parse(dateStr);
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 		java.sql.Date sqlDate =null;
@@ -81,7 +74,7 @@ public class MyServlet extends HttpServlet {
         String country=request.getParameter("country");
         String city=request.getParameter("city");
 
-        String phoneno=request.getParameter("phoneno");
+        String Mobile=request.getParameter("phoneno");
         
         String age=request.getParameter("age");
         
@@ -90,11 +83,13 @@ public class MyServlet extends HttpServlet {
         String childage=request.getParameter("childage");
         String retirementage=request.getParameter("retirementage");
         
-        //healthplans
-        session.setAttribute("city", city);
-        session.setAttribute("email", email);
-        session.setAttribute("phoneno", phoneno);
+      //healthplans
+        apollo_proposal_pojo ap=new apollo_proposal_pojo();
+        ap.setCity(city);
+        ap.setEmail(email);
+        ap.setMobile(Mobile);
         String members=request.getParameter("members");
+        session.setAttribute("members", members);
         System.out.println("members: "+members);
         String medical="";
         String a1[]=request.getParameterValues("medical");
@@ -104,8 +99,15 @@ public class MyServlet extends HttpServlet {
         else {
         	medical=null;
         }
-        
+     
         String title=request.getParameter("title");
+        ap.setFullname(name);
+        ap.setSalutation(title);
+        
+        String birthDt = day + "/" + month + "/" + year;
+        ap.setDob(birthDt);
+        session.setAttribute("ap", ap);
+        
         //healthplansend
         
         String InsurancePolicy=request.getParameter("InsurancePolicy");
@@ -126,7 +128,7 @@ public class MyServlet extends HttpServlet {
 		try {
 			date =format.parse(startdate);
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		} catch (NullPointerException e1) {
 			e1.printStackTrace();
@@ -141,26 +143,22 @@ public class MyServlet extends HttpServlet {
 			try {
 				date1 = format.parse(enddate);
 			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			} catch (NullPointerException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 			java.sql.Date enddate1 = null;
 			if(date1!=null) {
 				enddate1 = new java.sql.Date(date1.getTime());   
 			}
-			
-			//home_ins_start
-			String ageofproperty=request.getParameter("ageofproperty");
-			
+        
         try {
         	Connection con = Db.myGetConnection();
-        	System.out.println(con);
         	if(smoke!=null) {
 			
-			String s="insert into main_data(cover,birthdate,smoke,annualincome,name,email,country,city,phoneno) values(?,?,?,?,?,?,?,?,?)";
+			String s="insert into main_data(cover,birthdate,smoke,annualincome,name,email,country,city,Mobile) values(?,?,?,?,?,?,?,?,?)";
 			PreparedStatement stmt = con.prepareStatement(s);
 			stmt.setString(1,cover);
 			stmt.setDate(2,sqlDate);
@@ -170,14 +168,17 @@ public class MyServlet extends HttpServlet {
 			stmt.setString(6, email);
 			stmt.setString(7, country);
 			stmt.setString(8, city);
-			stmt.setString(9, phoneno);
+			stmt.setString(9, Mobile);
+			
+			response.sendRedirect("termquotes.jsp");
 			stmt.executeUpdate();
 			stmt.close();
-			response.sendRedirect("termquotes");
+			con.close();
+			
 			System.out.println("in terminsurance");
         	}
         	else if(term!=null) {
-        		String s="insert into main_data(cover,age,term,annualincome,name,email,country,city,phoneno) values(?,?,?,?,?,?,?,?,?)";
+        		String s="insert into main_data(cover,age,term,annualincome,name,email,country,city,Mobile) values(?,?,?,?,?,?,?,?,?)";
     			PreparedStatement stmt = con.prepareStatement(s);
     			stmt.setString(1,cover);
     			stmt.setString(2,age);
@@ -187,15 +188,18 @@ public class MyServlet extends HttpServlet {
     			stmt.setString(6, email);
     			stmt.setString(7, country);
     			stmt.setString(8, city);
-    			stmt.setString(9, phoneno);
+    			stmt.setString(9, Mobile);
+    			
+    			response.sendRedirect("termquotes.jsp");
     			stmt.executeUpdate();
     			stmt.close();
-    			response.sendRedirect("termquotes");
+    			con.close();
+    			
     			System.out.println("in investmentplan");
         	}
         	else if(childage!=null)
         	{
-        		String s="insert into main_data(cover,age,childage,annualincome,name,email,country,city,phoneno) values(?,?,?,?,?,?,?,?,?)";
+        		String s="insert into main_data(cover,age,childage,annualincome,name,email,country,city,Mobile) values(?,?,?,?,?,?,?,?,?)";
     			PreparedStatement stmt = con.prepareStatement(s);
     			stmt.setString(1,cover);
     			stmt.setString(2,age);
@@ -205,14 +209,17 @@ public class MyServlet extends HttpServlet {
     			stmt.setString(6, email);
     			stmt.setString(7, country);
     			stmt.setString(8, city);
-    			stmt.setString(9, phoneno);
+    			stmt.setString(9, Mobile);
+    			
+    			response.sendRedirect("termquotes.jsp");
     			stmt.executeUpdate();
     			stmt.close();
-    			response.sendRedirect("termquotes");
+    			con.close();
+    			
     			System.out.println("in childplans");
         	}
         	else if(retirementage!=null) {
-        		String s="insert into main_data(cover,age,retirementage,annualincome,name,email,country,city,phoneno) values(?,?,?,?,?,?,?,?,?)";
+        		String s="insert into main_data(cover,age,retirementage,annualincome,name,email,country,city,Mobile) values(?,?,?,?,?,?,?,?,?)";
     			PreparedStatement stmt = con.prepareStatement(s);
     			stmt.setString(1,cover);
     			stmt.setString(2,age);
@@ -222,65 +229,74 @@ public class MyServlet extends HttpServlet {
     			stmt.setString(6, email);
     			stmt.setString(7, country);
     			stmt.setString(8, city);
-    			stmt.setString(9, phoneno);
+    			stmt.setString(9, Mobile);
+    			
+    			response.sendRedirect("termquotes.jsp");
     			stmt.executeUpdate();
     			stmt.close();
-    			response.sendRedirect("termquotes");
+    			con.close();
+    			
     			System.out.println("in retirementplans");
         	}
-        	else if(members!=null) {
-
-                String word[]=name.split("\\s");
-                
-                String firstName=word[0];
-                String lastName=word[1];
-                
-                session.setAttribute("firstName", firstName);
-                session.setAttribute("lastName", lastName);
-                
-                main m=new main();
-               /*// String prefix[]=m.TitleReligare(title);
-                String titleCd=prefix[0];
-                String genderCd=prefix[1];
-                
-                session.setAttribute("titleCd", titleCd);
-                session.setAttribute("genderCd", genderCd);
-                
-                String birthDt = day + "/" + month + "/" + year;
-                
-                session.setAttribute("birthDt", birthDt);*/
-                
-        		String s="insert into main_data(members,city,annualincome,name,email,phoneno,medical,title,birthdate) values(?,?,?,?,?,?,?,?,?)";
+        	else if(medical.equals("Yes")) {
+        		System.out.println("In this loop, medical: "+medical);
+            	/*RequestDispatcher rd=request.getRequestDispatcher("disease.jsp");  
+   			 	rd.include(request, response);*/
+        		response.sendRedirect("disease.jsp");
+        		
+        	}
+        	else if(medical.equals("No")) {
+        		String s="insert into main_data(members,city,annualincome,name,email,Mobile,medical,title,birthdate) values(?,?,?,?,?,?,?,?,?)";
     			PreparedStatement stmt = con.prepareStatement(s);
     			stmt.setString(1, members);
     			stmt.setString(2,city);
     			stmt.setString(3,annualincome);
     			stmt.setString(4, name);
     			stmt.setString(5, email);
-    			stmt.setString(6, phoneno);
+    			stmt.setString(6, Mobile);
     			stmt.setString(7, medical);
     			stmt.setString(8, title);
     			stmt.setDate(9,sqlDate);
     			
-    			response.sendRedirect("Religare");
     			stmt.executeUpdate();
     			stmt.close();
     			
+    			
+				
+				String s1="insert into reg(Name,City,Dob,Email,Mobile) values(?,?,?,?,?)";
+				PreparedStatement stmt1 = con.prepareStatement(s1);
+				stmt1.setString(1, name);
+    			stmt1.setString(2,city);
+    			stmt1.setDate(3, sqlDate);
+    			stmt1.setString(4, email);
+    			stmt1.setString(5, Mobile);
+    			
+    			response.sendRedirect("Religare");
+    			
+    			stmt1.executeUpdate();
+    			stmt1.close();
+    			con.close();
+    			
     			System.out.println("in healthplans");
-        	}
+        	
+                }
+        	
         	else if(policytype!=null) {
-        		String s="insert into main_data(InsurancePolicy,companyname,contactperson,phoneno,email,city,policytype) values(?,?,?,?,?,?,?)";
+        		String s="insert into main_data(InsurancePolicy,companyname,contactperson,Mobile,email,city,policytype) values(?,?,?,?,?,?,?)";
     			PreparedStatement stmt = con.prepareStatement(s);
     			stmt.setString(1, InsurancePolicy);
     			stmt.setString(2, companyname);
     			stmt.setString(3, contactperson);
-    			stmt.setString(4, phoneno);
+    			stmt.setString(4, Mobile);
     			stmt.setString(5, email);
     			stmt.setString(6, city);
     			stmt.setString(7, policytype);
+    			
+    			response.sendRedirect("termquotes.jsp");
     			stmt.executeUpdate();
     			stmt.close();
-    			response.sendRedirect("termquotes");
+    			con.close();
+    			
     			System.out.println("in groupmediclaim");
         	}
         	else if(startdate!=null) {
@@ -291,38 +307,76 @@ public class MyServlet extends HttpServlet {
     			stmt.setString(3,city);
     			stmt.setDate(4, startdate1);
     			stmt.setDate(5, enddate1);
+    			
+    			response.sendRedirect("termquotes.jsp");
     			stmt.executeUpdate();
     			stmt.close();
-    			response.sendRedirect("termquotes");
+    			con.close();
+    			
     			System.out.println("in travel");
         	}
-        	else if(ageofproperty!=null) {
-        		
-        	}
+        	/*else if(d!=null || d1!=null) {
+        		for(int i=0;i<d.length;i++)
+                {
+             	   self_disease+=d[i]+",";
+             	   }
+         	   for(int i=0;i<d1.length;i++)
+                {
+             	   member_disease+=d1[i]+",";
+             	   }
+         	   if(d!=null) {
+         		  for(int i=0;i<d.length;i++)
+         	        {
+         	     	   self_disease+=d[i]+",";
+         	     	   member_disease=null;
+         	     	   }
+         	   }
+         	  else if(d1!=null) {
+         	        for(int i=0;i<d1.length;i++)
+         	        {
+         	     	   member_disease+=d1[i]+",";
+         	     	   self_disease=null;
+         	     	   }
+         	        }
+         	        else {
+         	     	   RequestDispatcher rd=request.getRequestDispatcher("disease.jsp"); 
+         	 			 rd.include(request, response);
+         	 		    pw.println("<script type=\"text/javascript\">");
+         	 		    pw.println("alert('Please select a checkbox');");
+         	 		    
+         	 		   pw.println("</script>");
+         	     	   
+         	        }
+
+               System.out.println("self_disease: "+self_disease);
+               System.out.println("member_disease: "+member_disease);
+         	   
+        	}*/
         	else {
-        		String s="insert into main_data(name,phoneno,email,city,annualincome) values(?,?,?,?,?)";
+        		String s="insert into main_data(name,Mobile,email,city,annualincome) values(?,?,?,?,?)";
     			PreparedStatement stmt = con.prepareStatement(s);
     			stmt.setString(1,name);
-    			stmt.setString(2,phoneno);
+    			stmt.setString(2,Mobile);
     			stmt.setString(3, email);
     			stmt.setString(4, city);
     			stmt.setString(5, annualincome);
+    			
+    			response.sendRedirect("termquotes.jsp");
     			stmt.executeUpdate();
     			stmt.close();
-    			response.sendRedirect("termquotes");
+    			con.close();
+    			
     			System.out.println("in critical&personal");
         	}
         	
 			pw.close();
-			con.close();
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
         
         if(session!=null) {
-			 session.removeAttribute("members");
 			 session.removeAttribute("travellers");
 		 }
 		

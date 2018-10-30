@@ -246,15 +246,16 @@ class policyAdditionalFieldsDOList{
 	private String fieldAgree;
 	private String fieldAlerts;
 	private String fieldTc;
+	private String field12;
 	public policyAdditionalFieldsDOList() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public policyAdditionalFieldsDOList(String fieldAgree, String fieldAlerts, String fieldTc) {
+	public policyAdditionalFieldsDOList(String fieldAgree, String fieldAlerts, String fieldTc, String field12) {
 		super();
 		this.fieldAgree = fieldAgree;
 		this.fieldAlerts = fieldAlerts;
 		this.fieldTc = fieldTc;
+		this.field12 = field12;
 	}
 	public String getFieldAgree() {
 		return fieldAgree;
@@ -277,10 +278,17 @@ class policyAdditionalFieldsDOList{
 	public void setFieldTc(String fieldTc) {
 		this.fieldTc = fieldTc;
 	}
+	public String getField12() {
+		return field12;
+	}
+	@XmlElement(namespace="http://intf.insurance.symbiosys.c2lbiz.com/xsd")
+	public void setField12(String field12) {
+		this.field12 = field12;
+	}
 	@Override
 	public String toString() {
 		return "policyAdditionalFieldsDOList [fieldAgree=" + fieldAgree + ", fieldAlerts=" + fieldAlerts + ", fieldTc="
-				+ fieldTc + "]";
+				+ fieldTc + ", field12=" + field12 + "]";
 	}
 	
 }

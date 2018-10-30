@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Date;
+import java.util.HashMap;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import study.db.Db;
 
@@ -21,6 +23,10 @@ public class main {
 	private String strVehicleCode;
 	
 	public static void main(String[] args) throws IOException, ParseException {
+		/*Integer age_self=Integer.parseInt(hm.get("age_self"));
+		if(age_self>18 || age_self<35) {*/
+			//productSubElem.setSumAssured("300000");
+		//}
 		/*String datestr="17-10-1994";
 		 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = new Date();  
@@ -337,6 +343,10 @@ public class main {
 		
 	}
 	public String city(String RTOCODE) {
+		char ch=RTOCODE.charAt(4);
+		if((ch >= 'A' && ch <= 'Z')){
+			RTOCODE=RTOCODE.substring(0, 3)+"0"+RTOCODE.substring(3,4);
+		}
 		String holdgetValue=null;
 		try {
 			Connection con=Db.myGetConnection();
@@ -367,6 +377,10 @@ public class main {
 		
 	}
 	public String state(String RTOCODE) {
+		char ch=RTOCODE.charAt(4);
+		if((ch >= 'A' && ch <= 'Z')){
+			RTOCODE=RTOCODE.substring(0, 3)+"0"+RTOCODE.substring(3,4);
+		}
 		String holdgetValue=null;
 		try {
 			Connection con=Db.myGetConnection();
@@ -425,165 +439,104 @@ public class main {
 		}
 	}
 	/*Liberty Start*/
-	public String[] libModel(String Bike_Model) {
-			if(Bike_Model.equals("DISCOVER")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1061";
-	    	    lib[1]="31000095";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("PASSION XPRO")) {
-				String lib[]=new String[2];
-	    	    lib[0]="2509";
-	    	    lib[1]="25172";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("SPLENDOR")) {
-				String lib[]=new String[2];
-	    	    lib[0]="2509";
-	    	    lib[1]="25113";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("ACTIVA")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1056";
-	    	    lib[1]="31000066";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("CB UNICORN")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1056";
-	    	    lib[1]="31000103";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("SHINE")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1056";
-	    	    lib[1]="31000050";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("BULLET")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1062";
-	    	    lib[1]="31000085";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("CLASSIC")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1062";
-	    	    lib[1]="31000073";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("APACHE")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1069";
-	    	    lib[1]="31000129";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("FAZER")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1072";
-	    	    lib[1]="31000145";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("FZS")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1072";
-	    	    lib[1]="31000188";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("GLADIATOR")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1072";
-	    	    lib[1]="31000179";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("LIBERO")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1072";
-	    	    lib[1]="31000178";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("CD DELUXE")) {
-				String lib[]=new String[2];
-	    	    lib[0]="1068";
-	    	    lib[1]="31000146";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("RODEO")) {
-				String lib[]=new String[2];
-	    	    lib[0]="2502";
-	    	    lib[1]="31000142";
-	    	    
-			return lib;
-			}
-			else if(Bike_Model.equals("CENTURO")) {
-				String lib[]=new String[2];
-	    	    lib[0]="2502";
-	    	    lib[1]="31000149";
-	    	    
-			return lib;
-			}
-			else {
-				String lib[]=new String[2];
-				 	lib[0]="";
-		    	    lib[1]="";
-				return lib;
-			}
-		}
 
-
-	public String[] libCarModel(String Model) {
-		String libcar[]=new String[2];
-		if(Model.equals("SWIFT")) {
+	public String MakeModalLibCar(String VARIANT, String fuel_type, String VEHICLE_MODEL){
+		System.out.println("VARIANT : "+VARIANT);
+		System.out.println("fuel_type : "+fuel_type);
+		System.out.println("VEHICLE_MODEL : "+VEHICLE_MODEL);
+		String MANUFACTURER_CODE = null;
+		String  VEHICLE_MODEL_CODE = null;
+		try{
+			System.out.println("Enter into db ");
+			Connection con = Db.myGetConnection();
+			String query1 = "Select MANUFACTURER_CODE, VEHICLE_MODEL_CODE from liberty_vehicle_master where VARIANT like ? && fuel_type = ? && VEHICLE_MODEL = ?";
+			PreparedStatement stmt = con.prepareStatement(query1);
+			stmt.setString(1, "%"+VARIANT+"%");
+			stmt.setString(2, fuel_type);
+			stmt.setString(3, VEHICLE_MODEL);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				System.out.println("enter into to get code");
+				MANUFACTURER_CODE = rs.getString("MANUFACTURER_CODE");
+       			System.out.println("taken make code");
+				VEHICLE_MODEL_CODE = rs.getString("VEHICLE_MODEL_CODE");
+				 
+				System.out.println("Make : "+MANUFACTURER_CODE);
+				System.out.println("Model : "+VEHICLE_MODEL_CODE);
+			}
+			con.close();
+		}catch (SQLException e) {
 			
-			libcar[0]="2405";
-			libcar[1]="32001272";
-			
-		return libcar;
+			e.printStackTrace();
 		}
-		else if(Model.equals("CROSS POLO")) {
+           return MANUFACTURER_CODE+" "+VEHICLE_MODEL_CODE ;
+		
+	}
+	
+	public String MakeModelLibBike(String Variant){
+		System.out.println("Bike Varient : "+Variant);
+		String Make = null;
+		String Model = null;
+		
+		try {
+			Connection con = Db.myGetConnection();
+			String query1 = "Select MANUFACTURER_CODE ,VEHICLE_MODEL_CODE from liberty_vehicle_master where VARIANT Like ? ";
+			PreparedStatement stmt = con.prepareStatement(query1);
+			stmt.setString(1,"%"+ Variant);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()){
+				String MANUFACTURER_CODE = rs.getString("MANUFACTURER_CODE");
+				String  VEHICLE_MODEL_CODE = rs.getString("VEHICLE_MODEL_CODE");
+				Make = MANUFACTURER_CODE ;
+				Model = VEHICLE_MODEL_CODE;
+			}
+			con.close();
+		} catch (SQLException e) {
 			
-			libcar[0]="1011";
-			libcar[1]="32001297";
-			
-		return libcar;
+			e.printStackTrace();
 		}
-		else if(Model.equals("PUNTO")) {
-			
-			libcar[0]="1021";
-			libcar[1]="32000881";
-			
-		return libcar;
+		if(Make.isEmpty()){
+			Make="";
+			return Make;
 		}
-		else if(Model.equals("WAGON R")) {
+		else{
+			return Make+" "+Model;
+		
 			
-			libcar[0]="2405";
-			libcar[1]="32001089";
-			
-		return libcar;
-		}
-
-		else {
-			libcar[0]="";
-			libcar[1]="";
-			return libcar;
 		}
 	}
+	
+	
+	public String libertyInsurer(String insurer){
+		String holdgetValue = null;
+		 
+		try {
+			Connection	con = Db.myGetConnection();
+		    String query1 = "select LIBERTY_INSURER from shriram_insurer where CC_DESC like ?";
+		    PreparedStatement stmt = con.prepareStatement(query1);
+		    stmt.setString(1, insurer+"%");
+		    ResultSet rs  = stmt.executeQuery();
+		    while(rs.next()){
+		    	String LIBERTY_INSURER = rs.getString("LIBERTY_INSURER");
+		    	holdgetValue = LIBERTY_INSURER;
+		    }
+		    con.close();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		if(holdgetValue.isEmpty())
+		{
+			holdgetValue="";
+			return holdgetValue;
+		}
+		else
+		{
+			return holdgetValue;	
+		}
+		
+	}
+
 
 	public String[] Salutation(String prefix) {
 		if(prefix.equals("Mr.")) {
@@ -661,6 +614,10 @@ public class main {
 		
 	}
 	public String Royalcity(String royalRtoCode) {
+		char ch=royalRtoCode.charAt(4);
+		if((ch >= 'A' && ch <= 'Z')){
+			royalRtoCode=royalRtoCode.substring(0, 3)+"0"+royalRtoCode.substring(3,4);
+		}
 		String holdgetValue=null;
 		try {
 			Connection con=Db.myGetConnection();
@@ -695,8 +652,294 @@ public class main {
 	
 	/*RoyalSundaram Code End*/
 	
+	//Religare
 	
-	
-	
-	
+	public String[] TitleReligare(String title) {
+		if(title.equals("Mr.")) {
+			String g[]=new String[2];
+			g[0]="MR";
+			g[1]="MALE";
+			
+			return g;
+		}
+		else if(title.equals("Mrs.")) {
+			String g[]=new String[2];
+			g[0]="MS";
+			g[1]="FEMALE";
+			
+			return g;
+		}
+		else if(title.equals("Miss.")) {
+			String g[]=new String[2];
+			g[0]="MS";
+			g[1]="FEMALE";
+			
+			return g;
+		}
+		return null;
+		
 	}
+	//---------------------apollo----------------------
+	
+		public static String[] Titleapollo(String salutation) {
+			if (salutation.equals("Mr.")) {
+				String g[] = new String[2];
+				g[0] = "MR";
+				g[1] = "1";
+
+				return g;
+			} else if (salutation.equals("Mrs.")) {
+				String g[] = new String[2];
+				g[0] = "MRS";
+				g[1] = "2";
+
+				return g;
+			} else if (salutation.equals("Miss.")) {
+				String g[] = new String[2];
+				g[0] = "MISS";
+				g[1] = "2";
+
+				return g;
+			} /*else if (salutation.equals("master.")) {
+				String g[] = new String[2];
+				g[0] = "MASTER";
+				g[1] = "1";
+
+				return g;
+			}
+
+			else if (salutation.equals("babygirl.")) {
+				String g[] = new String[2];
+				g[0] = "BABYGIRL";
+				g[1] = "2";
+
+				return g;
+			} else if (salutation.equals("babyboy.")) {
+				String g[] = new String[2];
+				g[0] = "BABYBOY";
+				g[1] = "1";
+
+				return g;
+			}
+	*/
+			return null;
+
+		}
+		public String State(String city) {
+			String holdgetValue=null;
+			try {
+				Connection con=Db.myGetConnection();
+				//String name="KINE";
+				String query1 = "select state_one_code from apollo_master where city= ?";
+				PreparedStatement stmt = con.prepareStatement(query1);
+				stmt.setString(1, city);
+				ResultSet rs=stmt.executeQuery();
+				while (rs.next()) {
+					String state_one_code = rs.getString("state_one_code");
+					holdgetValue=state_one_code;
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			if(holdgetValue.isEmpty())
+			{
+				return null;
+			}
+			else
+			{
+				return holdgetValue;	
+			}
+			
+			
+		}
+		
+		public String town(String city) {
+			String holdgetValue=null;
+			try {
+				Connection con=Db.myGetConnection();
+				//String name="KINE";
+				String query1 = "select city_code from apollo_master where city= ?";
+				PreparedStatement stmt = con.prepareStatement(query1);
+				stmt.setString(1, city );
+				ResultSet rs=stmt.executeQuery();
+				while (rs.next()) {
+					String city_code = rs.getString("city_code");
+					holdgetValue=city_code;
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			if(holdgetValue.isEmpty())
+			{
+				return null;
+			}
+			else
+			{
+				return holdgetValue;	
+			}
+			
+			
+		}
+		public String nomineerelation(String nomrelation) {
+			String holdgetValue=null;
+			try {
+				Connection con=Db.myGetConnection();
+				//String name="KINE";
+				String query1 = "select relationship_code from apollo_master where relationship= ?";
+				PreparedStatement stmt = con.prepareStatement(query1);
+				stmt.setString(1, nomrelation );
+				ResultSet rs=stmt.executeQuery();
+				while (rs.next()) {
+					String relationship_code = rs.getString("relationship_code");
+					holdgetValue=relationship_code;
+					System.out.println(holdgetValue);
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			if(holdgetValue.isEmpty())
+			{
+				return null;
+			}
+			else
+			{
+				return holdgetValue;	
+			}
+			
+			
+		}
+		public String occupation(String occupation) {
+			String holdgetValue=null;
+			try {
+				Connection con=Db.myGetConnection();
+				//String name="KINE";
+				String query1 = "select occupation_code from apollo_master where occupation= ?";
+				PreparedStatement stmt = con.prepareStatement(query1);
+				stmt.setString(1, occupation );
+				ResultSet rs=stmt.executeQuery();
+				while (rs.next()) {
+					String occupation_code = rs.getString("occupation_code");
+					holdgetValue=occupation_code;
+					System.out.println(holdgetValue);
+				}
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			if(holdgetValue.isEmpty())
+			{
+				return null;
+			}
+			else
+			{
+				return holdgetValue;	
+			}
+			
+			
+		}
+		
+		public String[] religare_disease(String disease) {
+			String [] diseases=new String[3];
+			if(disease.equals("asthma,")) {
+				diseases[0]="H105";
+				diseases[1]="HEDCFLEAFFOUR";
+				diseases[2]="YES";
+				return diseases;
+			}
+			else if(disease.equals("diabetes,")) {
+				diseases[0]="H107";
+				diseases[1]="HEDCFLEAFSIX";
+				diseases[2]="YES";
+				return diseases;
+			}
+			else if(disease.equals("heartailments,")) {
+				diseases[0]="H103";
+				diseases[1]="HEDCFLEAFTWO";
+				diseases[2]="YES";
+				return diseases;
+			}
+			else if(disease.equals("hypertension,")) {
+				diseases[0]="H104";
+				diseases[1]="HEDCFLEAFTHREE";
+				diseases[2]="YES";
+				return diseases;
+			}
+			else if(disease.equals("thyroid,")) {
+				diseases[0]="H106";
+				diseases[1]="HEDCFLEAFFIVE";
+				diseases[2]="YES";
+				return diseases;
+			} else {
+				diseases[0]="";
+				diseases[1]="";
+				diseases[2]="";
+				return diseases;
+			}
+			
+		}
+		public Map<String,String>religareMembers(String member){
+			Map< String,String> hm = new HashMap<>();
+			try {
+			String z=member.concat(",");
+			String b[]=z.split("\\(");
+			String c[]=b[1].split("\\)");
+			String cover_type=null;
+			
+			hm.put("member_self", b[0]);
+			hm.put("age_self", c[0]);
+			
+				if(c[1].equals(", spouse")) {
+					String d[]=b[2].split("\\)");
+					String e[]=c[1].split(",");
+					
+					cover_type="FAMILYFLOATER";
+					
+					hm.put("member_spouse", e[1]);
+					hm.put("age_spouse", d[0]);
+					
+					 if(d[1].equals(", son")) {
+                         String f[]=d[1].split(",");
+                         String g[]=b[3].split("\\)");
+                         
+                         hm.put("member_son", f[1]);
+                         hm.put("age_son", g[0]);
+                         
+                         if(g[1].equals(", daughter")) {
+                                 String h[]=g[1].split(",");
+                                 String i[]=b[4].split("\\)");
+                                 
+                                 hm.put("member_daughter", h[1]);
+                                 hm.put("age_daughter", i[0]);
+                         }
+                 }
+				}
+				else {
+					cover_type="INDIVIDUAL";
+				}
+				hm.put("cover_type", cover_type);
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			return hm;
+		}
+	
+		
+		
+		
+		
+
+	//----------------------------------------------
+	}
+
+	
+	
+	
+	

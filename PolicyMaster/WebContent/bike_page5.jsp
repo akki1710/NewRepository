@@ -28,7 +28,7 @@
     <button id="btn1_1" class="col-md-4 list-group-item list-group-item-success" type="submit" name="bk4" value="Iffco Tokio">Iffco Tokio</button>
     <button id="btn1_1" class="col-md-4 list-group-item list-group-item-success" type="submit" name="bk4" value="Kotak">Kotak</button>
     <button id="btn1_1" class="col-md-4 list-group-item list-group-item-success" type="submit" name="bk4" value="L&T">L&T</button>
-    <button id="btn1_1" class="col-md-4 list-group-item list-group-item-success" type="submit" name="bk4" value="Liberty General Insurance">Liberty General Insurance</button>
+    <button id="btn1_1" class="col-md-4 list-group-item list-group-item-success" type="submit" name="bk4" value="Liberty">Liberty General Insurance</button>
     <button id="btn1_1" class="col-md-4 list-group-item list-group-item-success" type="submit" name="bk4" value="MAGMA HDI">MAGMA HDI</button>
     <button id="btn1_1" class="col-md-4 list-group-item list-group-item-success" type="submit" name="bk4" value="New India Assurance">New India Assurance</button>
     <button id="btn1_1" class="col-md-4 list-group-item list-group-item-success" type="submit" name="bk4" value="Oriental">Oriental</button>

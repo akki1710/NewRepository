@@ -214,7 +214,9 @@ public class RoyalBikeBrandnewPremium extends HttpServlet {
 			String rtitle = serv2ToRolSunDTOComman1.getRtitle();
 			String raddress= serv2ToRolSunDTOComman1.getRaddress();
 			String royalBirthdate=serv2ToRolSunDTOComman1.getRoyalBirthdate();
-
+			String rfinancierName=serv2ToRolSunDTOComman1.getRfinancierName();
+	    	String rfinancierCity=serv2ToRolSunDTOComman1.getRfinancierCity();
+			
 			
 			String BikeManufacturerName = serv2ToRolSunDTOComman.getBikeManufacturerName();
 			String BikeModelCode = serv2ToRolSunDTOComman.getBikeModelCode();
@@ -295,7 +297,9 @@ public class RoyalBikeBrandnewPremium extends HttpServlet {
 			vehicleDetails.setVehicleRegDate(regDate);
 			vehicleDetails.setProductname(rproductName);
 			vehicleDetails.setCompanyNameForCar(BikeManufacturerName);
-			vehicleDetails.setIsTwoWheelerFinanced("No");
+			vehicleDetails.setIsTwoWheelerFinanced(rfinanced);
+			
+			vehicleDetails.setFinancierName(rfinancierName);
 			vehicleDetails.setVehicleSubLine("motorCycle");
 			vehicleDetails.setFuelType("Petrol");
 			vehicleDetails.setRegion("East Region");

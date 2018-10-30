@@ -3,6 +3,10 @@ package com;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 public class PostPremiumDetails {
@@ -41,7 +45,78 @@ public class PostPremiumDetails {
 	private String PreviousYearNCBPercentage;
 	private int PreviousPolicyTenure;
 	
+	private String ProposalNumber;//b
+	private Double TotalPremium;//b
+	private Double CurrentIDV;//b
+	private String QuotationNumber;
+	private String CustomerID;
+	private String txn;
+	private String FullName;
+	private String EmailID;
+    private String MobileNumber;
+	private String PaymentDate;
 	
+	
+	public String getPaymentDate() {
+		return PaymentDate;
+	}
+	public void setPaymentDate(String paymentDate) {
+		PaymentDate = paymentDate;
+	}
+	public String getEmailID() {
+		return EmailID;
+	}
+	public void setEmailID(String emailID) {
+		EmailID = emailID;
+	}
+	public String getMobileNumber() {
+		return MobileNumber;
+	}
+	public void setMobileNumber(String mobileNumber) {
+		MobileNumber = mobileNumber;
+	}
+	public String getQuotationNumber() {
+		return QuotationNumber;
+	}
+	public void setQuotationNumber(String quotationNumber) {
+		QuotationNumber = quotationNumber;
+	}
+	public String getCustomerID() {
+		return CustomerID;
+	}
+	public void setCustomerID(String customerID) {
+		CustomerID = customerID;
+	}
+	public String getTxn() {
+		return txn;
+	}
+	public void setTxn(String txn) {
+		this.txn = txn;
+	}
+	public String getFullName() {
+		return FullName;
+	}
+	public void setFullName(String fullName) {
+		FullName = fullName;
+	}
+	public String getProposalNumber() {
+		return ProposalNumber;
+	}
+	public void setProposalNumber(String proposalNumber) {
+		ProposalNumber = proposalNumber;
+	}
+	public Double getTotalPremium() {
+		return TotalPremium;
+	}
+	public void setTotalPremium(Double totalPremium) {
+		TotalPremium = totalPremium;
+	}
+	public Double getCurrentIDV() {
+		return CurrentIDV;
+	}
+	public void setCurrentIDV(Double currentIDV) {
+		CurrentIDV = currentIDV;
+	}
 	public String getQuickQuoteNumber() {
 		return QuickQuoteNumber;
 	}
@@ -262,6 +337,16 @@ public class PostPremiumDetails {
 	}
 	public void setPreviousPolicyTenure(int previousPolicyTenure) {
 		PreviousPolicyTenure = previousPolicyTenure;
+	}
+	
+	
+	//--------------------------------------------------------------------------------------------------------
+	
+	public static void test(HttpServletRequest request, HttpServletResponse response){
+		
+		HttpSession session = request.getSession();
+		String Car_RegNo=(String)session.getAttribute("RegNo");
+		System.out.println("Car_RegNo detail in postpremiumdetail class''''''''''''''''''''''''''''"+Car_RegNo);
 	}
 	
 	

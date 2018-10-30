@@ -206,20 +206,13 @@ button:hover {
     <h1>MY Profile</h1>
    
     <hr>
-    <%try{ %>
-	<%rp=(ServeletBean.RegPJ)session.getAttribute( "rp" ); %>
-    <label for="UID"><b>UserID</b></label>
-    <input type="text" placeholder="Enter  UserID" name="UID" value="<%= rp.getUID()%>" required>
-    <br>
-    <label for="Uname"><b>UserName</b></label>
-    <input type="text" placeholder="Enter  UserName" name="Uname" value="<%= rp.getUname()%>" required>
+	<%try{
+	rp=(ServeletBean.RegPJ)session.getAttribute( "rp" ); %>
+   <label for="Phoneno"><b>Mobile no </b></label>
+    <input type="text" placeholder="Enter Mobile no " name="Phoneno" value="<%= rp.getPhoneno()%>" required>
     <br>
      <label for="Name"><b>Name</b></label>
     <input type="text" placeholder="Enter  Name" name="Name" value="<%= rp.getName()%>" required>
-    <br>	
-    
-    <label for="Phoneno"><b>Mobile no </b></label>
-    <input type="text" placeholder="Enter Mobile no " name="Phoneno" value="<%= rp.getPhoneno()%>" required>
     <br>
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="Email"  value="<%= rp.getEmail()%>"required>
@@ -231,10 +224,8 @@ button:hover {
     <label for="City"><b>City</b></label>
     <input type="text" placeholder="Enter City" name="City"  value="<%= rp.getCity()%>"required>
     <br>
-    <% }catch (Exception e){
-    	e.printStackTrace();
-    }
-    %>
+    <%} catch (Exception e){ 
+    }%>
  <div class="clearfix">
     </div>
   </div>

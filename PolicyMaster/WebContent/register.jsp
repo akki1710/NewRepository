@@ -44,7 +44,7 @@ font-family: 'Lato', sans-serif;
 
 </head>
 <body>
-    <!--==========================
+<!--==========================
     Header
   ============================-->
   <header id="header">
@@ -58,7 +58,7 @@ font-family: 'Lato', sans-serif;
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="index">Home</a></li>
+          <li class="menu-active"><a href="#intro">Home</a></li>
           <li class="menu-has-children"><a href="lifeinsurance">LIFE INSURANCE</a>
 		<ul>
 		<li><a href="#"></a></li>
@@ -109,6 +109,8 @@ font-family: 'Lato', sans-serif;
       </nav><!-- #nav-menu-container -->
     </div>
   </header><!-- #header -->
+
+
 <section id>
 <h1>REGISTER</h1>
 <div class="w3ls-main">
@@ -118,26 +120,13 @@ font-family: 'Lato', sans-serif;
 <form name="myform" action="BeanRegis" id="loginForm" method="post">
 <ul class="fields">
 <div class="Refer_w3l">
-	<li>	
-		<label class="w3ls-opt">User Name :<span class="w3ls-star"> * </span></label>
-		<div class="w3ls-name">	
-			<input type="text" name="Uname"  placeholder="user name" required=" "/>
-		</div>
-	</li>
-	<li>	
-		<label class="w3ls-opt">First Name :<span class="w3ls-star"> * </span></label>
-		<div class="w3ls-name">	
-			<input type="text" name="Fname"  placeholder="First Name" required=" "/>
-		</div>
-	</li>
-	<li>	
-		<label class="w3ls-opt">Last Name :<span class="w3ls-star"> * </span></label>
-		<div class="w3ls-name">	
-			<input type="text" name="Lname"  placeholder="Last Name" required=" "/>
-		</div>
-	</li>
 	
-	
+	<li>	
+		<label class="w3ls-opt">Full Name :<span class="w3ls-star"> * </span></label>
+		<div class="w3ls-name">	
+			<input type="text" name="name"  placeholder="Full Name" required=" "/>
+		</div>
+	</li>
 						<li>
 							<label class="w3ls-opt">Birth Date :<span class="w3ls-star"> * </span></label>	
 							<div class="w3ls-text w3ls-name">
@@ -243,8 +232,8 @@ font-family: 'Lato', sans-serif;
 				
 				</span>
 				<span class="agile_sub-label xxx">
-					<select class="month" id="state" name="state">
-					<option value="">State</option>
+					<select class="month" id="state" name="city">
+					<option value="">City</option>
 					</select>
 					<script language="javascript">
 						populateCountries("country", "state");

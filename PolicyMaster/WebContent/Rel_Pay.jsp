@@ -15,8 +15,9 @@
 <body>
     <form action='https://rhicluat.religare.com/portalui/PortalPayment.run' name='PAYMENTFORM' method='post'>
     <div>
-    <input type='hidden' name='proposalNum' value='<%= (String) session.getAttribute("rel_proposal_num")%>' />
-	<input type='hidden' name='returnURL' value="http://localhost:8080/APM/Rel_Pol_Status"/>	
+    <input type='hidden' name='proposalNum' value='<%= (String) session.getAttribute("rel_two_proposal_num")%>' />
+	<input type='hidden' name='returnURL' value="http://localhost:8080/PolicyMaster/Rel_Pol_Status"/>	
+	<!-- <input type='hidden' name='returnURL' value="http://203.122.13.228/PolicyMaster/Rel_Pol_Status"/> -->
 	</div>
   	<script language='javascript' type="text/javascript">      
 	submitHealthForm();</script>

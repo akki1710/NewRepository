@@ -21,6 +21,9 @@ class policy {
 	private String term;
 	private String uwDecisionCd;
 	private String isPremiumCalculation;
+	private String nomineeDob;
+	private String nomineeName;
+	private String nomineeRelationship;
 	
 	private policyAdditionalFieldsDOList policyAdditionalFieldsDOList;
 	private partyDOList partyDOList;
@@ -151,6 +154,28 @@ class policy {
 	@XmlElement(namespace="http://intf.insurance.symbiosys.c2lbiz.com/xsd")
 	public void setPolicyAdditionalFieldsDOList(policyAdditionalFieldsDOList policyAdditionalFieldsDOList) {
 		this.policyAdditionalFieldsDOList = policyAdditionalFieldsDOList;
+	}
+	
+	public String getNomineeDob() {
+		return nomineeDob;
+	}
+	@XmlElement(namespace="http://intf.insurance.symbiosys.c2lbiz.com/xsd")
+	public void setNomineeDob(String nomineeDob) {
+		this.nomineeDob = nomineeDob;
+	}
+	public String getNomineeName() {
+		return nomineeName;
+	}
+	@XmlElement(namespace="http://intf.insurance.symbiosys.c2lbiz.com/xsd")
+	public void setNomineeName(String nomineeName) {
+		this.nomineeName = nomineeName;
+	}
+	public String getNomineeRelationship() {
+		return nomineeRelationship;
+	}
+	@XmlElement(namespace="http://intf.insurance.symbiosys.c2lbiz.com/xsd")
+	public void setNomineeRelationship(String nomineeRelationship) {
+		this.nomineeRelationship = nomineeRelationship;
 	}
 	/*public partyDOList getPartyDOList() {
 		return partyDOList;

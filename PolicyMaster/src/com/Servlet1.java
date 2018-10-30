@@ -49,8 +49,8 @@ public class Servlet1 extends HttpServlet {
 				
 				String bike_reg=request.getParameter("bike_reg");
 				String manufacturer2=request.getParameter("manufacturer2");
-				String bk1=request.getParameter("bk1");
-				String bk2=request.getParameter("bk2");
+				String bk1=request.getParameter("bk1");   //modal
+				String bk2=request.getParameter("bk2");   //varient
 				String bk3=request.getParameter("bk3");
 				String bk4=request.getParameter("bk4");
 				String Bike_Claim=request.getParameter("Bike_Claim");
@@ -147,15 +147,15 @@ public class Servlet1 extends HttpServlet {
 					}
 					if (bk1!=null)
 					{
-						session.setAttribute("bk1", bk1);
+						session.setAttribute("bk1", bk1);   //modal
 			            response.sendRedirect("bike_page3.jsp");
 					}
 					if (bk2!=null)
 					{
-						session.setAttribute("bk2", bk2);
+						session.setAttribute("bk2", bk2);   //varient
 			            response.sendRedirect("bike_page4.jsp");
 					}
-					if (bk3!=null)
+					if (bk3!=null)     //bike regi year
 					{
 						if(bk3.equals("Brandnew"))
 						{
@@ -173,7 +173,7 @@ public class Servlet1 extends HttpServlet {
 					}
 					if (bk4!=null)
 					{
-						session.setAttribute("bk4", bk4);
+						session.setAttribute("bk4", bk4);  //insurance
 			            response.sendRedirect("bike_page8.jsp");
 					}
 					if (Bike_Claim!=null) {
@@ -182,19 +182,19 @@ public class Servlet1 extends HttpServlet {
 						if(Bike_Claim.equals("YES"))
 			            {
 			            	String ncb="";
-			            	session.setAttribute("ncb", ncb);
+			            	session.setAttribute("ncb", ncb);// 
 			            }
 			            else
 			            {
-			            	session.setAttribute("ncb", Bike_Claim);
+			            	session.setAttribute("ncb", Bike_Claim);//ncb %
 			            }
 						
-						response.sendRedirect("bike_page9.jsp");
+						response.sendRedirect("bike_page9.jsp"); 
 					}
-					if (BikeExpiryDate!=null) {
+					if (BikeExpiryDate!=null) {   //previous policy expiry datre
 						System.out.println(BikeExpiryDate);
 						session.setAttribute("BikeExpiryDate", BikeExpiryDate);
-						response.sendRedirect("bike_page7.jsp");
+						response.sendRedirect("bike_page7.jsp"); //fill details
 					}
 					
 					

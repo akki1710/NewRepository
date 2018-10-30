@@ -31,6 +31,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -90,7 +91,7 @@ public class shri extends HttpServlet {
 			user.setStrVehicleCode(strVehicleCode);
 			user.setStrADDONCover(strADDONCover);
 			user.setStrFirstRegDt(strFirstRegDt);
-			user.setStrPrevPolExpDt("");
+			user.setStrPrevPolExpDt(strPrevPolExpDt);
 			user.setStrInsuredState(strInsuredState);
 			user.setStrPrevPolClaimYN(strPrevPolClaimYN);
 			user.setStrPrevPolNCB(strPrevPolNCB);
@@ -205,27 +206,62 @@ public class shri extends HttpServlet {
 			}
 			
 			/*Liberty*/
-		 try {
+		
+			try {
+				System.out.println("Enter into liberty api : ,,,,,,,,");
+				LibertyImple.BikeCarPostPremiumDetailsHalfQuote(request, response);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+		}
+		
+		 
+		/* try {
+			 PostPremiumDetails postde = (PostPremiumDetails) session.getAttribute("postd");
 			 String reg_year = (String) session.getAttribute("reg_year");
 			 System.out.println("Reg Year : "+reg_year);
-			 String insurer = (String) session.getAttribute("insurer");
+			 String BikeManfYear = postde.getManfYear();//b 
+			 System.out.println("BikeManfYear : "+BikeManfYear);
+			 String insurer = postde.getPreviousPolicyInsurerName();//b
+			// String insurer = (String) session.getAttribute("insurer");
 			 System.out.println("insurer : "+insurer);
-			 String ncb = (String) session.getAttribute("ncb");
-			 String PrePolicyExpDate = (String) session.getAttribute("prePolendDate");
-			 String NewPolStartDate = (String) session.getAttribute("newPolStartDate");
-			 String NewPolEndDate = (String) session.getAttribute("newPolEndDate");
-			 String PreviousPolicyStartDate = (String) session.getAttribute("prevPolStartDate");
+			 String ncb = postde.getPreviousYearNCBPercentage();//b
+			// String ncb = (String) session.getAttribute("ncb");
+			 System.out.println("ncb : "+ncb);
+			 String PrePolicyExpDate = postde.getPreviousPolicyEndDate();//b
+			 System.out.println("PrePolicyExpDate : "+PrePolicyExpDate);
+			// String PrePolicyExpDate = (String) session.getAttribute("prePolendDate");
+			 String NewPolStartDate = postde.getPolicyStartDate();//b
+			 System.out.println("NewPolStartDate : "+NewPolStartDate);
+			// String NewPolStartDate = (String) session.getAttribute("newPolStartDate");
+			 String NewPolEndDate = postde.getPolicyEndDate();//b
+			 System.out.println("NewPolEndDate : "+NewPolEndDate);
+			// String NewPolEndDate = (String) session.getAttribute("newPolEndDate");
+			 String PreviousPolicyStartDate = postde.getPreviousPolicyStartDate();//b
+			 System.out.println("PreviousPolicyStartDate : "+PreviousPolicyStartDate);
+			// String PreviousPolicyStartDate = (String) session.getAttribute("prevPolStartDate");
 			 User userpoj=(User) session.getAttribute("userpoj");
 			 String RtoCode = userpoj.getStrRTOCode();
-			 String RegNo1 = (String) session.getAttribute("reg1");
-			 String RegNo2 = (String) session.getAttribute("reg2");
-			 String RegNo3 = (String) session.getAttribute("reg3");
-			 String RegNo4 = (String) session.getAttribute("reg4");
-			 String MakeCode = (String) session.getAttribute("MakeCode");
-			 String ModelCode = (String) session.getAttribute("ModelCode");
-			 String BusinessType = (String) session.getAttribute("BusinessType");
-			 String productCode= (String)session.getAttribute("productCode");
-			 String BuyerState= (String)session.getAttribute("BuyerState");
+			 String RegNo1 = postde.getRegNo1();//b
+			 String RegNo2 = postde.getRegNo2();//b
+			 String RegNo3 = postde.getRegNo3();//b
+			 String RegNo4 = postde.getRegNo4();//b
+			// String RegNo1 = (String) session.getAttribute("reg1");
+			// String RegNo2 = (String) session.getAttribute("reg2");
+			// String RegNo3 = (String) session.getAttribute("reg3");
+			// String RegNo4 = (String) session.getAttribute("reg4");
+			 String MakeCode =postde.getMakeCode();//b
+			 //String MakeCode = (String) session.getAttribute("bykeMakeCode");
+			 System.out.println("MakeCode : "+MakeCode);
+			 String ModelCode = postde.getModelCode();//b
+			 //String ModelCode = (String) session.getAttribute("bykeModelCode");
+			 System.out.println("ModelCode : "+ModelCode);
+			 String BusinessType = postde.getBusinessType();//b
+			// String BusinessType = (String) session.getAttribute("BusinessType");
+			 String productCode =postde.getProductCode();//b
+			// String productCode= (String)session.getAttribute("productCode");
+			 String BuyerState = postde.getBuyerState();
+			// String BuyerState= (String)session.getAttribute("BuyerState");
 			 System.out.println(BuyerState);
 			 
 			 PostPremiumDetails postd=new PostPremiumDetails();
@@ -239,7 +275,7 @@ public class shri extends HttpServlet {
 		        }
 		        String saltStr = salt.toString();
 		        
-		        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
+		        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");  
 		        LocalDateTime currentdate = LocalDateTime.now();  
 		        LocalDateTime nextYear = currentdate.plusYears(1).minusDays(1);
 		        
@@ -281,8 +317,8 @@ public class shri extends HttpServlet {
 			        postd.setRegNo2(RegNo2);
 			        postd.setRegNo3(RegNo3);
 			        postd.setRegNo4(RegNo4);
-			        postd.setDeliveryDate("01/01/"+reg_year);
-			        postd.setRegistrationDate("01/01/"+reg_year);
+			        postd.setDeliveryDate(reg_year+"-01-01");
+			        postd.setRegistrationDate(reg_year+"-01-01");
 			        postd.setVehicleIDV(0);
 			        postd.setProductCode(productCode);
 			        postd.setPolicyStartDate(NewPolStartDate);
@@ -326,7 +362,12 @@ public class shri extends HttpServlet {
 							String ProposalNumber=(String) obj.get("ProposalNumber");
 							Double TotalPremium=(Double) obj.get("TotalPremium");
 							Double CurrentIDV=(Double) obj.get("CurrentIDV");
-							
+						
+							//----------------------b----------------------------
+							postd.setProposalNumber(ProposalNumber);//b
+							postd.setTotalPremium(TotalPremium);//b
+							postd.setCurrentIDV(CurrentIDV);//b
+							//--------------------------------------------------------
 							
 							session.setAttribute("ProposalNumber", ProposalNumber);
 							session.setAttribute("TotalPremium", TotalPremium);
@@ -340,7 +381,7 @@ public class shri extends HttpServlet {
 					{
 						e.printStackTrace();
 					}		
-				 
+				 */
 				
 			/*Liberty*/
 				 

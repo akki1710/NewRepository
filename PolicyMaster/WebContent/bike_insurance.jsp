@@ -25,7 +25,7 @@
 
                                 <div class="w3ls-name">	
                                     <div id="regno"><i class="fa fa-motorcycle iconpos "></i> Reg. No.</div>
-                                    <input type="text" name="bike_reg" id="cartextbox" placeholder="E.G.: DL01AB1234" pattern="^[a-z|A-Z]{2}[0-9]{1,2}[a-z|A-Z]{1,2}[0-9]{1,4}$" required=" "/>
+                                    <input type="text" name="bike_reg" onkeydown="upperCaseF(this)" id="cartextbox" placeholder="E.G.: DL01AB1234" pattern="^[a-z|A-Z]{2}[0-9|a-z|A-Z]{1,2}[a-z|A-Z]{1,2}[0-9]{1,4}$" required=" "/>
                                 </div>
                                 <div class="w3ls-btn">
                                     <input type="submit" value="Compare & Save Big">
@@ -38,5 +38,11 @@
                             </div>
                             </div>
                             </div>
-                         
+           <script>
+        function upperCaseF(a){
+            setTimeout(function(){
+                a.value = a.value.toUpperCase();
+            }, 1);
+        }
+        </script>               
 <%@include file="footer.jsp" %>

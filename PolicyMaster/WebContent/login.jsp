@@ -36,7 +36,7 @@
 </head>
 <body>
 
-     <!--==========================
+ <!--==========================
     Header
   ============================-->
   <header id="header">
@@ -50,7 +50,7 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="index">Home</a></li>
+          <li class="menu-active"><a href="#intro">Home</a></li>
           <li class="menu-has-children"><a href="lifeinsurance">LIFE INSURANCE</a>
 		<ul>
 		<li><a href="#"></a></li>
@@ -96,11 +96,12 @@
           </li>
         <!--  <li><a href="#team.html">CONTACT</a></li> -->
           <li><a href="login">LOGIN</a></li>
-		<li><a href="user.jsp">MYACCOUNT</a></li>
+		<li><a href="#contact.html">ADMIN</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
   </header><!-- #header -->
+
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('img/log1.jpg');">
@@ -111,7 +112,7 @@
 				<form action="LogServlet" method="post" class="login100-form validate-form p-b-33 p-t-5">
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="User name" required="" />
+						<input class="input100" type="text" name="Mobile" placeholder="Mobile No." required="" />
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
@@ -127,6 +128,7 @@
 					</div>
 
 				</form>
+				<h1>
 				<h1>
 				<center><a href="register">Register</a></center></h1>
 			</div>

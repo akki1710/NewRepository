@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page import="study.db.*"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.sql.SQLException"%>
+<%@ page import="java.sql.PreparedStatement"%>
+<%@ page import="java.sql.ResultSet"%>
+<%@ page import="java.util.List"%>
+<%@page import="java.sql.Connection"%><%@ page language="java"
+	contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page import="com.*"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -161,6 +168,7 @@ body {
 											type="text" name="Registration_Address"
 											value="<%=(String) session.getAttribute("FullAddress")%>"
 											placeholder="Registration Address" required="" />
+
 									</div>
 
 									<div class="form-group">
@@ -220,7 +228,7 @@ body {
 													<option value="12">December</option>
 											</select>
 
-											</span> <span class="agile_sub-label"> <select name="year" id="user_year"
+											</span> <span class="agile_sub-label"> <select name="year"
 												class="year" required="">
 													<option value="">Year</option>
 													<option value="2000">2000</option>
@@ -287,7 +295,7 @@ body {
 												<label class="Car-text">Nominee Relation : </label>
 
 												<!-- <input type="name" name="nomines_relation"  placeholder=" Nominee's Relation" required=""/> -->
-												<select class="age" name="nomines_relation" required="" id="nomines_relation">
+												<select class="age" name="nomines_relation" required="">
 													<option value="">Select</option>
 													<option value="Spouse">Spouse</option>
 													<option value="Father">Father</option>
@@ -303,7 +311,7 @@ body {
 
 											<div class="Carr">
 												<label class="Car-text">Nominee's Age : </label> <select
-													name="selectage" class="age" id="ddmenu" required="" onchange="callMe();">
+													name="selectage" class="age" id="ddmenu" required="">
 													<option value="">Age</option>
 													<option value="1">1</option>
 													<option value="2">2</option>
@@ -380,8 +388,11 @@ body {
 													<option value="73">73</option>
 												</select> </span>
 												<div class="minor_fields">
-													<input type="name" name="appointee_name" placeholder="Name of the Appointee for this insurance"><br><br>
-													<input type="name" name="appointee_relation" placeholder="How is the Appointee related to the Nominee">
+													Appointee Name : <input type="name" name="appointee_name"
+														placeholder="Name of the Appointee for this insurance"><br>
+													<br> Appointee Relation : <input type="name"
+														name="appointee_relation"
+														placeholder="How is the Appointee related to the Nominee">
 												</div>
 												<br>
 												<script
@@ -418,14 +429,18 @@ body {
 																						})
 																	})
 												</script>
-
-
+												<%try{ %>
+												<%
+													User userpoj = (User) session.getAttribute("userpoj");
+												%>
 												<label class="Car-text">Registration Number : </label> <input
-													type="text" name="Car_RegNo" id="cartextbox"
+													type="text" name="Car_RegNo" onkeydown="upperCaseF(this)"
+													id="cartextbox" value="<%=userpoj.getRegNo()%>"
 													placeholder=" E.G.: DL01AB1234"
 													pattern="^[a-z|A-Z]{2}[0-9]{1,2}[a-z|A-Z]{1,2}[0-9]{1,4}$"
 													required="" />
-
+												<%} catch(Exception e){
+												  }%>
 											</div>
 
 										</div>
@@ -449,12 +464,19 @@ body {
 								<div class="Car-bottom">
 									<div class="form-bottom">
 										<div class="form-group">
-											<label class="Car-text"> PAN Card No. : </label> 
-											<input type="text" name="pan"  required="" placeholder="Enter PAN Card" pattern="^[a-z|A-Z]{5}[0-9]{4}[a-z|A-Z]{1}$" /> 
-											<label class="Car-text"> Engine Number : </label> 
-											<input type="text" name="engine_number"  required="" placeholder=" Engine Number" /> 
-												<label class="Car-text"> Chassis Number : </label> 
-												<input type="text" name="chassis_number"  required="" placeholder=" Chassis Number" pattern="[0-9|a-z|A-Z]{17,}" title="Enter 17 digit chassis number" />
+
+											<label class="Car-text"> PAN Card No. : </label> <input
+												type="text" name="pan" required=""
+												placeholder="Enter PAN Card"
+												pattern="^[a-z|A-Z]{5}[0-9]{4}[a-z|A-Z]{1}$" /> <label
+												class="Car-text"> Engine Number : </label> <input
+												type="text" name="engine_number" required=""
+												placeholder=" Engine Number" pattern="[0-9|a-z|A-Z]{6,}"
+												title="Enter atleast 6 digit engine number" /> <label
+												class="Car-text"> Chassis Number : </label> <input
+												type="text" name="chassis_number" required=""
+												placeholder=" Chassis Number" pattern="[0-9|a-z|A-Z]{6,}"
+												title="Enter atleast 6 digit chassis number" />
 
 											<div class="w3ls-text w3ls-name">
 												<!-- <span class="agile_sub-label xxx"> <label
@@ -488,7 +510,8 @@ body {
 													class="agile_sub-label"> <select name="selectime"
 													class="Car" required="">
 														<option value="">Select</option>
-														<option value="Less than 30 minutes">Less than 30 minutes</option>
+														<option value="Less than 30 minutes">Less than 30
+															minutes</option>
 														<option value="minute to 1 hour">minute to 1 hour</option>
 														<option value="1 to 2 hour">1 to 2 hour</option>
 														<option value="more than  2 hour">more than 2
@@ -527,28 +550,92 @@ body {
 
 
 
-											<!-- <div class="form-group">
+											<div class="form-group">
 												<div class="wthree-text">
 													<label class="Car-text">if car/bike is financed? :</label>
 													<ul class="radio-w3ls">
-														<li><input type="radio" id="Yes" name="financed"
-															Value="Yes" required=""> <label for="Yes">Yes</label></li>
-														<li><input type="radio" id="No" name="financed"
-															Value="No" required=""> <label for="No">No</label>
-															<div class="check">
+														<li><input type="radio" class="is_financed1" id="Yes"
+															name="financed" Value="Yes" required=""> <label
+															for="Yes">Yes</label></li>
+														<li><input type="radio" class="is_financed2" id="No"
+															name="financed" Value="No" required=""> <label
+															for="No">No</label>
+															<!-- <div class="check">
 																<div class="inside"></div>
-															</div></li>
+															</div> --></li>
 													</ul>
 												</div>
-											</div> -->
+											</div>
+
+											<%
+												String FIN_CATEGORY_CODE = "00";
+												String FINANCIERNAME = null;
+												List<String> al = new ArrayList<String>();
+												try {
+													//String FINANCIERNAME="kashi motors";
+													Connection con = Db.myGetConnection();
+													String query1 = "select FINANCIERNAME from royalsundram where FIN_CATEGORY_CODE like ?";
+													PreparedStatement stmt = con.prepareStatement(query1);
+													stmt.setString(1, FIN_CATEGORY_CODE + "%");
+
+													ResultSet rs = stmt.executeQuery();
+													while (rs.next()) {
+
+														FINANCIERNAME = rs.getString("FINANCIERNAME");
+
+														al.add(FINANCIERNAME);
+													}
+													rs.close();
+													stmt.close();
+													con.close();
+												} catch (SQLException e) {
+													e.printStackTrace();
+												} catch (NullPointerException e) {
+													e.printStackTrace();
+												}
+											%>
+											<div class="form-group">
+												<div id="financier_div" class="w3ls-text w3ls-name">
+													<span class="agile_sub-label"> <label
+														class="Car-text">Financier :</label> <select class="Car"
+														name="financiername" required="">
+															<option value="Financier Name">Financier Name</option>
+															<%
+																for (String financiername : al) {
+															%>
+
+															<option value="<%=financiername%>"><%=financiername%></option>
+															<%
+																}
+															%>
+													</select>
+													</span>
+
+													<!-- <br>
+												<label class="Car-text">Financier City:</label><br>
+												<br>
+												<input type="text"  name="financed">
+ -->
+												</div>
+												<div id="financier_div1" class="wthree-text">
+													<label class="Car-text">Financier City :</label><br> <input
+														type="text" name="financercity">
+												</div>
+											</div>
+											
+
+
+
+											
+
+
+
+											<button type="button" class="btn btn-previous">Previous</button>
+											<button type="submit" class="btn btn-page3">Save&View</button>
+
 										</div>
-
-										<button type="button" class="btn btn-previous">Previous</button>
-										<button type="submit" class="btn btn-page3">Save&View</button>
-
 									</div>
 								</div>
-
 							</fieldset>
 
 						</form>
@@ -559,9 +646,48 @@ body {
 	</div>
 
 
-	<script src="js/jquery-my.js">
-		
-	</script>
+<script>
+												// $('.minor_fields').slideUp();
+												$(document)
+														.ready(
+
+																function() {
+																	$(
+																			'#financier_div')
+																			.hide();
+																	$(
+																			'#financier_div1')
+																			.hide();
+																	$(
+																			'.is_financed2')
+																			.click(
+																					function() {
+
+																						$(
+																								'#financier_div')
+																								.hide();
+																						$(
+																								'#financier_div1')
+																								.hide();
+
+																					})
+																	$(
+																			'.is_financed1')
+																			.click(
+																					function() {
+
+																						$(
+																								'#financier_div')
+																								.show();
+																						$(
+																								'#financier_div1')
+																								.show();
+																					})
+
+																})
+											</script>
+
+
 
 	<script>
 		function validate_step_1() {
@@ -595,6 +721,8 @@ body {
 			return true; */
 		}
 	</script>
+
+
 	<script src="assets1/js/jquery-1.11.1.min.js"></script>
 	<script src="assets1/bootstrap/js/bootstrap.min.js"></script>
 	<script src="assets1/js/jquery.backstretch.min.js"></script>
@@ -604,42 +732,17 @@ body {
 
 
 	</script>
-	<script>
-	
-	
-	function callMe()
-	{
-		$( document ).ready(function() {
-			 var user_year=$('#user_year').val();
-			 var current_year = new Date().getFullYear();
-			 var finalYear=current_year-user_year;
-			 var nominee_relation=$('#nomines_relation').val();
-			 var nominee_age=$('#ddmenu').val();
-			 var temp=nominee_age+18;
-			 if(nominee_relation=='Son'||nominee_relation=='Daughter')
-				 {
-				 if((finalYear-nominee_age) >= 18){				 
-						 
-				 }
-				 else 
-					 {
-					 alert("Nominee Age Should  be less then PolicyHolder Age !");
-					 $('#ddmenu').val("").trigger("change");
-					  }
-				 
-				 }
-			
-			});
-	}
-	
-	
-	
-	</script>
 
 
 	<!-- <script src="assets/js/placeholder.js"></script>
         <![endif] -->
-
+	<script>
+		function upperCaseF(a) {
+			setTimeout(function() {
+				a.value = a.value.toUpperCase();
+			}, 1);
+		}
+	</script>
 
 </body>
 

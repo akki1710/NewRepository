@@ -6,6 +6,7 @@ public class RegPJ {
 	
 	private Integer UID; 
 	private String Uname;
+	private String Fname;
 	private String Name;
 	private String City;
 	private Date Birthdate;
@@ -18,33 +19,30 @@ public class RegPJ {
 	public RegPJ() {
 		super();
 	}
-	public RegPJ(Integer uID, String uname, String name, String city, Date birthdate, String email, String phoneno,
-			String proposalNo, String approvePolNo, String totalPremium, String policyName) {
-		super();
-		UID = uID;
-		Uname = uname;
-		Name = name;
-		City = city;
-		Birthdate = birthdate;
-		Email = email;
-		Phoneno = phoneno;
-		ProposalNo = proposalNo;
-		ApprovePolNo = approvePolNo;
-		TotalPremium = totalPremium;
-		PolicyName = policyName;
+	
+	public String getUname() {
+		return Uname;
 	}
+
+	public void setUname(String uname) {
+		Uname = uname;
+	}
+
 	public Integer getUID() {
 		return UID;
 	}
 	public void setUID(Integer uID) {
 		UID = uID;
 	}
-	public String getUname() {
-		return Uname;
+	
+	public String getFname() {
+		return Fname;
 	}
-	public void setUname(String uname) {
-		Uname = uname;
+
+	public void setFname(String fname) {
+		Fname = fname;
 	}
+
 	public String getName() {
 		return Name;
 	}
@@ -101,7 +99,7 @@ public class RegPJ {
 	}
 	@Override
 	public String toString() {
-		return "RegPJ [UID=" + UID + ", Uname=" + Uname + ", Name=" + Name + ", City=" + City + ", Birthdate="
+		return "RegPJ [UID=" + UID + ", Fname=" + Fname + ", Name=" + Name + ", City=" + City + ", Birthdate="
 				+ Birthdate + ", Email=" + Email + ", Phoneno=" + Phoneno + ", ProposalNo=" + ProposalNo
 				+ ", ApprovePolNo=" + ApprovePolNo + ", TotalPremium=" + TotalPremium + ", PolicyName=" + PolicyName
 				+ "]";

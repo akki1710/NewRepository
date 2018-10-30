@@ -53,25 +53,26 @@ public class LibIssuePolicyServlet extends HttpServlet {
 		
 		 HttpSession session=request.getSession();
 		 HttpClient client = HttpClientBuilder.create().build();
+		 PostPremiumDetails finalresponse=(PostPremiumDetails) session.getAttribute("finalresponse");
 		 
-		 String FullName=(String) session.getAttribute("Fullname");
-		 String Email=(String) session.getAttribute("Email");
-		 String Mobile=(String) session.getAttribute("Mobile");
+		 String FullName=finalresponse.getFullName();
+		 String Email=finalresponse.getEmailID();
+		 String Mobile=finalresponse.getMobileNumber();
 		 
-		 String GCCustomerID = (String) session.getAttribute("CustomerID");
+		 String GCCustomerID = finalresponse.getCustomerID();
 		 //String IMDNumber = (String) session.getAttribute("IMDNumber");
 		 //String IMDNumber="IMD1010030";
-		 String IMDNumber="IMD1039348";
-		 Double PremiumAmount = (Double) session.getAttribute("TotalPremium");
+		 String IMDNumber="IMD1101839";
+		 Double PremiumAmount = finalresponse.getTotalPremium();
 		 String TotalPremium=Double.toString(PremiumAmount);
-		 String QuotationNumber = (String) session.getAttribute("QuotationNumber");
-		 String TransactionID = (String) session.getAttribute("tnx");
-		 String TPEmailID = (String) session.getAttribute("Email");
+		 String QuotationNumber = finalresponse.getQuotationNumber();
+		 String TransactionID = finalresponse.getTxn();
+		 String TPEmailID = finalresponse.getEmailID();
 		 System.out.println("TPEmailID "+TPEmailID);
-		 String PaymentDate = (String) session.getAttribute("PaymentDate");
+		 String PaymentDate = finalresponse.getPaymentDate();
 
 		 LibSuccessPayPojo sp = new LibSuccessPayPojo();
-		 String productCode= (String)session.getAttribute("productCode");
+		 String productCode= finalresponse.getProductCode();
 	        
 	        System.out.println(productCode);
 		 
@@ -97,7 +98,8 @@ public class LibIssuePolicyServlet extends HttpServlet {
 			String jsonRequest=objectMapper.writeValueAsString(sp);
 			System.out.println("Request :  "+jsonRequest);
 			
-			HttpPost pos = new HttpPost("http://168.87.83.122:8180/api/IMDTPService/GetPolicy");
+			HttpPost pos = new HttpPost("https://api.libertyinsurance.in/Motor/API/IMDTPService/GetPolicy");
+		//	HttpPost pos = new HttpPost("http://168.87.83.122:8180/api/IMDTPService/GetPolicy");
 			StringEntity userEntity = new StringEntity(jsonRequest);
 			pos.setEntity(userEntity);
 			pos.setHeader("Content-Type", "application/json");
@@ -176,13 +178,8 @@ public class LibIssuePolicyServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		if(session!=null) {
-			session.removeAttribute("CustomerID");
-			session.removeAttribute("TotalPremium");
-			session.removeAttribute("QuotationNumber");
-			session.removeAttribute("tnx");
-			session.removeAttribute("Email");
-			session.removeAttribute("PaymentDate");
-			session.removeAttribute("productCode");
+			session.removeAttribute("finalresponse");
+			
 		}
 	}
 }

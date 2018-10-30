@@ -88,15 +88,22 @@ public class Servlet3 extends HttpServlet {
 	        String selectime = request.getParameter("selectime");
 	        String driving = request.getParameter("driving");
 	        String evening = request.getParameter("evening");
+	       
 	        String financed="";
-	        /*String a[]=request.getParameterValues("financed");
-	        for(int i=0;i<a.length;i++){
-	            financed+=a[i]+"";}*/
-	     
+            String a[]=request.getParameterValues("financed");
+            for(int i=0;i<a.length;i++){
+                financed+=a[i]+"";}
+         
+            String financiername = request.getParameter("financiername");
+           
+            String financercity = request.getParameter("financercity");
+	        
+	        
+	        
 	        
 	        String title = request.getParameter("title");
 	        String email = request.getParameter("email");
-	        String pno = request.getParameter("pno");
+	        String Mobile = request.getParameter("pno");
 	        String month1= request.getParameter("month"); //edit
 	        
 	        String year1= request.getParameter("year"); //edit
@@ -164,12 +171,41 @@ public class Servlet3 extends HttpServlet {
 			    session.setAttribute("proppojo", proppojo);
 			    
 			 //Lib added
+			    
+			    LibFullPostPremiumDetail libfullpojo = new LibFullPostPremiumDetail();//b 
+			    CustmerObj custpojo = new CustmerObj();//b
 			 String[] g1=m.Salutation(Prefix);
 			 String Salutation=g1[0];
+			 String LibPinCode=(String) session.getAttribute("PinCode1");//b
+			 String FirstName=null;
+			 String LastName=null;
+			 try{
+			 String[] LibInsuredName = Owner_Name.split("\\s", 2);//b
+			 FirstName = LibInsuredName[0];//b
+			 LastName = LibInsuredName[1];//b
+			 } catch (ArrayIndexOutOfBoundsException e){
+				 System.out.println("ArrayIndexOutOfBoundsExceptionForFullName");
+			 }
+			 String EMailID = (String) session.getAttribute("Email");//b
+			 String MobileNo = (String) session.getAttribute("Mobile");//b
+			 
+			 System.out.println("FirstName: "+FirstName);
+			 System.out.println("LastName: "+LastName);
+			 
+			 //---------------------------b-----------------------------
+			 custpojo.setSalutation(Salutation);
+			 custpojo.setAddressLine1(Address1);
+			 custpojo.setPinCode(LibPinCode);
+			 custpojo.setFirstName(FirstName);
+			 custpojo.setLastName(LastName);
+			 custpojo.setEmailID(EMailID);
+			 custpojo.setMobileNumber(MobileNo);
+			 //---------------------------b------------------------------
 			 session.setAttribute("month1", month1);
 			 session.setAttribute("year1", year1);
 			 session.setAttribute("Car_Registration_Address", Car_Registration_Address);
 			 session.setAttribute("Salutation", Salutation); //Lib added
+			 session.setAttribute("custpojo", custpojo);//b 
 			 
 			//RoyalSundaram//
 			/* try {
@@ -218,6 +254,18 @@ public class Servlet3 extends HttpServlet {
 			  String rtitle=title;
 			  String rfinanced=financed;
 			  String raddress =Car_Registration_Address;
+			  String rfinancierName="";
+			  String rfinancierCity=financercity;
+			  if(rfinanced.equals("No"))
+			  {
+				  rfinancierName =null; 
+			  }
+			  else
+			  {
+				  rfinancierName=financiername;
+			  }
+			 System.out.println("hello financier name" +rfinancierName);
+			 System.out.println("hello financier " +rfinanced);
 			//Roal DOB
 		        
 		        DateFormat originalFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
@@ -265,12 +313,12 @@ public class Servlet3 extends HttpServlet {
 			 
 	        try {
 				Connection con = Db.myGetConnection();
-				String s="insert into details(title, Owner_Name, pno, email, Car_Registration_Address, BirthDate, nomines_name, nomines_relation, selectage, Car_RegNo, engine_number, chassis_number, month1, year1, selectime, driving, evening, financed) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				String s="insert into details(title, Owner_Name, Mobile, email, Car_Registration_Address, BirthDate, nomines_name, nomines_relation, selectage, Car_RegNo, engine_number, chassis_number, month1, year1, selectime, driving, evening, financed) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement stmt = con.prepareStatement(s);
 			
 				stmt.setString(1, title);
 				stmt.setString(2, Owner_Name);
-				stmt.setString(3, pno);
+				stmt.setString(3, Mobile);
 				stmt.setString(4, email);
 				stmt.setString(5, Car_Registration_Address);
 				stmt.setDate(6, sqlDate);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -46,12 +47,11 @@ public class BeanRegis extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {response.setContentType("text/html");  
     PrintWriter pw = response.getWriter(); 
-    String Uname=request.getParameter("Uname");
+    boolean status = false;
     
-    String Fname =request.getParameter("Fname");
-    String Lname=request.getParameter("Lname");
+    String name=request.getParameter("name");
     String Country=request.getParameter("country");
-    String State=request.getParameter("state");
+    String City=request.getParameter("city");
     String day=request.getParameter("day");
     String month=request.getParameter("month");
     String year=request.getParameter("year");
@@ -69,35 +69,53 @@ public class BeanRegis extends HttpServlet {
    
     String Password=request.getParameter("Password");
     
-    String Pno=request.getParameter("Pno");
+    String Mobile=request.getParameter("Pno");
     
     try {
 		Connection con = Db.myGetConnection();
 		
-		String s="insert into reg(Uname,Fname,Lname,Country,State,Dob,Email,Password,Pno) values(?,?,?,?,?,?,?,?,?)";
+		PreparedStatement ps = con.prepareStatement("select Mobile from reg where Mobile=?");
+		ps.setString(1,Mobile);
+		ResultSet rs = ps.executeQuery();
+		 status = rs.next();
+		 String Pno = rs.getString(1);
+		 rs.close();
+		
+		if(Pno.equals(Mobile)) {
+			String s="update reg set Name = ?,"+"Country = ?,"+"Password = ?"+"where Mobile =?";
+			PreparedStatement stmt = con.prepareStatement(s);
+			stmt.setString(1, name);
+			stmt.setString(2, Country);
+			stmt.setString(3, Password);
+			stmt.setString(4, Mobile);
+			
+			stmt.executeUpdate();
+			stmt.close();
+		}
+		else {
+		String s="insert into reg(Name,Country,City,Dob,Email,Password,Mobile) values(?,?,?,?,?,?,?)";
 		PreparedStatement stmt = con.prepareStatement(s);
-		stmt.setString(1,Uname);
-		stmt.setString(2,Fname);
-		stmt.setString(3,Lname );
-		stmt.setString(4,Country );
-		stmt.setString(5,State);
-		stmt.setDate(6,sqlDate);
-		stmt.setString(7,Email );
-		stmt.setString(8,Password);
-		stmt.setString(9,Pno);
+		stmt.setString(1,name);
+		stmt.setString(2,Country );
+		stmt.setString(3,City);
+		stmt.setDate(4,sqlDate);
+		stmt.setString(5,Email );
+		stmt.setString(6,Password);
+		stmt.setString(7,Mobile);
 		
 		
 		
 
 		stmt.executeUpdate();
-		response.sendRedirect("login");
-		
 		stmt.close();
+		
+		}
+		response.sendRedirect("login");
+
 		pw.close();
+		con.close();
 		
-		
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+	} catch (Exception e) {
 		e.printStackTrace();
 	}
     

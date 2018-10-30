@@ -66,6 +66,7 @@ public class Servlet2 extends HttpServlet {
 		        String Bike_Insurer=(String)session.getAttribute("bk4");
 		        String Bike_Claim=(String)session.getAttribute("Bike_Claim");
 		        String BikeExpiryDate=(String)session.getAttribute("BikeExpiryDate");
+		        
 		        java.sql.Date ExpiryDate = null;
 		        
 				String Fullname=request.getParameter("Name");
@@ -78,7 +79,10 @@ public class Servlet2 extends HttpServlet {
 				String PinCode=request.getParameter("pincode"); // added
 				session.setAttribute("FullAddress", FullAddress); // added
 				session.setAttribute("PinCode1", PinCode); // added
+				String ncb = (String) session.getAttribute("ncb");//b addedd
 		        
+		        
+				
 				System.out.println(Car_RegNo);
 				System.out.println(Bike_RegNo);
 				
@@ -352,33 +356,94 @@ public class Servlet2 extends HttpServlet {
 						}
 
 					
-					//Liberty
-			 	    String libcar[]=m.libCarModel(Model);
+					//Liberty car
+				//-----------------------b---------------------------------------------
+					PostPremiumDetails postd = new PostPremiumDetails();
+					System.out.println("LibCarModalVarient : "+Varient);	
+					System.out.println("libcarmodal : "+Model);
+					System.out.println("libcarfueltype : "+FuelType);
+				    String[] libCarVarientModal = Varient.split(Model+" ", 0);  
+			   	   
+				    String[] LibCarmodel_code = null;
+				    String carMakeCode = null;
+				    String carModelCode =null;
+				   try{
+					 String libCarVarient = libCarVarientModal[1];
+					 System.out.println("libCarVarient : "+libCarVarient);
+					 String LibCarMakeModal = m.MakeModalLibCar(libCarVarient, FuelType, Model);
+					 System.out.println("LibCarMakeModal : "+LibCarMakeModal);
+				     LibCarmodel_code =LibCarMakeModal.split("\\s", 2);
+					 carMakeCode =LibCarmodel_code[0];
+					System.out.println("carMakeCode : "+carMakeCode);
+					 carModelCode = LibCarmodel_code[1];
+					System.out.println("carModelCode : "+carModelCode);
+				   }catch(ArrayIndexOutOfBoundsException e){
+					  System.out.println("ArrayIndexOutOfBoundsExceptioninlibertymakemodal");
+				   }
+					String libcarInsurer = null;
+					try{
+					 libcarInsurer =m.libertyInsurer(Insurer);//b
+					System.out.println("libcarInsurer  : "+libcarInsurer);//b
+					}catch (NullPointerException e){
+						System.out.println("nullpointerexcepionforinsurerinliberty");
+					}
+					
+					
+					String BuyerState=m.state(strRTOCode);
+					System.out.println("BuyerState : "+BuyerState);
+				 	   String productCode="3151";
+					
+				//-------------------------b-------------------------------------------		
+						
+			 	    /*String libcar[]=m.libCarModel(Model);
 			 	   	String MakeCode=libcar[0];
-			 	   	String ModelCode=libcar[1];
-			 	   	String BuyerState=m.state(strRTOCode);
-			 	   String productCode="3151";
-			 	   session.setAttribute("productCode", productCode);
-			 	   session.setAttribute("MakeCode", MakeCode);
-			 	   session.setAttribute("ModelCode", ModelCode);
-			 	   session.setAttribute("insurer", Insurer);
+			 	   	String ModelCode=libcar[1];*/
+			 	   	
+			 	   
+			  //---------------------b--------------------------------------------------
+			 	  postd.setProductCode(productCode);
+			 	  postd.setMakeCode(carMakeCode);
+			 	  postd.setModelCode(carModelCode);
+			 	  postd.setPreviousPolicyInsurerName(libcarInsurer);
+			 	  postd.setBuyerState(BuyerState);
+			 	  if(ncb==null){
+			 		  ncb="null";
+			 	  }
+			 	  postd.setPreviousYearNCBPercentage(ncb);
+			 	   
+			 //----------------b--------------------------------------------------------
+			 	  /* session.setAttribute("productCode", productCode);
+			 	   session.setAttribute("MakeCode", carMakeCode);
+			 	   session.setAttribute("ModelCode", carModelCode);
+			 	   session.setAttribute("insurer", libcarInsurer);
 			 	  session.setAttribute("BuyerState", BuyerState);
+			 	*/
 			 	   
 			 	  
 			 	  
 				 if(RegYear.equals("Brandnew")) {
 					 
 					 String BusinessType="New Business";
-					 session.setAttribute("BusinessType", BusinessType);
+					 postd.setBusinessType(BusinessType);//b
+					// session.setAttribute("BusinessType", BusinessType);
+					 }else{
+						 String BussinessType="Roll Over";
+						 postd.setBusinessType(BussinessType);
 					 }
+				 
 				 	String reg1=Car_RegNo.substring(0,2);
 					String reg2=Car_RegNo.substring(2,4);
 					String reg3=Car_RegNo.substring(4,6);
 					String reg4=Car_RegNo.substring(6,10);
-				 	session.setAttribute("reg1", reg1);
+					postd.setRegNo1(reg1);
+					postd.setRegNo2(reg2);
+					postd.setRegNo3(reg3);
+					postd.setRegNo4(reg4);
+					System.out.println(reg1+" "+reg2+" "+reg3+" "+reg4);
+				 	/*session.setAttribute("reg1", reg1);bbbbb
 					session.setAttribute("reg2", reg2);
 					session.setAttribute("reg3", reg3);
-					session.setAttribute("reg4", reg4);
+					session.setAttribute("reg4", reg4);*/
 					
 					if(date!=null)
 					{
@@ -416,10 +481,16 @@ public class Servlet2 extends HttpServlet {
 						System.out.println("NewPolStartDate : "+NewPolStartDate);
 						
 						
-						session.setAttribute("prePolendDate", date);
+						postd.setManfYear(RegYear);
+						postd.setPreviousPolicyEndDate(date);
+						postd.setPreviousPolicyStartDate(PrevPolStartDate);
+						postd.setPolicyStartDate(NewPolStartDate);
+						postd.setPolicyEndDate(NewPolEndDate);
+						
+						/*session.setAttribute("prePolendDate", date);  bbbb
 						session.setAttribute("prevPolStartDate", PrevPolStartDate);
 						session.setAttribute("newPolStartDate", NewPolStartDate);
-						session.setAttribute("newPolEndDate", NewPolEndDate);
+						session.setAttribute("newPolEndDate", NewPolEndDate);*/
 						
 						 
 					} catch (ParseException e) {
@@ -464,11 +535,12 @@ public class Servlet2 extends HttpServlet {
 				        
 				        session.setAttribute("userpoj", userpoj);
 				        session.setAttribute("propprevpojo", propprevpojo);
+				        session.setAttribute("postd", postd);
 				        session.setAttribute("serv2ToRolSunDTOComman", serv2ToRolSunDTOComman);
 					
 		       
 					Connection con = Db.myGetConnection();
-					String s="insert into main_data(RegNo,Manufacturer,Model,FuelType,Varient,RegYear,Insurer,AnyClaim,ExpiryDate,name,email,Phoneno) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+					String s="insert into main_data(RegNo,Manufacturer,Model,FuelType,Varient,RegYear,Insurer,AnyClaim,ExpiryDate,name,email,Mobile) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 					PreparedStatement stmt = con.prepareStatement(s);
 					stmt.setString(1, Car_RegNo);
 					stmt.setString(2, Manufacturer);
@@ -483,10 +555,18 @@ public class Servlet2 extends HttpServlet {
 					stmt.setString(11, Email);
 					stmt.setString(12, Mobile);
 					
-					response.sendRedirect("shri");
-					
 					stmt.executeUpdate();
 					stmt.close();
+					
+					String s1="insert into reg(Name,Email,Mobile) values(?,?,?)";
+					PreparedStatement statement = con.prepareStatement(s1);
+					statement.setString(1, Fullname);
+					statement.setString(2, Email);
+					statement.setString(3, Mobile);
+					
+					response.sendRedirect("shri");
+					statement.executeUpdate();
+					statement.close();
 					
 					
 					
@@ -770,23 +850,69 @@ public class Servlet2 extends HttpServlet {
 					
 					}
 					
-					// Liberty		 
+					// Liberty	bike
 					session.setAttribute("Bike_RegNo", Bike_RegNo); // added
-					 String lib[]=m.libModel(Bike_Model);
+					System.out.println("BikeExpiryDate : " +BikeExpiryDate);
+					System.out.println("liberty varient "+Variant);//b
+					String libbikevarient[] = Variant.split("\\s",2);//b
+					String libbiVarient = null;
+					String model_code =null;
+					String bikeMakeCode= null;
+					String bikeModelCode =null;
+					try{
+					libbiVarient = libbikevarient[1];//b
+					System.out.println("libbikevarient"+libbikevarient[1]);//b
+					model_code =m.MakeModelLibBike(libbiVarient); //b
+					System.out.println("model_code "+ model_code);//b
+					String[] libbimodel_code =model_code.split("\\s", 2);//b
+					bikeMakeCode =libbimodel_code[0];//b
+					System.out.println(libbimodel_code[0]);
+					bikeModelCode = libbimodel_code[1];//b
+					System.out.println(libbimodel_code[1]);//b
+					} catch(ArrayIndexOutOfBoundsException e){
+						System.out.println("ArrayIndexOutOfBoundsException");
+					} catch (NullPointerException e){
+						System.out.println("NullPointerException");
+					}
+					
+					String libbikeInsurer = null;
+					try{
+					libbikeInsurer =m.libertyInsurer(Bike_Insurer);//b
+					System.out.println("libbikeInsurer  : "+libbikeInsurer);//b
+					}catch (NullPointerException e){
+						System.out.println("nullpointerexcepion");
+					}
+					
+					
+					 /*String lib[]=m.libModel(Bike_Model);
 				 	   	String MakeCode=lib[0];
-				 	   	String ModelCode=lib[1];
+				 	   	String ModelCode=lib[1];*/
 				 	   String BuyerState=m.state(strRTOCode);
 				 	   String productCode="3152";
-				 	   session.setAttribute("productCode", productCode);
-				 	   session.setAttribute("MakeCode", MakeCode);
-				 	  session.setAttribute("ModelCode", ModelCode);
-				 	 session.setAttribute("insurer", Bike_Insurer); 
-				 	session.setAttribute("BuyerState", BuyerState); 
+				 	   //-----------------------------B---------------------------------------
+				 	   
+				 	   PostPremiumDetails postd = new PostPremiumDetails();
+				 	   postd.setProductCode(productCode);
+				 	   postd.setMakeCode(bikeMakeCode);
+				 	   postd.setModelCode(bikeModelCode);
+				 	   postd.setBuyerState(BuyerState);
+					   postd.setPreviousPolicyInsurerName(libbikeInsurer);
+				 	   postd.setPreviousYearNCBPercentage(ncb);
+				 	   postd.setManfYear(Bike_RegYear);
+				 	   
+				 	   //--------------------------------------------------------------------
+				 	   
+				 	   
+				 	  
+				 	
 				 	 
 					 if(Bike_RegYear.equals("Brandnew")) {
 						 
 						 String BusinessType="New Business";
-						 session.setAttribute("BusinessType", BusinessType);
+						 postd.setBusinessType(BusinessType);//b 	 
+					 }else{
+						 String BusinessType="Roll Over";
+						 postd.setBusinessType(BusinessType);
 					 }
 			
 					 	String reg1=Bike_RegNo.substring(0,2);
@@ -794,10 +920,13 @@ public class Servlet2 extends HttpServlet {
 						String reg3=Bike_RegNo.substring(4,6);
 						String reg4=Bike_RegNo.substring(6,10);
 						
-						session.setAttribute("reg1", reg1);
-						session.setAttribute("reg2", reg2);
-						session.setAttribute("reg3", reg3);
-						session.setAttribute("reg4", reg4);   
+						//-----------------------------------b------------------------------
+						postd.setRegNo1(reg1);
+						postd.setRegNo2(reg2);
+						postd.setRegNo3(reg3);
+						postd.setRegNo4(reg4);
+						//------------------------------------------------------------------
+						
 						
 						if(BikeExpiryDate!=null)
 						{
@@ -805,6 +934,9 @@ public class Servlet2 extends HttpServlet {
 				        java.util.Date utilDate1 = null;
 						try {
 							utilDate1 = formatt.parse(BikeExpiryDate);
+						 
+							
+							
 							
 							Calendar calendar = Calendar.getInstance();
 							calendar.setTime(utilDate1);
@@ -829,15 +961,20 @@ public class Servlet2 extends HttpServlet {
 							String PrevPolStartDate = format1.format(later.getTime());
 							String NewPolEndDate = format1.format(later1.getTime());
 							String NewPolStartDate = format1.format(later2.getTime());
-							System.out.println("PrevPolExpDate : "+BikeExpiryDate);
+							String PrevPolExpDate = format1.format(utilDate1);
+							System.out.println("PrevPolExpDate : "+PrevPolExpDate);
 							System.out.println("PrevPolStartDate : "+PrevPolStartDate);
 							System.out.println("NewPolStartDate : "+NewPolStartDate);
 							System.out.println("NewPolEndDate : "+NewPolEndDate);
 							
-							session.setAttribute("prePolendDate", BikeExpiryDate);
-							session.setAttribute("prevPolStartDate", PrevPolStartDate);
-							session.setAttribute("newPolStartDate", NewPolStartDate);
-							session.setAttribute("newPolEndDate", NewPolEndDate);
+							//--------------------------b------------------------------------------------
+			                postd.setPreviousPolicyEndDate(PrevPolExpDate);
+			                postd.setPreviousPolicyStartDate(PrevPolStartDate);
+			                postd.setPolicyStartDate(NewPolStartDate);
+			                postd.setPolicyEndDate(NewPolEndDate);
+							//----------------------------------------------------------------------
+							
+							
 							
 							 
 						} catch (ParseException e) {
@@ -864,9 +1001,10 @@ public class Servlet2 extends HttpServlet {
 						session.setAttribute("userpoj", userpoj);
 						session.setAttribute("propprevpojo", propprevpojo);
 						session.setAttribute("serv2ToRolSunDTOComman", serv2ToRolSunDTOComman);
+						session.setAttribute("postd", postd);
 					
 						Connection con = Db.myGetConnection();
-						String s2="insert into main_data(RegNo,Manufacturer,Model,Varient,RegYear,Insurer,AnyClaim,ExpiryDate,name,email,Phoneno) values(?,?,?,?,?,?,?,?,?,?,?)";
+						String s2="insert into main_data(RegNo,Manufacturer,Model,Varient,RegYear,Insurer,AnyClaim,ExpiryDate,name,email,Mobile) values(?,?,?,?,?,?,?,?,?,?,?)";
 						PreparedStatement stmt2 = con.prepareStatement(s2);
 						stmt2.setString(1, Bike_RegNo);
 						stmt2.setString(2, Bike_Manufacturer);
@@ -881,10 +1019,18 @@ public class Servlet2 extends HttpServlet {
 						stmt2.setString(11, Mobile);
 						
 						
-						response.sendRedirect("shri");
-						
 						stmt2.executeUpdate();
 						stmt2.close();
+						
+						String s1="insert into reg(Name,Email,Mobile) values(?,?,?)";
+						PreparedStatement statement = con.prepareStatement(s1);
+						statement.setString(1, Fullname);
+						statement.setString(2, Email);
+						statement.setString(3, Mobile);
+						
+						response.sendRedirect("shri");
+						statement.executeUpdate();
+						statement.close();
 						
 					} catch (Exception e) {
 						// TODO Auto-generated catch block

@@ -222,6 +222,9 @@ public class RoyalCarPremium extends HttpServlet {
 	    	String raddress=serv2ToRolSunDTOComman1.getRaddress();
 	    	String rtitle = serv2ToRolSunDTOComman1.getRtitle();
 	    	String royalBirthdate=serv2ToRolSunDTOComman1.getRoyalBirthdate();
+	    	String rfinancierName=serv2ToRolSunDTOComman1.getRfinancierName();
+	    	String rfinancierCity=serv2ToRolSunDTOComman1.getRfinancierCity();
+			
 	    	Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
 	    	String registrationNumber = serv2ToRolSunDTOComman.getRegistrationNumber();
 	    	String yearOfManufacture = serv2ToRolSunDTOComman.getYearOfManufacture();
@@ -337,7 +340,8 @@ public class RoyalCarPremium extends HttpServlet {
 			vehicleDetails.setEngineNumber(rengine_number);
 			vehicleDetails.setIsCarFinanced(rfinanced);
 			vehicleDetails.setIsCarFinancedValue("Lease");
-			vehicleDetails.setFinancierName("Bajaj");
+			vehicleDetails.setFinancierName(rfinancierName);
+			
 			vehicleDetails.setPreviousInsurerName(rPreviousInsurer);
 			vehicleDetails.setPreviuosPolicyNumber("1020");
 			vehicleDetails.setPreviousinsurersCorrectAddress("");

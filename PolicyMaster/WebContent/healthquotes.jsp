@@ -138,7 +138,7 @@
       <div class="container">
 
         <header class="section-header">
-	<h3>Term Plans Quotes</h3>
+	<h3>Health Plans Quotes</h3>
           
         </header>
 
@@ -150,57 +150,93 @@
                 <img src="img/new/full/Religare.jpg" alt="" class="img-fluid">
              <!--   <div class="icon"><i class="ion-ios-speedometer-outline"></i></div> -->
               </div>
-              
+         <%try{
+              if((String) session.getAttribute("rel_premium")!=null) {%>     
 		<form action="HealthSer" method="post">
-		<h2 class="title"><input type="submit" name="health_policy" value="Carefreedom"></h2>
+		<h2 class="title"><input type="submit" name="health_policy" value="Carefreedom"></h2></form>
               <div class="text-center"><h4><strong>Rs.<%= (Integer) session.getAttribute("b")%>/month</strong></h4></div>
 		<ul>
 		 <li><h6>ProposalNo = <%= (String) session.getAttribute("rel_proposal_num")%></h6></li>
 		<li><h6>Premium/month = <%= (Integer) session.getAttribute("b")%></h6></li>
 		<li><h6>Premium = <%= (String) session.getAttribute("rel_premium")%></h6></li>
-			
-		
 		</ul>
-		</form>
+		<%} else{ %>
+		<h2 class="title"><input type="submit" name="health_policy" value="Carefreedom"></h2>
+              <div class="text-center"><h4><strong>Rs. 0</strong></h4></div>
+		<ul>
+		 <li><h6>ProposalNo = 0</h6></li>
+		<li><h6>Premium/month = 0</h6></li>
+		<li><h6>Premium = 0</h6></li>
+		</ul>
+		<%} }catch(Exception e){
+			e.printStackTrace();
+		}
+		%>
             </div>
           </div>
+          
 
-          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
             <div class="about-col">
               <div class="img">
-                <img src="img/new/full/item8.png" alt="" class="img-fluid">
+                <img src="img/new/full/apollo.jpg" alt="" class="img-fluid">
             <!--    <div class="icon"><i class="ion-ios-list-outline"></i></div>  -->
               </div>
+              <%try{
+              if((String) session.getAttribute("TotalPremium")!=null) {%>
 		<form action="HealthSer" method="post">
-              <h2 class="title"><input type="submit" name="health_policy" value="Online Term Plus"></h2></form>
-              <div class="text-center"><h4><strong>Rs. 955/Month</strong></h4></div>
+              <h2 class="title"><input type="submit" name="health_policy" value="Optima_Restore"></h2></form>
+               <div class="text-center"><h4><strong>Rs.<%= (String) session.getAttribute("b2")%>/month</strong></h4></div>
 		<ul>
-		 <li><h6>Payout = 1 Crore</h6></li>
-		<li><h6>Cover UpTo = 56Years</h6></li>
-		<li><h6>Claim Settled = 93.3%</h6></li>
+		 <li><h6>TotalPremium =<%= (String) session.getAttribute("TotalPremium")%></h6></li>
+		 <li><h6> TotalPremium/month=<%= (String) session.getAttribute("b2")%></h6></li>
 		</ul>
+		<%} else{ %>
+		<h2 class="title"><input type="submit" name="health_policy" value="Optima_Restore"></h2>
+        <div class="text-center"><h4><strong>Rs. 0</strong></h4></div>
+		<ul>
+		 <li><h6>TotalPremium = 0</h6></li>
+		 <li><h6> TotalPremium/month= 0</h6></li>
+		</ul>
+		<%} }catch(Exception e){
+			e.printStackTrace();
+		}
+		%>
             </div>
           </div>
 
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
             <div class="about-col">
               <div class="img">
-                <img src="img/new/full/item15.png" alt="" class="img-fluid">
+                <img src="img/new/full/apollo.jpg" alt="" class="img-fluid">
     <!--       <div class="icon"><i class="ion-ios-eye-outline"></i></div>   -->
               </div>
+               <%try{
+              if((String) session.getAttribute("FloaterTotalPremium")!=null) {%>
               <form action="HealthSer" method="post">
-              <h2 class="title"><input type="submit" name="health_policy" value="e-Term Life"></h2></form>
-              <div class="text-center"><h4><strong>Rs. 1098/Month</strong></h4></div>
+              <h2 class="title"><input type="submit" name="health_policy" value="Optima_Restore_Floater"></h2></form>
+              <div class="text-center"><h4><strong><%= (String) session.getAttribute("b3")%>/month</strong></h4></div>
 		<ul>
-		 <li><h6>Payout = 1 Crore</h6></li>
-		<li><h6>Cover UpTo = 56Years</h6></li>
-		<li><h6>Claim Settled = 92.4%</h6></li>
+		 <li><h6>TotalPremium =<%= (String) session.getAttribute("FloaterTotalPremium")%></h6></li>
+		 <li><h6> TotalPremium/month=<%= (String) session.getAttribute("b3")%></h6></li>
 		</ul>
+		<%} else{ %>
+		<h2 class="title"><input type="submit" name="health_policy" value="Optima_Restore_Floater"></h2>
+		<div class="text-center"><h4><strong>Rs. 0</strong></h4></div>
+		<ul>
+		 <li><h6>TotalPremium = 0</h6></li>
+		 <li><h6> TotalPremium/month= 0</h6></li>
+		</ul>
+		<%} }catch(Exception e){
+			e.printStackTrace();
+		}
+		%>
             </div>
           </div>
             </div>
           </div>
 
+        
         
     </section><!-- #about -->
 

@@ -60,21 +60,17 @@ public class RoyalBikePremium extends HttpServlet {
 
 			Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
 			String bikeregistrationNumber = serv2ToRolSunDTOComman.getBikeregistrationNumber();
-			
+
 			String rname = serv2ToRolSunDTOComman.getRname();
 			String rmobile = serv2ToRolSunDTOComman.getRmobile();
 			String remail = serv2ToRolSunDTOComman.getRemail();
-			String rpinCode=serv2ToRolSunDTOComman.getRpinCode();
-			
-			
-			
-			
+			String rpinCode = serv2ToRolSunDTOComman.getRpinCode();
+
 			String BikeManufacturerName = serv2ToRolSunDTOComman.getBikeManufacturerName();
 			String BikeModelCode = serv2ToRolSunDTOComman.getBikeModelCode();
 			String BikeModelName = serv2ToRolSunDTOComman.getBikeModelName();
-			String rcity =serv2ToRolSunDTOComman.getRcity();
+			String rcity = serv2ToRolSunDTOComman.getRcity();
 
-			
 			String bikePreviousInsurerName = serv2ToRolSunDTOComman.getBikePreviousInsurerName();
 			String bikeclaimsMadeInPreviousPolicy = serv2ToRolSunDTOComman.getBikeclaimsMadeInPreviousPolicy();
 			String bikePreviousPolicyExpiryDate = serv2ToRolSunDTOComman.getBikePreviousPolicyExpiryDate();
@@ -83,11 +79,9 @@ public class RoyalBikePremium extends HttpServlet {
 			String bikeVehicleOwnershipChanged = serv2ToRolSunDTOComman.getBikeVehicleOwnershipChanged();
 			String YearOfManufacturebike = serv2ToRolSunDTOComman.getYearOfManufacturebike();
 			String regDate = serv2ToRolSunDTOComman.getRegDate();
-			
-		
-			String rproductName =serv2ToRolSunDTOComman.getRproductName();
 
-			
+			String rproductName = serv2ToRolSunDTOComman.getRproductName();
+
 			// Current Date Code
 
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -99,7 +93,7 @@ public class RoyalBikePremium extends HttpServlet {
 			authenticationDetails.setApiKey(RoyalGlobalAccess.apikey);
 
 			proposerDetails proposerDetails = new proposerDetails();
-			
+
 			proposerDetails.setFirstName(rname);
 			proposerDetails.setLastName("");
 			proposerDetails.setEmailId(remail);
@@ -155,7 +149,9 @@ public class RoyalBikePremium extends HttpServlet {
 			JAXBContext context = JAXBContext.newInstance(CALCULATEPREMIUMREQUEST.class);
 			Marshaller m = context.createMarshaller();
 
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To format XML
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To
+																			// format
+																			// XML
 
 			StringWriter sw = new StringWriter();
 			m.marshal(calculatePremium, sw);
@@ -195,7 +191,8 @@ public class RoyalBikePremium extends HttpServlet {
 			System.out.println(pREMIUMDETAILS.getStatus());
 			// String qote = session.setAttribute("A", A);
 			// System.out.println(data.getQUOTE_ID());
-			// String quote = session.setAttribute("quote", "data.getQUOTE_ID()");
+			// String quote = session.setAttribute("quote",
+			// "data.getQUOTE_ID()");
 
 			if (session != null) {
 				session.removeAttribute("registrationNumber");
@@ -224,13 +221,14 @@ public class RoyalBikePremium extends HttpServlet {
 
 			Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
 			String bikeregistrationNumber = serv2ToRolSunDTOComman.getBikeregistrationNumber();
-		
+
 			String rname = serv2ToRolSunDTOComman.getRname();
 			String rmobile = serv2ToRolSunDTOComman.getRmobile();
 			String remail = serv2ToRolSunDTOComman.getRemail();
-			String rpinCode=serv2ToRolSunDTOComman.getRpinCode();
+			String rpinCode = serv2ToRolSunDTOComman.getRpinCode();
 
-			Serv2ToRolSunDTO serv2ToRolSunDTOComman1 = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman1");
+			Serv2ToRolSunDTO serv2ToRolSunDTOComman1 = (Serv2ToRolSunDTO) session
+					.getAttribute("serv2ToRolSunDTOComman1");
 			String rnomines_name = serv2ToRolSunDTOComman1.getRnomines_name();
 			String rnomines_relation = serv2ToRolSunDTOComman1.getRnomines_relation();
 			String rselectage = serv2ToRolSunDTOComman1.getRselectage();
@@ -238,15 +236,16 @@ public class RoyalBikePremium extends HttpServlet {
 			String rchassis_number = serv2ToRolSunDTOComman1.getRchassis_number();
 			String rfinanced = serv2ToRolSunDTOComman1.getRfinanced();
 			String rtitle = serv2ToRolSunDTOComman1.getRtitle();
-			String raddress= serv2ToRolSunDTOComman1.getRaddress();
-			String royalBirthdate=serv2ToRolSunDTOComman1.getRoyalBirthdate();
+			String raddress = serv2ToRolSunDTOComman1.getRaddress();
+			String royalBirthdate = serv2ToRolSunDTOComman1.getRoyalBirthdate();
+			String rfinancierName = serv2ToRolSunDTOComman1.getRfinancierName();
+			String rfinancierCity = serv2ToRolSunDTOComman1.getRfinancierCity();
 
-			
 			String BikeManufacturerName = serv2ToRolSunDTOComman.getBikeManufacturerName();
 			String BikeModelCode = serv2ToRolSunDTOComman.getBikeModelCode();
 			String BikeModelName = serv2ToRolSunDTOComman.getBikeModelName();
-			String rcity =serv2ToRolSunDTOComman.getRcity();
-		
+			String rcity = serv2ToRolSunDTOComman.getRcity();
+
 			String bikePreviousInsurerName = serv2ToRolSunDTOComman.getBikePreviousInsurerName();
 			String bikeclaimsMadeInPreviousPolicy = serv2ToRolSunDTOComman.getBikeclaimsMadeInPreviousPolicy();
 			String bikePreviousPolicyExpiryDate = serv2ToRolSunDTOComman.getBikePreviousPolicyExpiryDate();
@@ -256,10 +255,8 @@ public class RoyalBikePremium extends HttpServlet {
 			String YearOfManufacturebike = serv2ToRolSunDTOComman.getYearOfManufacturebike();
 			String regDate = serv2ToRolSunDTOComman.getRegDate();
 			String previousPolicyno = serv2ToRolSunDTOComman.getPreviousPolicyno();
-			
-			
-			String rproductName =serv2ToRolSunDTOComman.getRproductName();
 
+			String rproductName = serv2ToRolSunDTOComman.getRproductName();
 
 			/* Current Date Code */
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -311,7 +308,9 @@ public class RoyalBikePremium extends HttpServlet {
 			vehicleDetails.setVehicleRegDate(regDate);
 			vehicleDetails.setProductname(rproductName);
 			vehicleDetails.setCompanyNameForCar(BikeManufacturerName);
-			vehicleDetails.setIsTwoWheelerFinanced("No");
+			vehicleDetails.setIsTwoWheelerFinanced(rfinanced);
+			vehicleDetails.setFinancierName(rfinancierName);
+
 			vehicleDetails.setVehicleSubLine("motorCycle");
 			vehicleDetails.setFuelType("Petrol");
 			vehicleDetails.setRegion("East Region");
@@ -333,7 +332,9 @@ public class RoyalBikePremium extends HttpServlet {
 			JAXBContext context = JAXBContext.newInstance(CALCULATEPREMIUMREQUEST.class);
 			Marshaller m = context.createMarshaller();
 
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To format XML
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To
+																			// format
+																			// XML
 
 			StringWriter sw = new StringWriter();
 			m.marshal(calculatePremium, sw);
@@ -403,7 +404,9 @@ public class RoyalBikePremium extends HttpServlet {
 			JAXBContext context = JAXBContext.newInstance(GPROPOSALREQUEST.class);
 			Marshaller m = context.createMarshaller();
 
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To format XML
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // To
+																			// format
+																			// XML
 
 			StringWriter sw = new StringWriter();
 			m.marshal(gPROPOSALREQUEST, sw);
@@ -440,7 +443,7 @@ public class RoyalBikePremium extends HttpServlet {
 			session.setAttribute("data2", data2);
 			System.out.println(data2);
 			System.out.println(pREMIUMDETAILS.getStatus());
-			
+
 			response.sendRedirect("bikePayment.jsp");
 		} catch (Exception e) {
 
@@ -450,7 +453,7 @@ public class RoyalBikePremium extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		this.bikePremiumCalculation(request, response);
 		this.BikeUpdateVehic(request, response);
 		this.GProposalService(request, response);

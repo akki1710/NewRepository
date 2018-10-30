@@ -23,6 +23,8 @@ public class Serv2ToRolSunDTO {
 	private String rchassis_number;
 	private String rtitle;
 	private String rfinanced;
+	private String rfinancierName;
+	private String rfinancierCity;
 	private String raddress;
 	private String rpinCode;
 	private String rcity;
@@ -180,6 +182,18 @@ public class Serv2ToRolSunDTO {
 	}
 	public void setRfinanced(String rfinanced) {
 		this.rfinanced = rfinanced;
+	}
+	public String getRfinancierName() {
+		return rfinancierName;
+	}
+	public void setRfinancierName(String rfinancierName) {
+		this.rfinancierName = rfinancierName;
+	}
+	public String getRfinancierCity() {
+		return rfinancierCity;
+	}
+	public void setRfinancierCity(String rfinancierCity) {
+		this.rfinancierCity = rfinancierCity;
 	}
 	public String getRaddress() {
 		return raddress;
@@ -339,20 +353,21 @@ public class Serv2ToRolSunDTO {
 	}
 	public Serv2ToRolSunDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	public Serv2ToRolSunDTO(String detailsRegNumber, String yearOfManufacturebike, String bikeregistrationNumber,
 			String registrationNumber, String yearOfManufacture, String vehicleManufacturerName,
 			String vehicleModelCode, String fuelType1, String bikeManufacturerName, String bikeModelCode,
 			String bikeModelName, String bikefuelType, String rname, String remail, String rmobile,
 			String rnomines_name, String rnomines_relation, String rselectage, String rengine_number,
-			String rchassis_number, String rtitle, String rfinanced, String raddress, String rpinCode, String rcity,
-			String quoteId, String qUOTE_ID, String rstrPrevPolExpDt, String rPreviousPolicyToDt,
-			String rPreviousPolicyFromDt, String rPreviousPolicyUWYear, String rstrFirstRegDt, String rPreviousInsurer,
-			String isCarOwnershipChanged, String claimAmountReceived, String claimsMadeInPreviousPolicy,
-			String claimsReported, String bikeclaimsMadeInPreviousPolicy, String bikeVehicleOwnershipChanged,
-			String bikePreviousInsurerName, String bikeNoClaimBonusPercent, String bikePreviousPolicyExpiryDate,
-			String bikeRegistrationChargesRoadTax, String rproductName, String regDate, String previousPolicyno,
-			String noClaimBonusPercent, String royalBirthdate) {
+			String rchassis_number, String rtitle, String rfinanced, String rfinancierName, String rfinancierCity,
+			String raddress, String rpinCode, String rcity, String quoteId, String qUOTE_ID, String rstrPrevPolExpDt,
+			String rPreviousPolicyToDt, String rPreviousPolicyFromDt, String rPreviousPolicyUWYear,
+			String rstrFirstRegDt, String rPreviousInsurer, String isCarOwnershipChanged, String claimAmountReceived,
+			String claimsMadeInPreviousPolicy, String claimsReported, String bikeclaimsMadeInPreviousPolicy,
+			String bikeVehicleOwnershipChanged, String bikePreviousInsurerName, String bikeNoClaimBonusPercent,
+			String bikePreviousPolicyExpiryDate, String bikeRegistrationChargesRoadTax, String rproductName,
+			String regDate, String previousPolicyno, String noClaimBonusPercent, String royalBirthdate) {
 		super();
 		DetailsRegNumber = detailsRegNumber;
 		this.yearOfManufacturebike = yearOfManufacturebike;
@@ -376,6 +391,8 @@ public class Serv2ToRolSunDTO {
 		this.rchassis_number = rchassis_number;
 		this.rtitle = rtitle;
 		this.rfinanced = rfinanced;
+		this.rfinancierName = rfinancierName;
+		this.rfinancierCity = rfinancierCity;
 		this.raddress = raddress;
 		this.rpinCode = rpinCode;
 		this.rcity = rcity;
@@ -414,20 +431,21 @@ public class Serv2ToRolSunDTO {
 				+ ", remail=" + remail + ", rmobile=" + rmobile + ", rnomines_name=" + rnomines_name
 				+ ", rnomines_relation=" + rnomines_relation + ", rselectage=" + rselectage + ", rengine_number="
 				+ rengine_number + ", rchassis_number=" + rchassis_number + ", rtitle=" + rtitle + ", rfinanced="
-				+ rfinanced + ", raddress=" + raddress + ", rpinCode=" + rpinCode + ", rcity=" + rcity + ", quoteId="
-				+ quoteId + ", QUOTE_ID=" + QUOTE_ID + ", rstrPrevPolExpDt=" + rstrPrevPolExpDt
-				+ ", rPreviousPolicyToDt=" + rPreviousPolicyToDt + ", rPreviousPolicyFromDt=" + rPreviousPolicyFromDt
-				+ ", rPreviousPolicyUWYear=" + rPreviousPolicyUWYear + ", rstrFirstRegDt=" + rstrFirstRegDt
-				+ ", rPreviousInsurer=" + rPreviousInsurer + ", isCarOwnershipChanged=" + isCarOwnershipChanged
-				+ ", claimAmountReceived=" + claimAmountReceived + ", claimsMadeInPreviousPolicy="
-				+ claimsMadeInPreviousPolicy + ", claimsReported=" + claimsReported
-				+ ", bikeclaimsMadeInPreviousPolicy=" + bikeclaimsMadeInPreviousPolicy
-				+ ", bikeVehicleOwnershipChanged=" + bikeVehicleOwnershipChanged + ", bikePreviousInsurerName="
-				+ bikePreviousInsurerName + ", bikeNoClaimBonusPercent=" + bikeNoClaimBonusPercent
-				+ ", bikePreviousPolicyExpiryDate=" + bikePreviousPolicyExpiryDate + ", bikeRegistrationChargesRoadTax="
-				+ bikeRegistrationChargesRoadTax + ", rproductName=" + rproductName + ", regDate=" + regDate
-				+ ", previousPolicyno=" + previousPolicyno + ", noClaimBonusPercent=" + noClaimBonusPercent
-				+ ", RoyalBirthdate=" + RoyalBirthdate + "]";
+				+ rfinanced + ", rfinancierName=" + rfinancierName + ", rfinancierCity=" + rfinancierCity
+				+ ", raddress=" + raddress + ", rpinCode=" + rpinCode + ", rcity=" + rcity + ", quoteId=" + quoteId
+				+ ", QUOTE_ID=" + QUOTE_ID + ", rstrPrevPolExpDt=" + rstrPrevPolExpDt + ", rPreviousPolicyToDt="
+				+ rPreviousPolicyToDt + ", rPreviousPolicyFromDt=" + rPreviousPolicyFromDt + ", rPreviousPolicyUWYear="
+				+ rPreviousPolicyUWYear + ", rstrFirstRegDt=" + rstrFirstRegDt + ", rPreviousInsurer="
+				+ rPreviousInsurer + ", isCarOwnershipChanged=" + isCarOwnershipChanged + ", claimAmountReceived="
+				+ claimAmountReceived + ", claimsMadeInPreviousPolicy=" + claimsMadeInPreviousPolicy
+				+ ", claimsReported=" + claimsReported + ", bikeclaimsMadeInPreviousPolicy="
+				+ bikeclaimsMadeInPreviousPolicy + ", bikeVehicleOwnershipChanged=" + bikeVehicleOwnershipChanged
+				+ ", bikePreviousInsurerName=" + bikePreviousInsurerName + ", bikeNoClaimBonusPercent="
+				+ bikeNoClaimBonusPercent + ", bikePreviousPolicyExpiryDate=" + bikePreviousPolicyExpiryDate
+				+ ", bikeRegistrationChargesRoadTax=" + bikeRegistrationChargesRoadTax + ", rproductName="
+				+ rproductName + ", regDate=" + regDate + ", previousPolicyno=" + previousPolicyno
+				+ ", noClaimBonusPercent=" + noClaimBonusPercent + ", RoyalBirthdate=" + RoyalBirthdate + "]";
 	}
+	
 	
 }

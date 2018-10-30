@@ -45,7 +45,7 @@ public class LogServlet extends HttpServlet {
 		response.setContentType("text/html");  
         PrintWriter out = response.getWriter(); 
         
-		String u = request.getParameter("username");
+		String u = request.getParameter("Mobile");
 		String p = request.getParameter("pass");
 		
 		
@@ -57,14 +57,15 @@ public class LogServlet extends HttpServlet {
 				 Connection con;
 				try {
 					con = Db.myGetConnection();
-					 PreparedStatement ps = con.prepareStatement("select UID from reg where Uname=? and Password=?");
+					 PreparedStatement ps = con.prepareStatement("select Mobile,Name from reg where Mobile=? and Password=?");
 					 ps.setString(1,u);
 					 ps.setString(2,p);
 					 ResultSet rs = ps.executeQuery();
 					 status = rs.next();
-					 int uid = rs.getInt(1);
-					session.setAttribute("uname",u);  
-					session.setAttribute("uid",uid);   
+					 String Mobile = rs.getString(1);
+					 String Name = rs.getString(2);
+					 
+					session.setAttribute("Mobile",Mobile);   
 					
 
 					out.println("<script type=\"text/javascript\">");
@@ -72,7 +73,7 @@ public class LogServlet extends HttpServlet {
 					   out.println("alert('Successfully login');");
 					   out.println("</script>");
 					    
-					   System.out.println("Welcome: "+ u+" UID: "+uid);
+					   System.out.println("Welcome: "+ Name+" Mobile: "+Mobile);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -96,7 +97,7 @@ public class LogServlet extends HttpServlet {
 			   
 			 rd.include(request, response);//method may be include or forward
 		    out.println("<script type=\"text/javascript\">");
-		    out.println("alert('User name or password incorrect');");
+		    out.println("alert('MobileNo. or password incorrect');");
 		   out.println("</script>");
 		   }
 		
