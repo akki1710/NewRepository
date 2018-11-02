@@ -155,7 +155,12 @@
 
                                                     </fieldset>
                                                      <fieldset>
-                                                     Grand Total  <%=(String) session.getAttribute("TotalPremium") %><br>
+                                                     <%String health_policy=(String) session.getAttribute("health_policy");
+                                                     if(health_policy.equals("Optima_Restore")){ %>
+                                                     Grand Total:  <%=(String) session.getAttribute("TotalPremium") %><br>
+                                                     <%} else{%>
+                                                     Grand Total:  <%=(String) session.getAttribute("FloaterTotalPremium") %><br>
+                                                     <%} %>
                                                      (Inclusive of all taxes)<br>
                                                   <br>
                                                      <button class="btn btn-lg btn-success float-right"  type="submit" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">PROCEED TO PAYMENT --> </button>

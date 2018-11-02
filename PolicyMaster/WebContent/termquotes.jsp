@@ -186,29 +186,27 @@
                 <img src="img/new/full/lib2.jpg" alt="" class="img-fluid">
             <!--    <div class="icon"><i class="ion-ios-list-outline"></i></div>  -->
               </div>
-		<form action="MyServlet1" method="post">
-              <h2 class="title"><input type="submit" name="policy" value="Liberty Motor"></h2>
               <%try{ %>
 			<% PostPremiumDetails postd = (PostPremiumDetails) session.getAttribute("postd");
-			   String ProposalNo = (String) postd.getProposalNumber();
-			if(postd!=null){%>
-              
-              <div class="text-center"><h4><strong>Rs. <%= (Double) postd.getTotalPremium()%></strong></h4></div></form>
-              <form action="#" method="get">
+			if(postd.getTotalPremium()!=null){%>
+              <form action="MyServlet1" method="post">
+              <h2 class="title"><input type="submit" name="policy" value="Liberty Motor"></h2>
+              <div class="text-center"><h4><strong>Rs. <%=postd.getTotalPremium()%></strong></h4></div></form>
 		<ul>
-		 <li><h6>ProposalNo = <%= (String) postd.getProposalNumber()%></h6></li>
-		<li><h6>VehicleIDV = <%= (Double) postd.getCurrentIDV()%></h6></li>
-		<li><h6>Premium = <%= (Double) postd.getTotalPremium()%></h6></li>
+		 <li><h6>ProposalNo = <%=postd.getProposalNumber()%></h6></li>
+		<li><h6>VehicleIDV = <%=postd.getCurrentIDV()%></h6></li>
+		<li><h6>Premium = <%=postd.getTotalPremium()%></h6></li>
 		</ul>
-		<%} else if((postd==null)&&(ProposalNo==null)){%>
+		<%} else{%>
+		<h2 class="title"><input type="submit" name="policy" value="Liberty Motor"></h2>
 		<div class="text-center"><h4><strong>Rs. 0</strong></h4></div>
 		<ul>
+		 <li><h6>Premium = 0</h6></li>
 		<li><h6>VehicleIDV = 0</h6></li>
-		<li><h6>Premium = 0</h6></li>
 		<li><h6>An error occurred while calculating Premium</h6></li>
 		</ul>
 		<% }%>
-		</form>
+		
 		<%}catch(Exception e){
 			
 		}%>

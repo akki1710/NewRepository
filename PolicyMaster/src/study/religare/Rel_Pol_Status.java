@@ -168,21 +168,9 @@ public class Rel_Pol_Status extends HttpServlet {
 				 con.close();
 				
 				
-		 } catch (ParserConfigurationException e) {
-				// TODO Auto-generated catch block
+		 } catch (Exception e) {
 				e.printStackTrace();
-			} catch (JAXBException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SOAPException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NullPointerException e) {
-				e.printStackTrace();
-			}
+			} 
 		 if(session!=null) {
 			 session.removeAttribute("health_policy");
 			 session.removeAttribute("rel_premium");

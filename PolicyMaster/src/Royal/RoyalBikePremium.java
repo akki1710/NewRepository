@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -37,6 +39,7 @@ import Royal.Serv2ToRolSunDTO;
 import Royal.authenticationDetails;
 import Royal.proposerDetails;
 import Royal.vehicleDetails;
+import study.db.Db;
 
 /**
  * Servlet implementation class BikeCalcuPremium
@@ -383,7 +386,8 @@ public class RoyalBikePremium extends HttpServlet {
 			HttpSession session = request.getSession();
 
 			Serv2ToRolSunDTO serv2ToRolSunDTOComman = (Serv2ToRolSunDTO) session.getAttribute("serv2ToRolSunDTOComman");
-
+			String rname = serv2ToRolSunDTOComman.getRname();
+			String rphoneno = serv2ToRolSunDTOComman.getRmobile();
 			String remail = serv2ToRolSunDTOComman.getRemail();
 
 			DATA data1 = (DATA) session.getAttribute("data1");
@@ -443,6 +447,27 @@ public class RoyalBikePremium extends HttpServlet {
 			session.setAttribute("data2", data2);
 			System.out.println(data2);
 			System.out.println(pREMIUMDETAILS.getStatus());
+
+			String quoteId2 = data2.getQUOTE_ID();
+
+			String motor_policy = "RoyalSundaram Car Brandnew Policy";
+			Connection con = Db.myGetConnection();
+			if (rphoneno != null) {
+				String s = "insert into final_details(ProposalNo, ApprovePolNo,TotalPremium,PolicyName,FullName,Email,Mobile) values(?,?,?,?,?,?,?)";
+				PreparedStatement stmt = con.prepareStatement(s);
+
+				stmt.setString(1, quoteId1);
+				stmt.setString(2, quoteId2);
+				stmt.setString(3, premium);
+				stmt.setString(4, motor_policy);
+				stmt.setString(5, rname);
+				stmt.setString(6, remail);
+				stmt.setString(7, rphoneno);
+				stmt.executeUpdate();
+				stmt.close();
+
+				System.out.println("insert");
+			}
 
 			response.sendRedirect("bikePayment.jsp");
 		} catch (Exception e) {

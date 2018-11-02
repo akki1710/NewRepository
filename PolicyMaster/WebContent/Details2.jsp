@@ -127,7 +127,7 @@ body {
 									<div class="form-group">
 
 										<label class="Car-text">Owner's Full Name :</label> <input
-											type="text" class="Owner_Name" name="Owner_Name"
+											type="text" class="Owner_Name" name="Owner_Name" pattern="[a-zA-Z]+\s+[a-zA-Z\s]+"
 											value="<%=(String) session.getAttribute("Fullname")%>"
 											placeholder="Owner's Full Name" required>
 

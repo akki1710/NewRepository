@@ -310,9 +310,9 @@ body {
 																			<option value="6">6inch</option>
 																			<option value="7">7inch</option>
 																			<option value="8">8inch</option>
-																			<option value="9">8inch</option>
-																			<option value="10">8inch</option>
-																			<option value="12">8inch</option>
+																			<option value="9">9inch</option>
+																			<option value="10">10inch</option>
+																			<option value="11">11inch</option>
 																		</select>
 
 																	</div>
@@ -1032,9 +1032,9 @@ body {
 																<option value="Mr.">Mr.</option>
 																<option value="Mrs.">Mrs.</option>
 																<option value="Miss.">Miss.</option>
-																<!-- <option value="MASTER">master</option>
+																<option value="MASTER">master</option>
 																<option value="MASTER">baby boy</option>
-																<option value="BABY">baby girl</option> -->
+																<option value="BABY">baby girl</option>
 																
 															</select>
 														</div>

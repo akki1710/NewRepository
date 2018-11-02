@@ -20,7 +20,7 @@
             <form class="" action="Servlet2" method="post">
                 <div class="list-group">
                     <div class="">
-                        <input type="text" class="form-control" placeholder="FULL NAME" name="Name" required=""/>
+                        <input type="text" class="form-control" placeholder="FULL NAME" name="Name" pattern="[a-zA-Z]+\s+[a-zA-Z\s]+" required=""/>
     <input type="text" class="form-control" placeholder="MOBILE" name="Mobile" pattern="[1-9]{1}[0-9]{9}" title="Enter 10 digit mobile number"  required=""/>
     <input type="text" class="form-control" placeholder="EMAIL" name="Email" required="" />
     <input type="text" class="form-control" placeholder="Full Address" name="fulladdress" required="" />

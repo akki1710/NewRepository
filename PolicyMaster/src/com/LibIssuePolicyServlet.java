@@ -133,40 +133,24 @@ public class LibIssuePolicyServlet extends HttpServlet {
 				System.out.println(PolicyID);
 				
 	
-  				Integer uid=(Integer) session.getAttribute("uid");
-				 String uname=(String) session.getAttribute("uname");
+  				
 				 String policy=(String) session.getAttribute("policy");
  			Connection con = Db.myGetConnection();
-				 if(uid!=null) {
-					String s="insert into final_details(UID,Uname,ProposalNo, ApprovePolNo, ApprovePolSysId,TotalPremium,PolicyName,FullName,Email,Mobile) values(?,?,?,?,?,?,?,?,?,?)";
-					PreparedStatement stmt = con.prepareStatement(s);
-					stmt.setInt(1, uid);
-					stmt.setString(2, uname);
-					stmt.setString(3, QuotationNumber);
-					stmt.setString(4, PolicyNumber);
-					stmt.setString(5, ApprovePolSysId);
-					stmt.setString(6, TotalPremium);
-					stmt.setString(7, policy);
-					stmt.setString(8, FullName);
-					stmt.setString(9, Email);
-					stmt.setString(10, Mobile);
-					 stmt.executeUpdate();
-					 stmt.close();
-				 }
-				 else {
-					 String s="insert into shri_final_details(ProposalNo, ApprovePolNo,ApprovePolSysId,TotalPremium,PolicyName,FullName,Email,Mobile) values(?,?,?,?,?,?,?,?)";
-						PreparedStatement stmt = con.prepareStatement(s);
-						stmt.setString(1, QuotationNumber);
-						stmt.setString(2, PolicyNumber);
-						stmt.setString(3, ApprovePolSysId);
-						stmt.setString(4, TotalPremium);
-						stmt.setString(5, policy);
-						stmt.setString(6, FullName);
-						stmt.setString(7, Email);
-						stmt.setString(8, Mobile);
-						 stmt.executeUpdate();
-						 stmt.close();
-				 }
+ 			 if(Mobile!=null) {
+ 				String s="insert into final_details(ProposalNo, ApprovePolNo, ApprovePolSysId,TotalPremium,PolicyName,FullName,Email,Mobile) values(?,?,?,?,?,?,?,?)";
+ 				PreparedStatement stmt = con.prepareStatement(s);
+ 				stmt.setString(1, QuotationNumber);
+ 				stmt.setString(2, PolicyNumber);
+ 				stmt.setString(3, ApprovePolSysId);
+ 				stmt.setString(4, TotalPremium);
+ 				stmt.setString(5, policy);
+ 				stmt.setString(6, FullName);
+ 				stmt.setString(7, Email);
+ 				stmt.setString(8, Mobile);
+ 				 stmt.executeUpdate();
+ 				 stmt.close();
+ 				 System.out.println("lib data inserted");
+ 			 }
 				 
 				response.sendRedirect("success.jsp");
 	

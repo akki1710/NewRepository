@@ -56,7 +56,7 @@ public class LibertyImple {
 		 String RegNo4 = postde.getRegNo4();
 		 
 		 System.out.println("Reg Year : "+reg_year);
-		 System.out.println("ncb how it is brandnew: "+ncb);
+		 System.out.println("ncb : "+ncb);
 		 System.out.println("insurer : "+insurer);
 		 System.out.println("PrePolicyExpDate : "+PrePolicyExpDate);
 		 System.out.println("NewPolStartDate : "+NewPolStartDate);
@@ -227,6 +227,7 @@ public static void BikeCarPostPremiumDetailsFullQuote(HttpServletRequest request
 		 String LastName = custmpojo.getLastName();
 		 String EmailId = custmpojo.getEmailID();
 		 String MobileNo = custmpojo.getMobileNumber();
+		 String PanNo = custmpojo.getPanNo();
 		 
 		 String DateOfBirth=proppojo.getDateOfBirth();
 		 String EngineNo=proppojo.getEngineNo();
@@ -379,7 +380,7 @@ public static void BikeCarPostPremiumDetailsFullQuote(HttpServletRequest request
 			 custmerObj1.setAddressLine3("");
 			 custmerObj1.setPinCodeLocality("");
 			 custmerObj1.setPinCode(PinCode);// b done
-			 custmerObj1.setPanNo("");
+			 custmerObj1.setPanNo(PanNo);//b edit bt nt mendatory
 			 custmerObj1.setPermanentLocationSameAsMailLocation(true);
 			 custmerObj1.setMailingAddressLine1("");
 			 custmerObj1.setMailingPinCode("");
@@ -491,7 +492,7 @@ public static void BikeCarPostPremiumDetailsFullQuote(HttpServletRequest request
 				 custmerObj1.setAddressLine3("");
 				 custmerObj1.setPinCodeLocality("");
 				 custmerObj1.setPinCode(PinCode);
-				 custmerObj1.setPanNo("");
+				 custmerObj1.setPanNo(PanNo);//bt nt mandatory
 				 custmerObj1.setPermanentLocationSameAsMailLocation(true);
 				 custmerObj1.setMailingAddressLine1("");
 				 custmerObj1.setMailingPinCode("");

@@ -451,6 +451,7 @@ public class apollo extends HttpServlet {
 					String TotalPremium = TotalPremiumNodes.item(i).getNodeValue();
 					System.out.println("TotalPremium");
 					session.setAttribute("TotalPremium", TotalPremium);
+					
 
 					String s1[] = TotalPremium.split("\\.");
 					String tp = s1[0];
@@ -465,6 +466,8 @@ public class apollo extends HttpServlet {
 					// response.sendRedirect("healthquotes");
 
 				}
+				
+
 				for (int i = 0; i < BasePremiumNodes.getLength(); i++) {
 	    			System.out.println("BasePremium: " + BasePremiumNodes.item(i).getNodeValue());
 	    			 BasePremium = BasePremiumNodes.item(i).getNodeValue();
@@ -1024,11 +1027,12 @@ public class apollo extends HttpServlet {
 
 		Prospect pros = new Prospect();
 		pros.setBrandCode("ApolloMunich");
-		//pros.setTotalPremiumAmount();
+		//pros.setTotalPremiumAmount(TotalPremium);
 		//System.out.println(TotalPremium);
 		pros.setApplication(appli);
 		pros.setClient(cli);
 
+		
 		ProposalCaptureServiceRequest proposalCapt = new ProposalCaptureServiceRequest();
 		proposalCapt.setAction("Create");
 		proposalCapt.setProspect(pros);
@@ -1349,6 +1353,7 @@ public class apollo extends HttpServlet {
         	 session.removeAttribute("TransactionId");
         	 session.removeAttribute("PaymentUrl");
         	 session.removeAttribute("TotalPremium");
+        	 session.removeAttribute("FloaterTotalPremium");
         	 session.removeAttribute("health_policy");
          }
 		return;
@@ -2355,8 +2360,7 @@ cli.setDependants(dependants);
 			post.setEntity(userEntity);
 			post.setHeader("Accept-Encoding", "gzip,deflate");
 			post.setHeader("Content-Type", "text/xml; charset=UTF-8");
-			post.setHeader("SOAPAction",
-					"http://www.apollomunichinsurance.com/B2BService/IProposalCaptureService/ProposalCapture");
+			post.setHeader("SOAPAction","http://www.apollomunichinsurance.com/B2BService/IProposalCaptureService/ProposalCapture");
 			HttpResponse response1 = client1.execute(post);
 			String res_xml = EntityUtils.toString(response1.getEntity());
 			InputSource is = new InputSource(new StringReader(res_xml));
@@ -2369,7 +2373,7 @@ cli.setDependants(dependants);
 				String xpath_ProposalCaptureResult = "//ProposalCaptureResult/text()";
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-				Document doc = dBuilder.parse(is);
+				Document doc = parseXmlFile(res_xml);
 				XPathFactory xPathfactory = XPathFactory.newInstance();
 				XPath xpath = xPathfactory.newXPath();
 				XPathExpression xpath_expression_ProposalCaptureResult = xpath.compile(xpath_ProposalCaptureResult);
