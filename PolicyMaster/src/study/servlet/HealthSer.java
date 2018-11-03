@@ -78,8 +78,6 @@ public class HealthSer extends HttpServlet {
     	   
     	   if(session!=null) {
     		   session.removeAttribute("b3");
-    		   session.removeAttribute("FloaterTotalPremium");
-    		   session.removeAttribute("TotalPremium");
     		   session.removeAttribute("b2");
     	   }
     	  

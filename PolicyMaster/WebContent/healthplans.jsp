@@ -351,7 +351,7 @@ body {
 
 									<label class="w3ls-opt">e-mail :<span class="w3ls-star">
 											* </span></label> <span class="w3ls-text w3ls-name"> <input
-										type="email" name="email" placeholder="enter your e-mail"
+										type="email" name="email" placeholder="Enter Your E-Mail"
 										required="" />
 									</span>
 								</div>
